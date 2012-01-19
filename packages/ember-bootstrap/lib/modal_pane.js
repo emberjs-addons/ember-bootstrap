@@ -12,11 +12,22 @@ var modalPaneTemplate = '\
 Ember.ModalPane = Ember.View.extend({
   className: 'modal',
   template: Ember.Handlebars.compile(modalPaneTemplate),
-
+  heading: null,
+  message: null,
+  primary: null,
+  secondary: null,
   bodyViewClass: Ember.View.extend({
     tagName: 'p',
     template: Ember.Handlebars.compile('{{parentView.message}}')
-  })
+  }),
+
+  click: function(event) {
+    var target = $(event.target),
+        targetRel = target.attr('rel');
+    if (targetRel === 'close') {
+      this.destroy();
+    }
+  }
 });
 
 Ember.ModalPane.reopenClass({

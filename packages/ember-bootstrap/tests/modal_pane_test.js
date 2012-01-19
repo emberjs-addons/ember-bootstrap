@@ -80,3 +80,23 @@ test("a modal pane shows secondary button if secondary property is present", fun
   ok(!modalPane.$().find('.modal-footer a.secondary').length, "a modal pane hides secondary button");
 });
 
+test("a modal pane has a close button that removes it from the DOM", function() {
+  modalPane = Ember.ModalPane.create(), close;
+  Ember.run(function() {
+    modalPane.append();
+  });
+  close = modalPane.$().find('a[rel=close]');
+  ok(close.length, 'modal pane has a close button');
+  close.click();
+  ok(!modalPane.$().length, "modal pane is not in the DOM");
+  ok(modalPane.get('isDestroyed'), "modal pane is destroyed");
+});
+
+test("a modal pane does not get removed by clicking inside it", function() {
+  modalPane = Ember.ModalPane.create(), close;
+  Ember.run(function() {
+    modalPane.append();
+  });
+  modalPane.$().click();
+  ok(modalPane.$().length, "modal pane is still in the DOM");
+});

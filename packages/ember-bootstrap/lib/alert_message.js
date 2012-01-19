@@ -7,7 +7,7 @@ Ember.AlertMessage = Ember.View.extend({
   click: function(event) {
     var target = jQuery(event.target),
         targetRel = target.attr('rel');
-    if (targetRel == 'close') {
+    if (targetRel === 'close') {
       this.destroy();
       return false;
     }
