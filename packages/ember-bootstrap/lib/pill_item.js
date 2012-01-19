@@ -1,6 +1,6 @@
-Ember.PillItem = SC.View.extend({
+Ember.PillItem = Ember.View.extend({
   classNameBindings: 'isActive:active',
-  template: SC.Handlebars.compile('<a href="#">{{content}}</a>'),
+  template: Ember.Handlebars.compile('<a href="#">{{content}}</a>'),
 
   isActive: Ember.computed(function() {
     var selection = this.getPath('parentView.selection'),

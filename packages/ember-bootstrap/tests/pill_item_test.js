@@ -33,7 +33,7 @@ test("a pill item binds content property to DOM", function() {
 });
 
 test("a pill sets selection on parentView when clicked", function() {
-  var parentView = SC.CollectionView.create({
+  var parentView = Ember.CollectionView.create({
     tagName: 'ul',
     itemViewClass: Ember.PillItem,
     content: A(['A', 'B', 'C']),
@@ -50,7 +50,7 @@ test("a pill sets selection on parentView when clicked", function() {
 });
 
 test("a pill has active class when parent view has selection of item content", function() {
-  var parentView = SC.CollectionView.create({
+  var parentView = Ember.CollectionView.create({
     tagName: 'ul',
     itemViewClass: Ember.PillItem,
     content: A(['A', 'B', 'C']),
