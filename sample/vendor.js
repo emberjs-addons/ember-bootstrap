@@ -24354,7 +24354,18 @@ Ember.PillItem = SC.View.extend({
 
 (function(exports) {
 Ember.Pills = Ember.CollectionView.extend({
-  classNames: ['pills'],
+  classNames: 'pills',
+  tagName: 'ul',
+  itemViewClass: Ember.PillItem,
+  selection: null
+});
+
+})({});
+
+
+(function(exports) {
+Ember.Tabs = Ember.CollectionView.extend({
+  classNames: 'tabs',
   tagName: 'ul',
   itemViewClass: Ember.PillItem,
   selection: null

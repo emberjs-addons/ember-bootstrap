@@ -112,8 +112,27 @@ Ember.AlertMessage.create({
 }).append(); </pre>
             <h3>Sample</h3>
             <script type="text/x-handlebars">
-              {{view Ember.AlertMessage message="What a sweet alert
-                  message. So sweet it can go away."}}
+              {{view Ember.AlertMessage message="What a sweet alert message."}}
+              {{view Ember.AlertMessage type="error" message="What a sweet alert message."}}
+              {{view Ember.AlertMessage type="success" message="What a sweet alert message."}}
+              {{view Ember.AlertMessage type="info" message="What a sweet alert message."}}
+            </script>
+          </section>
+
+          <section>
+            <h2>Tabs</h2>
+            <pre>
+Ember.Tabs.create({
+  content: ["A", "B", "C"],
+  selectionBinding: "App.tabsController.selection"
+}).append(); </pre>
+            <h3>Sample</h3>
+            <script type="text/x-handlebars">
+              {{view Ember.Tabs
+                  contentBinding="SampleApp.tabsController.content"
+                  selectionBinding="SampleApp.tabsController.selection"}}
+              <p>Selected tab:
+              {{SampleApp.tabsController.selection}}</p>
             </script>
           </section>
 

@@ -16,3 +16,8 @@ SampleApp.pillsController = Ember.Object.create({
   content: ['Pill A', 'Pill B', 'Pill C'],
   selection: 'Pill A'
 });
+
+SampleApp.tabsController = Ember.Object.create({
+  content: ['Tab A', 'Tab B', 'Tab C'],
+  selection: 'Tab A'
+});
