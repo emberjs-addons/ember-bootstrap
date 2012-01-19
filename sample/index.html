@@ -56,7 +56,7 @@
         padding: 0 20px 0 20px;
       }
       .content section {
-        padding-bottom: 20px;
+        padding-bottom: 30px;
       }
 
       .content h2 {
@@ -116,6 +116,19 @@ Ember.AlertMessage.create({
               {{view Ember.AlertMessage type="error" message="What a sweet alert message."}}
               {{view Ember.AlertMessage type="success" message="What a sweet alert message."}}
               {{view Ember.AlertMessage type="info" message="What a sweet alert message."}}
+            </script>
+          </section>
+
+          <section>
+            <h2>Block alert messages</h2>
+            <pre>
+Ember.BlockAlertMessage.create({
+  message: "Sample alert message",
+  type: "warning"
+}).append(); </pre>
+            <h3>Sample</h3>
+            <script type="text/x-handlebars">
+              {{view Ember.BlockAlertMessage message="What a sweet alert message."}}
             </script>
           </section>
 

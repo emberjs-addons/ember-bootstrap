@@ -24254,7 +24254,7 @@ Ember.$(document).ready(
 (function(exports) {
 Ember.AlertMessage = Ember.View.extend({
   classNameBindings: 'type',
-  classNames: 'alert-message',
+  classNames: ['alert-message'],
   template: Ember.Handlebars.compile('<a class="close" rel="close" href="#">×</a><p>{{message}}</p>'),
   type: 'warning',
   message: null,
@@ -24267,6 +24267,14 @@ Ember.AlertMessage = Ember.View.extend({
       return false;
     }
   }
+});
+
+})({});
+
+
+(function(exports) {
+Ember.BlockAlertMessage = Ember.AlertMessage.extend({
+  classNames: ['block-message']
 });
 
 })({});
@@ -24354,7 +24362,7 @@ Ember.PillItem = SC.View.extend({
 
 (function(exports) {
 Ember.Pills = Ember.CollectionView.extend({
-  classNames: 'pills',
+  classNames: ['pills'],
   tagName: 'ul',
   itemViewClass: Ember.PillItem,
   selection: null
@@ -24365,7 +24373,7 @@ Ember.Pills = Ember.CollectionView.extend({
 
 (function(exports) {
 Ember.Tabs = Ember.CollectionView.extend({
-  classNames: 'tabs',
+  classNames: ['tabs'],
   tagName: 'ul',
   itemViewClass: Ember.PillItem,
   selection: null
