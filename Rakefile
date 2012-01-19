@@ -117,6 +117,17 @@ task :clean do
 end
 
 
+desc "Build files necessary to view samples"
+task :sample => :dist do
+  vendor_file = "sample/vendor.js"
+  sh "rm -f #{vendor_file}; touch #{vendor_file}"
+  sh "cat packages/jquery-1.6.2/lib/main.js >> #{vendor_file}"
+  sh "cat packages/ember/lib/main.js >> #{vendor_file}"
+  sh "cat dist/ember-bootstrap.js >> #{vendor_file}"
+end
+
+
+
 
 ### RELEASE TASKS ###
 
