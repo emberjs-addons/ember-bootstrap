@@ -81,7 +81,7 @@ test("a modal pane shows secondary button if secondary property is present", fun
 });
 
 test("a modal pane does not get removed by clicking inside it", function() {
-  modalPane = Ember.ModalPane.create(), close;
+  modalPane = Ember.ModalPane.create();
   Ember.run(function() {
     modalPane.append();
   });

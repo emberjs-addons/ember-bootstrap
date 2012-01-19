@@ -23,7 +23,7 @@ test("a pill item can be created and appended to DOM", function() {
 
 test("a pill item binds content property to DOM", function() {
   var content;
-  pillItem = Ember.PillItem.create(), close;
+  pillItem = Ember.PillItem.create();
   Ember.run(function() {
     pillItem.append();
     content = 'oh my output';

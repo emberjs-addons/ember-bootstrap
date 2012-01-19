@@ -32,7 +32,7 @@ test("an alert binds type property to layer class", function() {
 
 test("an alert binds message property to DOM", function() {
   var message;
-  alert = Ember.AlertMessage.create(), close;
+  alert = Ember.AlertMessage.create();
   Ember.run(function() {
     alert.append();
     message = 'oh my output';
@@ -42,7 +42,8 @@ test("an alert binds message property to DOM", function() {
 });
 
 test("an alert has a close button that removes it from the DOM", function() {
-  alert = Ember.AlertMessage.create(), close;
+  var close;
+  alert = Ember.AlertMessage.create();
   Ember.run(function() {
     alert.append();
   });
@@ -51,4 +52,21 @@ test("an alert has a close button that removes it from the DOM", function() {
   close.click();
   ok(!alert.$().length, 'alert should not have a layer');
   ok(alert.get('isDestroyed'), 'alert should be destroyed');
+});
+
+test("an alert removes iteself from the DOM after given amount of time", function() {
+  alert = Ember.AlertMessage.create({
+    removeAfter: 25
+  });
+  Ember.run(function() {
+    alert.append();
+    setTimeout(function() {
+      start();
+      ok(!alert.$().length, 'alert should not have a layer');
+      ok(alert.get('isDestroyed'), 'alert should be destroyed');
+    }, 50);
+  });
+  ok(alert.$().length, 'alert should not have been removed immediately');
+  ok(!alert.get('isDestroyed'), 'alert should be destroyed immediately');
+  stop();
 });
