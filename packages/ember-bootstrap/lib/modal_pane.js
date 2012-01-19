@@ -25,8 +25,19 @@ Ember.ModalPane = Ember.View.extend({
     var target = $(event.target),
         targetRel = target.attr('rel');
     if (targetRel === 'close') {
-      this.destroy();
+      this._triggerCallbackAndDestroy({ close: true }, event);
+    } else if (targetRel == 'primary') {
+      this._triggerCallbackAndDestroy({ primary: true }, event);
+    } else if (targetRel == 'secondary') {
+      this._triggerCallbackAndDestroy({ secondary: true }, event);
     }
+  },
+
+  _triggerCallbackAndDestroy: function(options, event) {
+    if (this.callback) {
+      this.callback(options, event);
+    }
+    this.destroy();
   }
 });
 
