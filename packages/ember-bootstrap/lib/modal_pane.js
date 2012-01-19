@@ -10,7 +10,7 @@ var modalPaneTemplate = '\
 </div>';
 
 Ember.ModalPane = Ember.View.extend({
-  className: 'modal',
+  classNames: 'modal',
   template: Ember.Handlebars.compile(modalPaneTemplate),
   heading: null,
   message: null,
