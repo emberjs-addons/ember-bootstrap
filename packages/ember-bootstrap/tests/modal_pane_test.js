@@ -19,13 +19,13 @@ test("a modal pane can be created and appended to DOM using popup() call", funct
   Ember.run(function() {
     modalPane = Ember.ModalPane.popup();
   });
-  ok(modalPane.$().length, 'a modal pane has a layer in the DOM');
+  ok(isAppendedToDOM(modalPane), 'a modal pane has a layer in the DOM');
 });
 
 test("a modal pane can be created and appended to DOM", function() {
   modalPane = Ember.ModalPane.create();
   appendIntoDOM(modalPane);
-  ok(modalPane.$().length, 'a modal pane has a layer in the DOM');
+  ok(isAppendedToDOM(modalPane), 'a modal pane has a layer in the DOM');
 });
 
 test("a modal pane binds heading property to layer", function() {
@@ -76,7 +76,7 @@ test("a modal pane does not get removed by clicking inside it", function() {
   modalPane = Ember.ModalPane.create();
   appendIntoDOM(modalPane);
   modalPane.$().click();
-  ok(modalPane.$().length, "modal pane is still in the DOM");
+  ok(isAppendedToDOM(modalPane), "modal pane is still in the DOM");
 });
 
 test("a modal pane has a close button that removes it from the DOM", function() {
@@ -84,8 +84,8 @@ test("a modal pane has a close button that removes it from the DOM", function() 
   modalPane = Ember.ModalPane.create();
   appendIntoDOM(modalPane);
   clickRelLink(modalPane, 'close');
-  ok(!modalPane.$().length, "modal pane is not in the DOM");
-  ok(modalPane.get('isDestroyed'), "modal pane is destroyed");
+  ok(!isAppendedToDOM(modalPane), "modal pane is not in the DOM");
+  ok(isDestroyed(modalPane), "modal pane is destroyed");
 });
 
 test("a modal pane calls callback when close button clicked", function() {
@@ -97,8 +97,8 @@ test("a modal pane calls callback when close button clicked", function() {
   appendIntoDOM(modalPane);
   clickRelLink(modalPane, 'close');
   ok(callbackWasCalled, "modal pane calls given callback when close button clicked");
-  ok(!modalPane.$().length, "modal pane is not in the DOM");
-  ok(modalPane.get('isDestroyed'), "modal pane is destroyed");
+  ok(!isAppendedToDOM(modalPane), "modal pane is not in the DOM");
+  ok(isDestroyed(modalPane), "modal pane is destroyed");
 });
 
 test("a modal pane calls callback when primary button clicked and removes pane from the DOM", function() {
@@ -111,8 +111,8 @@ test("a modal pane calls callback when primary button clicked and removes pane f
   appendIntoDOM(modalPane);
   clickRelLink(modalPane, 'primary');
   ok(callbackWasCalled, "modal pane calls given callback when primary button clicked");
-  ok(!modalPane.$().length, "modal pane is not in the DOM");
-  ok(modalPane.get('isDestroyed'), "modal pane is destroyed");
+  ok(!isAppendedToDOM(modalPane), "modal pane is not in the DOM");
+  ok(isDestroyed(modalPane), "modal pane is destroyed");
 });
 
 test("a modal pane calls callback when secondary button clicked and removes pane from the DOM", function() {
@@ -125,7 +125,7 @@ test("a modal pane calls callback when secondary button clicked and removes pane
   appendIntoDOM(modalPane);
   clickRelLink(modalPane, 'secondary');
   ok(callbackWasCalled, "modal pane calls given callback when secondary button clicked");
-  ok(!modalPane.$().length, "modal pane is not in the DOM");
-  ok(modalPane.get('isDestroyed'), "modal pane is destroyed");
+  ok(!isAppendedToDOM(modalPane), "modal pane is not in the DOM");
+  ok(isDestroyed(modalPane), "modal pane is destroyed");
 });
 

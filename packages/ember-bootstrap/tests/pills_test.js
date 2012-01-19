@@ -16,6 +16,6 @@ module("Ember.Pills", {
 test("pills can be created and appended to DOM", function() {
   pills = Ember.Pills.create({ content: A() });
   appendIntoDOM(pills);
-  ok(pills.$().length, 'a pills pane has a layer in the DOM');
+  ok(isAppendedToDOM(pills), 'a pills pane has a layer in the DOM');
 });
 

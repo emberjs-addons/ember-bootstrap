@@ -11,3 +11,11 @@ appendIntoDOM = function(view) {
     view.append() ;
   });
 };
+
+isAppendedToDOM = function(view) {
+  return view.$().length > 0;
+};
+
+isDestroyed = function(object) {
+  return object.get('isDestroyed');
+};

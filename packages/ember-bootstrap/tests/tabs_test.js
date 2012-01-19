@@ -16,7 +16,7 @@ module("Ember.Tabs", {
 test("tabs can be created and appended to DOM", function() {
   tabs = Ember.Tabs.create({ content: A() });
   appendIntoDOM(tabs);
-  ok(tabs.$().length, 'a tabs pane has a layer in the DOM');
+  ok(isAppendedToDOM(tabs), 'a tabs pane has a layer in the DOM');
 });
 
 

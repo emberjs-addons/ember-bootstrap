@@ -16,7 +16,7 @@ module("Ember.AlertMessage", {
 test("an alert can be created and appended to DOM", function() {
   alert = Ember.AlertMessage.create();
   appendIntoDOM(alert);
-  ok(alert.$().length, 'an alert has a layer in the DOM');
+  ok(isAppendedToDOM(alert), 'an alert has a layer in the DOM');
 });
 
 test("an alert binds type property to layer class", function() {
@@ -42,8 +42,8 @@ test("an alert has a close button that removes it from the DOM", function() {
   alert = Ember.AlertMessage.create();
   appendIntoDOM(alert);
   clickRelLink(alert, 'close');
-  ok(!alert.$().length, 'alert should not have a layer');
-  ok(alert.get('isDestroyed'), 'alert should be destroyed');
+  ok(!isAppendedToDOM(alert), 'alert should not have a layer');
+  ok(isDestroyed(alert), 'alert should be destroyed');
 });
 
 test("an alert removes iteself from the DOM after given amount of time", function() {
@@ -54,11 +54,11 @@ test("an alert removes iteself from the DOM after given amount of time", functio
     alert.append();
     setTimeout(function() {
       start();
-      ok(!alert.$().length, 'alert should not have a layer');
-      ok(alert.get('isDestroyed'), 'alert should be destroyed');
+      ok(!isAppendedToDOM(alert), 'alert should not have a layer');
+      ok(isDestroyed(alert), 'alert should be destroyed');
     }, 50);
   });
-  ok(alert.$().length, 'alert should not have been removed immediately');
-  ok(!alert.get('isDestroyed'), 'alert should be destroyed immediately');
+  ok(isAppendedToDOM(alert), 'alert should not have been removed immediately');
+  ok(!isDestroyed(alert), 'alert should be destroyed immediately');
   stop();
 });
