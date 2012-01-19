@@ -24333,7 +24333,7 @@ Ember.ModalPane.reopenClass({
 (function(exports) {
 Ember.PillItem = SC.View.extend({
   classNameBindings: 'isActive:active',
-  template: SC.Handlebars.compile('<a href="#" {{bindAttr rel="content"}}>{{content}}</a>'),
+  template: SC.Handlebars.compile('<a href="#">{{content}}</a>'),
 
   isActive: Ember.computed(function() {
     var selection = this.getPath('parentView.selection'),
