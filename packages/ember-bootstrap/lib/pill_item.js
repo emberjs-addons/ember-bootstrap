@@ -1,17 +1,19 @@
+var get = Ember.get, getPath = Ember.getPath, set = Ember.set;
+
 Ember.PillItem = Ember.View.extend({
   classNameBindings: 'isActive:active',
   template: Ember.Handlebars.compile('<a href="#">{{content}}</a>'),
 
   isActive: Ember.computed(function() {
-    var selection = this.getPath('parentView.selection'),
-        content = this.get('content');
+    var selection = getPath(this, 'parentView.selection'),
+        content = get(this, 'content');
     return selection === content;
   }).property('parentView.selection', 'content').cacheable(),
 
   click: function(event) {
-    var content = this.get('content'),
-        parentView = this.get('parentView');
-    parentView.set('selection', content);
+    var content = get(this, 'content'),
+        parentView = get(this, 'parentView');
+    set(parentView, 'selection', content);
     return false;
   }
 });

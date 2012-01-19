@@ -1,3 +1,5 @@
+var get = Ember.get;
+
 Ember.AlertMessage = Ember.View.extend({
   classNameBindings: 'type',
   classNames: ['alert-message'],
@@ -7,7 +9,7 @@ Ember.AlertMessage = Ember.View.extend({
   removeAfter: null,
 
   didInsertElement: function() {
-    var removeAfter = this.get('removeAfter');
+    var removeAfter = get(this, 'removeAfter');
     if (removeAfter > 0) {
       Ember.run.later(this, 'destroy', removeAfter);
     }
