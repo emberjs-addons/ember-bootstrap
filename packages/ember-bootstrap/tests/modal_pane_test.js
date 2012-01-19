@@ -13,6 +13,13 @@ module("Ember.ModalPane", {
   }
 });
 
+test("a modal pane can be created and appended to DOM using popup() call", function() {
+  Ember.run(function() {
+    modalPane = Ember.ModalPane.popup();
+  });
+  ok(modalPane.$().length, 'a modal pane has a layer in the DOM');
+});
+
 test("a modal pane can be created and appended to DOM", function() {
   modalPane = Ember.ModalPane.create();
   Ember.run(function() {

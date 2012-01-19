@@ -9,12 +9,23 @@ var modalPaneTemplate = '\
   {{#if secondary}}<a href="#" class="btn secondary" rel="secondary">{{secondary}}</a>{{/if}} \
 </div>';
 
-Ember.ModalPane = SC.View.extend({
+Ember.ModalPane = Ember.View.extend({
   className: 'modal',
-  template: SC.Handlebars.compile(modalPaneTemplate),
+  template: Ember.Handlebars.compile(modalPaneTemplate),
 
-  bodyViewClass: SC.View.extend({
+  bodyViewClass: Ember.View.extend({
     tagName: 'p',
-    template: SC.Handlebars.compile('{{parentView.message}}')
+    template: Ember.Handlebars.compile('{{parentView.message}}')
   })
 });
+
+Ember.ModalPane.reopenClass({
+  popup: function(options) {
+    var modalPane;
+    if (!options) options = {}
+    modalPane = this.create(options);
+    modalPane.append();
+    return modalPane;
+  }
+});
+
