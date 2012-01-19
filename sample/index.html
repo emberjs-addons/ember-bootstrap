@@ -46,20 +46,26 @@
         padding: 20px 20px 10px;
         margin: -20px -20px 20px;
       }
+      .page-header p {
+        color: #BFBFBF;
+        font-size: 18px;
+      }
 
       /* Styles you shouldn't keep as they are for displaying this base example only */
       .content .row {
         padding: 0 20px 0 20px;
       }
+      .content section {
+        padding-bottom: 20px;
+      }
 
       .content h2 {
-        margin: 15px 0 10px;
+        margin: 0 0 10px;
       }
 
       .topbar .btn {
         border: 0;
       }
-
     </style>
 
     <!-- Le fav and touch icons -->
@@ -75,40 +81,50 @@
 
       <div class="content">
         <div class="page-header">
-          <h1>Ember Bootstrap <small></small></h1>
+          <h1>Ember Bootstrap</h1>
+          <p> A set of UI elements styled using Twitter Boostrap toolkit
+          to use with Ember.js</p>
         </div>
         <div class="row">
+          <section>
             <h2>Modal panes</h2>
             <pre>
 Ember.ModalPane.popup({
   heading: "Sample modal pane",
   message: "Sample message",
-  primary: "Okey",
-  secondary: "WAT"
+  primary: "OK",
+  secondary: "Cancel"
 }); </pre>
+            <h3>Sample</h3>
             <script type="text/x-handlebars">
               {{#view Ember.Button class="btn" action="popup"
                   target="SampleApp.modalPaneController"}}Show me the
               mighty modal pane{{/view}}
             </script>
+          </section>
 
+          <section>
             <h2>Alert messages</h2>
             <pre>
 Ember.AlertMessage.create({
   message: "Sample alert message",
   type: "warning"
 }).append(); </pre>
+            <h3>Sample</h3>
             <script type="text/x-handlebars">
               {{view Ember.AlertMessage message="What a sweet alert
                   message. So sweet it can go away."}}
             </script>
+          </section>
 
+          <section>
             <h2>Pills</h2>
             <pre>
 Ember.Pills.create({
   content: ["A", "B", "C"],
   selectionBinding: "App.pillsController.selection"
 }).append(); </pre>
+            <h3>Sample</h3>
             <script type="text/x-handlebars">
               {{view Ember.Pills
                   contentBinding="SampleApp.pillsController.content"
@@ -116,6 +132,20 @@ Ember.Pills.create({
               <p>Selected pill:
               {{SampleApp.pillsController.selection}}</p>
             </script>
+          </section>
+
+          <section>
+            <h2>Download</h2>
+            <p>
+              You can download this project in either
+              <a href="https://github.com/jzajpt/ember-bootstrap/zipball/master">zip</a> or
+              <a href="https://github.com/jzajpt/ember-bootstrap/tarball/master">tar formats.
+            </p>
+            <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
+              by running:
+              <pre>$ git clone git://github.com/jzajpt/ember-bootstrap</pre>
+            </p>
+          </section>
         </div>
       </div>
 
