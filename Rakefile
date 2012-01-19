@@ -135,7 +135,7 @@ task :gh_pages => :sample do
   end
   sh "git commit -a -m 'Pages update from #{other_branch} branch'"
   sh "git push"
-  sh "g checkout #{other_branch}"
+  sh "git checkout #{other_branch}"
 end
 
 
