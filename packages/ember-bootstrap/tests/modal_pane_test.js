@@ -1,3 +1,5 @@
+require('ember-bootstrap/~tests/test_helpers');
+
 var application, modalPane;
 var get = Ember.get, set = Ember.set;
 
@@ -95,9 +97,7 @@ test("a modal pane has a close button that removes it from the DOM", function() 
   Ember.run(function() {
     modalPane.append();
   });
-  close = modalPane.$().find('a[rel=close]');
-  ok(close.length, 'modal pane has a close button');
-  close.click();
+  clickRelLink(modalPane, 'close');
   ok(!modalPane.$().length, "modal pane is not in the DOM");
   ok(modalPane.get('isDestroyed'), "modal pane is destroyed");
 });
@@ -111,7 +111,7 @@ test("a modal pane calls callback when close button clicked", function() {
   Ember.run(function() {
     modalPane.append();
   });
-  modalPane.$().find('a[rel=close]').click();
+  clickRelLink(modalPane, 'close');
   ok(callbackWasCalled, "modal pane calls given callback when close button clicked");
   ok(!modalPane.$().length, "modal pane is not in the DOM");
   ok(modalPane.get('isDestroyed'), "modal pane is destroyed");
@@ -127,7 +127,7 @@ test("a modal pane calls callback when primary button clicked and removes pane f
   Ember.run(function() {
     modalPane.append();
   });
-  modalPane.$().find('a[rel=primary]').click();
+  clickRelLink(modalPane, 'primary');
   ok(callbackWasCalled, "modal pane calls given callback when primary button clicked");
   ok(!modalPane.$().length, "modal pane is not in the DOM");
   ok(modalPane.get('isDestroyed'), "modal pane is destroyed");
@@ -143,7 +143,7 @@ test("a modal pane calls callback when secondary button clicked and removes pane
   Ember.run(function() {
     modalPane.append();
   });
-  modalPane.$().find('a[rel=secondary]').click();
+  clickRelLink(modalPane, 'secondary');
   ok(callbackWasCalled, "modal pane calls given callback when secondary button clicked");
   ok(!modalPane.$().length, "modal pane is not in the DOM");
   ok(modalPane.get('isDestroyed'), "modal pane is destroyed");

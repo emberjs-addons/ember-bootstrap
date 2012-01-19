@@ -47,9 +47,7 @@ test("an alert has a close button that removes it from the DOM", function() {
   Ember.run(function() {
     alert.append();
   });
-  close = alert.$().find('a[rel=close]');
-  ok(close.length, 'alert has a close button');
-  close.click();
+  clickRelLink(alert, 'close');
   ok(!alert.$().length, 'alert should not have a layer');
   ok(alert.get('isDestroyed'), 'alert should be destroyed');
 });
