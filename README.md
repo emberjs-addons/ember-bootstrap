@@ -8,6 +8,13 @@ Ember Boostrap is set of UI elements styled using Twitter Boostrap toolkit to us
 Nope, not yet. So either fork, do your magic and send pull request or move along.
 
 
+## What's implemented so far?
+
+* Modal panes - Ember.ModalPane
+* Alert messages - Ember.AlertMessage
+* Pills - Ember.Pills
+
+
 ## Unit Tests
 
 To run unit tests, run `rackup` from the root directory and visit
