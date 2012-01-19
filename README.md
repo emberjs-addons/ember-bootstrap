@@ -12,7 +12,9 @@ Nope, not yet. So either fork, do your magic and send pull request or move along
 
 * Modal panes - Ember.ModalPane
 * Alert messages - Ember.AlertMessage
+* Block alert messages - Ember.BlockAlertMessage
 * Pills - Ember.Pills
+* Tabs (header) - Ember.Tabs
 
 
 ## Unit Tests
