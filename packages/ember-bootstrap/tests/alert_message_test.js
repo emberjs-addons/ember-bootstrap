@@ -48,7 +48,6 @@ test("an alert has a close button that removes it from the DOM", function() {
     alert.append();
   });
   close = alert.$().find('a[rel=close]');
-  console.log(alert.$());
   ok(close.length, 'alert has a close button');
   close.click();
   ok(!alert.$().length, 'alert should not have a layer');
