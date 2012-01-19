@@ -116,7 +116,6 @@ task :clean do
   sh "rm -rf tmp && rm -rf dist"
 end
 
-
 desc "Build files necessary to view samples"
 task :sample => :dist do
   vendor_file = "sample/vendor.js"
@@ -126,7 +125,18 @@ task :sample => :dist do
   sh "cat dist/ember-bootstrap.js >> #{vendor_file}"
 end
 
-
+desc "Build files necessary to view samples"
+task :gh_pages => :sample do
+  other_branch = 'master'
+  files = %w(index.html bootstrap.min.css sample.js vendor.js)
+  sh "git checkout gh-pages"
+  files.each do |file|
+    sh "git show #{other_branch}:sample/#{file} > #{file}"
+  end
+  sh "git commit -a -m 'Pages update from #{other_branch} branch'"
+  sh "git push"
+  sh "g checkout #{other_branch}"
+end
 
 
 ### RELEASE TASKS ###
