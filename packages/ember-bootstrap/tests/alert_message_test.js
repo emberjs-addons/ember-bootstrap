@@ -18,7 +18,7 @@ test("an alert can be created and appended to DOM", function() {
   Ember.run(function() {
     alert.append();
   });
-  ok(alert.$().length, 'an alert has a layer');
+  ok(alert.$().length, 'an alert has a layer in the DOM');
 });
 
 test("an alert binds type property to layer class", function() {
