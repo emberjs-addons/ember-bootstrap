@@ -95,12 +95,26 @@ Ember.ModalPane.popup({
             <h2>Alert messages</h2>
             <pre>
 Ember.AlertMessage.create({
-  text: "Sample alert message",
+  message: "Sample alert message",
   type: "warning"
 }).append(); </pre>
             <script type="text/x-handlebars">
-              {{view Ember.AlertMessage text="What a sweet alert
+              {{view Ember.AlertMessage message="What a sweet alert
                   message. So sweet it can go away."}}
+            </script>
+
+            <h2>Pills</h2>
+            <pre>
+Ember.Pills.create({
+  content: ["A", "B", "C"],
+  selectionBinding: "App.pillsController.selection"
+}).append(); </pre>
+            <script type="text/x-handlebars">
+              {{view Ember.Pills
+                  contentBinding="SampleApp.pillsController.content"
+                  selectionBinding="SampleApp.pillsController.selection"}}
+              <p>Selected pill:
+              {{SampleApp.pillsController.selection}}</p>
             </script>
         </div>
       </div>

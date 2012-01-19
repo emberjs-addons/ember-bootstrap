@@ -11,3 +11,8 @@ SampleApp.modalPaneController = Ember.Object.create({
     });
   }
 });
+
+SampleApp.pillsController = Ember.Object.create({
+  content: ['Pill A', 'Pill B', 'Pill C'],
+  selection: 'Pill A'
+});
