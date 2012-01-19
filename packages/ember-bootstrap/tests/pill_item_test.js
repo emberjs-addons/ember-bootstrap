@@ -21,15 +21,15 @@ test("a pill item can be created and appended to DOM", function() {
   ok(pillItem.$().length, 'a pillItem pane has a layer in the DOM');
 });
 
-test("a pill item binds title property to DOM", function() {
-  var title;
+test("a pill item binds content property to DOM", function() {
+  var content;
   pillItem = Ember.PillItem.create(), close;
   Ember.run(function() {
     pillItem.append();
-    title = 'oh my output';
-    pillItem.set('title', title);
+    content = 'oh my output';
+    pillItem.set('content', content);
   });
-  equal(pillItem.$().find('a').text(), title, 'pill item binds given title to DOM');
+  equal(pillItem.$().find('a').text(), content, 'pill item binds given content to DOM');
 });
 
 test("a pill sets selection on parentView when clicked", function() {
