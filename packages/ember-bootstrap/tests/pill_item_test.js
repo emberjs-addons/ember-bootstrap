@@ -15,9 +15,7 @@ module("Ember.PillItem", {
 
 test("a pill item can be created and appended to DOM", function() {
   pillItem = Ember.PillItem.create();
-  Ember.run(function() {
-    pillItem.append();
-  });
+  appendIntoDOM(pillItem);
   ok(pillItem.$().length, 'a pillItem pane has a layer in the DOM');
 });
 
@@ -39,9 +37,7 @@ test("a pill sets selection on parentView when clicked", function() {
     content: A(['A', 'B', 'C']),
     selection: null
   });
-  Ember.run(function() {
-    parentView.append();
-  });
+  appendIntoDOM(parentView);
   parentView.$().find('li:last').click(); // select the last pill
   equal(parentView.get('selection'), 'C', "pill item sets its content as a selection");
   parentView.$().find('li:first').click(); // select the first pill
@@ -56,9 +52,7 @@ test("a pill has active class when parent view has selection of item content", f
     content: A(['A', 'B', 'C']),
     selection: 'A'
   });
-  Ember.run(function() {
-    parentView.append();
-  });
+  appendIntoDOM(parentView);
   ok(parentView.$().find('li:first').hasClass('active'), "selected item has active class");
   Ember.run(function() {
     parentView.set('selection', 'C');

@@ -15,9 +15,7 @@ module("Ember.BlockAlertMessage", {
 
 test("a block alert message can be created and appended to DOM", function() {
   blockAlert = Ember.BlockAlertMessage.create();
-  Ember.run(function() {
-    blockAlert.append();
-  });
+  appendIntoDOM(blockAlert);
   ok(blockAlert.$().length, 'a blockAlert pane has a layer in the DOM');
 });
 

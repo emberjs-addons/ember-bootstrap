@@ -4,4 +4,10 @@ clickRelLink = function(view, relName) {
   ok(element);
   element.click();
   return element;
-}
+};
+
+appendIntoDOM = function(view) {
+  Ember.run(function() {
+    view.append() ;
+  });
+};

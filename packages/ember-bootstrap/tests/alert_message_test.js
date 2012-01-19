@@ -15,18 +15,14 @@ module("Ember.AlertMessage", {
 
 test("an alert can be created and appended to DOM", function() {
   alert = Ember.AlertMessage.create();
-  Ember.run(function() {
-    alert.append();
-  });
+  appendIntoDOM(alert);
   ok(alert.$().length, 'an alert has a layer in the DOM');
 });
 
 test("an alert binds type property to layer class", function() {
   var type = 'test-type';
   alert = Ember.AlertMessage.create({ type: type });
-  Ember.run(function() {
-    alert.append();
-  });
+  appendIntoDOM(alert);
   ok(alert.$().hasClass(type), 'an alert binds type property to class');
 });
 
@@ -44,9 +40,7 @@ test("an alert binds message property to DOM", function() {
 test("an alert has a close button that removes it from the DOM", function() {
   var close;
   alert = Ember.AlertMessage.create();
-  Ember.run(function() {
-    alert.append();
-  });
+  appendIntoDOM(alert);
   clickRelLink(alert, 'close');
   ok(!alert.$().length, 'alert should not have a layer');
   ok(alert.get('isDestroyed'), 'alert should be destroyed');
