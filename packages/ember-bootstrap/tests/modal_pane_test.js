@@ -147,10 +147,10 @@ test("a modal pane removes itself from the DOM when escape pressed", function() 
 
 test("a modal pane appends and removes backdrop to its parent", function() {
   modalPane = Ember.ModalPane.create();
-  ok(!$('body > .modal-backdrop').length, "modal pane does not append backdrop before inserting into DOM");
+  ok(!documentHasSelector('body > .modal-backdrop'), "modal pane does not append backdrop before inserting into DOM");
   appendIntoDOM(modalPane);
-  ok($('body > .modal-backdrop').length, "modal pane appends backdrop after inserting into DOM");
+  ok(documentHasSelector('body > .modal-backdrop'), "modal pane appends backdrop after inserting into DOM");
   modalPane.destroy();
-  ok(!$('body > .modal-backdrop').length, "modal pane removes backdrop after destroying");
+  ok(!documentHasSelector('body > .modal-backdrop'), "modal pane removes backdrop after destroying");
 });
 

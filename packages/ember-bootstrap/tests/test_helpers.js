@@ -19,3 +19,7 @@ isAppendedToDOM = function(view) {
 isDestroyed = function(object) {
   return object.get('isDestroyed');
 };
+
+documentHasSelector = function(selector) {
+  return jQuery(selector).length > 0;
+}

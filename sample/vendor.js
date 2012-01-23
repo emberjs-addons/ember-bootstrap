@@ -24328,9 +24328,8 @@ Ember.ModalPane = Ember.View.extend({
   },
 
   didInsertElement: function() {
-    var layer = this.$(),
-        parent = layer.parent();
-    this._backdrop = $(modalPaneBackdrop).appendTo(parent);
+    var parentLayer = this.$().parent();
+    this._backdrop = $(modalPaneBackdrop).appendTo(parentLayer);
   },
 
   willDestroyElement: function() {
