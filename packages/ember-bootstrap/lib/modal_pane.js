@@ -27,12 +27,13 @@ Ember.ModalPane = Ember.View.extend({
   }),
 
   didInsertElement: function() {
-    var parentLayer = this.$().parent();
-    this._backdrop = $(modalPaneBackdrop).appendTo(parentLayer);
+    this._appendBackdrop();
+    this._setupDocumentKeyHandler();
   },
 
   willDestroyElement: function() {
     this._backdrop.remove();
+    this._removeDocumentKeyHandler();
   },
 
   keyPress: function(event) {
@@ -51,6 +52,25 @@ Ember.ModalPane = Ember.View.extend({
     } else if (targetRel == 'secondary') {
       this._triggerCallbackAndDestroy({ secondary: true }, event);
     }
+  },
+
+  _appendBackdrop: function() {
+    var parentLayer = this.$().parent();
+    this._backdrop = $(modalPaneBackdrop).appendTo(parentLayer);
+  },
+
+  _setupDocumentKeyHandler: function() {
+    var cc = this,
+        handler = function(event) {
+          console.log('handler', event.which, event.keyCode, event);
+          cc.keyPress(event);
+        };
+    jQuery(window.document).bind('keyup', handler);
+    this._keyUpHandler = handler;
+  },
+
+  _removeDocumentKeyHandler: function() {
+    jQuery(window.document).unbind('keyup', this._keyUpHandler);
   },
 
   _triggerCallbackAndDestroy: function(options, event) {
