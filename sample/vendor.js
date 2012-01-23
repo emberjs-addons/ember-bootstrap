@@ -24294,7 +24294,7 @@ Ember.BlockAlertMessage = Ember.AlertMessage.extend({
 var modalPaneTemplate = '\
 <div class="modal-header"> \
   <a href="#" class="close" rel="close">×</a> \
-  <h3>{{heading}}</h3> \
+  {{view headerViewClass}} \
 </div> \
 <div class="modal-body">{{view bodyViewClass}}</div> \
 <div class="modal-footer"> \
@@ -24310,22 +24310,15 @@ Ember.ModalPane = Ember.View.extend({
   message: null,
   primary: null,
   secondary: null,
+  headerViewClass: Ember.View.extend({
+    tagName: 'h3',
+    template: Ember.Handlebars.compile('{{parentView.heading}}')
+  }),
+
   bodyViewClass: Ember.View.extend({
     tagName: 'p',
     template: Ember.Handlebars.compile('{{parentView.message}}')
   }),
-
-  click: function(event) {
-    var target = $(event.target),
-        targetRel = target.attr('rel');
-    if (targetRel === 'close') {
-      this._triggerCallbackAndDestroy({ close: true }, event);
-    } else if (targetRel == 'primary') {
-      this._triggerCallbackAndDestroy({ primary: true }, event);
-    } else if (targetRel == 'secondary') {
-      this._triggerCallbackAndDestroy({ secondary: true }, event);
-    }
-  },
 
   didInsertElement: function() {
     var parentLayer = this.$().parent();
@@ -24339,6 +24332,18 @@ Ember.ModalPane = Ember.View.extend({
   keyPress: function(event) {
     if (event.keyCode === 27) {
       this._triggerCallbackAndDestroy({ close: true }, event);
+    }
+  },
+
+  click: function(event) {
+    var target = $(event.target),
+        targetRel = target.attr('rel');
+    if (targetRel === 'close') {
+      this._triggerCallbackAndDestroy({ close: true }, event);
+    } else if (targetRel == 'primary') {
+      this._triggerCallbackAndDestroy({ primary: true }, event);
+    } else if (targetRel == 'secondary') {
+      this._triggerCallbackAndDestroy({ secondary: true }, event);
     }
   },
 
