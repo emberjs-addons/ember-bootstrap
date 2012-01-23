@@ -8,6 +8,7 @@ var modalPaneTemplate = '\
   {{#if primary}}<a href="#" class="btn primary" rel="primary">{{primary}}</a>{{/if}} \
   {{#if secondary}}<a href="#" class="btn secondary" rel="secondary">{{secondary}}</a>{{/if}} \
 </div>';
+var modalPaneBackdrop = '<div class="modal-backdrop"></div>';
 
 Ember.ModalPane = Ember.View.extend({
   classNames: 'modal',
@@ -30,6 +31,21 @@ Ember.ModalPane = Ember.View.extend({
       this._triggerCallbackAndDestroy({ primary: true }, event);
     } else if (targetRel == 'secondary') {
       this._triggerCallbackAndDestroy({ secondary: true }, event);
+    }
+  },
+
+  didInsertElement: function() {
+    var parentLayer = this.$().parent();
+    this._backdrop = $(modalPaneBackdrop).appendTo(parent);
+  },
+
+  willDestroyElement: function() {
+    this._backdrop.remove();
+  },
+
+  keyPress: function(event) {
+    if (event.keyCode === 27) {
+      this._triggerCallbackAndDestroy({ close: true }, event);
     }
   },
 

@@ -24252,6 +24252,8 @@ Ember.$(document).ready(
 })({});
 
 (function(exports) {
+var get = Ember.get;
+
 Ember.AlertMessage = Ember.View.extend({
   classNameBindings: 'type',
   classNames: ['alert-message'],
@@ -24261,7 +24263,7 @@ Ember.AlertMessage = Ember.View.extend({
   removeAfter: null,
 
   didInsertElement: function() {
-    var removeAfter = this.get('removeAfter');
+    var removeAfter = get(this, 'removeAfter');
     if (removeAfter > 0) {
       Ember.run.later(this, 'destroy', removeAfter);
     }
@@ -24299,6 +24301,7 @@ var modalPaneTemplate = '\
   {{#if primary}}<a href="#" class="btn primary" rel="primary">{{primary}}</a>{{/if}} \
   {{#if secondary}}<a href="#" class="btn secondary" rel="secondary">{{secondary}}</a>{{/if}} \
 </div>';
+var modalPaneBackdrop = '<div class="modal-backdrop"></div>';
 
 Ember.ModalPane = Ember.View.extend({
   classNames: 'modal',
@@ -24321,6 +24324,22 @@ Ember.ModalPane = Ember.View.extend({
       this._triggerCallbackAndDestroy({ primary: true }, event);
     } else if (targetRel == 'secondary') {
       this._triggerCallbackAndDestroy({ secondary: true }, event);
+    }
+  },
+
+  didInsertElement: function() {
+    var layer = this.$(),
+        parent = layer.parent();
+    this._backdrop = $(modalPaneBackdrop).appendTo(parent);
+  },
+
+  willDestroyElement: function() {
+    this._backdrop.remove();
+  },
+
+  keyPress: function(event) {
+    if (event.keyCode === 27) {
+      this._triggerCallbackAndDestroy({ close: true }, event);
     }
   },
 
@@ -24347,20 +24366,22 @@ Ember.ModalPane.reopenClass({
 
 
 (function(exports) {
+var get = Ember.get, getPath = Ember.getPath, set = Ember.set;
+
 Ember.PillItem = Ember.View.extend({
   classNameBindings: 'isActive:active',
   template: Ember.Handlebars.compile('<a href="#">{{content}}</a>'),
 
   isActive: Ember.computed(function() {
-    var selection = this.getPath('parentView.selection'),
-        content = this.get('content');
+    var selection = getPath(this, 'parentView.selection'),
+        content = get(this, 'content');
     return selection === content;
   }).property('parentView.selection', 'content').cacheable(),
 
   click: function(event) {
-    var content = this.get('content'),
-        parentView = this.get('parentView');
-    parentView.set('selection', content);
+    var content = get(this, 'content'),
+        parentView = get(this, 'parentView');
+    set(parentView, 'selection', content);
     return false;
   }
 });

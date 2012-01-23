@@ -129,3 +129,28 @@ test("a modal pane calls callback when secondary button clicked and removes pane
   ok(isDestroyed(modalPane), "modal pane is destroyed");
 });
 
+test("a modal pane removes itself from the DOM when escape pressed", function() {
+  var callback = function() { callbackWasCalled = true },
+      callbackWasCalled = false,
+      event;
+  modalPane = Ember.ModalPane.create({
+    secondary: 'Secondary button',
+    callback: callback
+  });
+  appendIntoDOM(modalPane);
+  event = Ember.Object.create({ keyCode: 27 });
+  modalPane.keyPress(event);
+  ok(callbackWasCalled, "modal pane calls given callback when secondary button clicked");
+  ok(!isAppendedToDOM(modalPane), "modal pane is not in the DOM");
+  ok(isDestroyed(modalPane), "modal pane is destroyed");
+});
+
+test("a modal pane appends and removes backdrop to its parent", function() {
+  modalPane = Ember.ModalPane.create();
+  ok(!$('body > .modal-backdrop').length, "modal pane does not append backdrop before inserting into DOM");
+  appendIntoDOM(modalPane);
+  ok($('body > .modal-backdrop').length, "modal pane appends backdrop after inserting into DOM");
+  modalPane.destroy();
+  ok(!$('body > .modal-backdrop').length, "modal pane removes backdrop after destroying");
+});
+
