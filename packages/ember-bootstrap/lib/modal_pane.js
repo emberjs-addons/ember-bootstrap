@@ -62,7 +62,6 @@ Ember.ModalPane = Ember.View.extend({
   _setupDocumentKeyHandler: function() {
     var cc = this,
         handler = function(event) {
-          console.log('handler', event.which, event.keyCode, event);
           cc.keyPress(event);
         };
     jQuery(window.document).bind('keyup', handler);
