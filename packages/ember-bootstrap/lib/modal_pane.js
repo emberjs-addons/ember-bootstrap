@@ -23,7 +23,7 @@ Ember.ModalPane = Ember.View.extend({
   }),
   bodyViewClass: Ember.View.extend({
     tagName: 'p',
-    template: Ember.Handlebars.compile('{{parentView.message}}')
+    template: Ember.Handlebars.compile('{{{parentView.message}}}')
   }),
 
   didInsertElement: function() {
