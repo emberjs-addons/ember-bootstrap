@@ -104,35 +104,6 @@ Ember.ModalPane.popup({
           </section>
 
           <section>
-            <h2>Alert messages</h2>
-            <pre>
-Ember.AlertMessage.create({
-  message: "Sample alert message",
-  type: "warning"
-}).append(); </pre>
-            <h4>Sample</h4>
-            <script type="text/x-handlebars">
-              {{view Ember.AlertMessage message="What a sweet alert message."}}
-              {{view Ember.AlertMessage type="error" message="What a sweet alert message."}}
-              {{view Ember.AlertMessage type="success" message="What a sweet alert message."}}
-              {{view Ember.AlertMessage type="info" message="What a sweet alert message."}}
-            </script>
-          </section>
-
-          <section>
-            <h2>Block alert messages</h2>
-            <pre>
-Ember.BlockAlertMessage.create({
-  message: "Sample alert message",
-  type: "warning"
-}).append(); </pre>
-            <h4>Sample</h4>
-            <script type="text/x-handlebars">
-              {{view Ember.BlockAlertMessage message="What a sweet alert message."}}
-            </script>
-          </section>
-
-          <section>
             <h2>Tabs</h2>
             <pre>
 Ember.Tabs.create({
@@ -212,6 +183,49 @@ Ember.Pills.create({
               <pre>$ git clone git://github.com/jzajpt/ember-bootstrap</pre>
             </p>
           </section>
+
+          <section>
+            <h2>Alert messages</h2>
+            <pre>
+Ember.AlertMessage.create({
+  message: "Sample alert message",
+  type: "warning"
+}).append(); </pre>
+            <h4>Sample</h4>
+            <script type="text/x-handlebars">
+              {{view Ember.AlertMessage message="What a sweet alert message."}}
+              {{view Ember.AlertMessage type="error" message="What a sweet alert message."}}
+              {{view Ember.AlertMessage type="success" message="What a sweet alert message."}}
+              {{view Ember.AlertMessage type="info" message="What a sweet alert message."}}
+            </script>
+          </section>
+
+          <section>
+            <h2>Block alert messages</h2>
+            <pre>
+Ember.BlockAlertMessage.create({
+  message: "Sample alert message",
+  type: "warning"
+}).append(); </pre>
+            <h4>Sample</h4>
+            <script type="text/x-handlebars">
+              {{view Ember.BlockAlertMessage message="What a sweet alert message."}}
+            </script>
+          </section>
+
+          <section>
+            <h2>Progress bars</h2>
+            <pre>
+Ember.ProgressBar.create({
+  isStriped: true,
+  progress: 50
+}).append(); </pre>
+            <h4>Sample</h4>
+            <script type="text/x-handlebars">
+              {{view Ember.ProgressBar isStriped=true isAnimated=true progress=50}}
+            </script>
+          </section>
+
         </div>
       </div>
 

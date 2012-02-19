@@ -4,3 +4,4 @@ require("ember-bootstrap/block_alert_message");
 require("ember-bootstrap/pill_item");
 require("ember-bootstrap/pills");
 require("ember-bootstrap/tabs");
+require("ember-bootstrap/progress_bar");
