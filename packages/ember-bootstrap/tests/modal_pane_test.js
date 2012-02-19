@@ -48,28 +48,28 @@ test("a modal pane shows primary button if primary property is present", functio
   var primaryText = 'Oh my primary';
   modalPane = Ember.ModalPane.create({ primary: primaryText });
   appendIntoDOM(modalPane);
-  ok(modalPane.$().find('.modal-footer a.primary').length, 'a modal pane displays primary button');
-  equal(modalPane.$().find('.modal-footer a.primary').text(), primaryText,
+  ok(modalPane.$().find('.modal-footer a.btn-primary').length, 'a modal pane displays primary button');
+  equal(modalPane.$().find('.modal-footer a.btn-primary').text(), primaryText,
         'a modal pane binds primary property to primary button text');
 
   Ember.run(function() {
     modalPane.set('primary', null);
   });
-  ok(!modalPane.$().find('.modal-footer a.primary').length, "a modal pane hides primary button");
+  ok(!modalPane.$().find('.modal-footer a.btn-primary').length, "a modal pane hides primary button");
 });
 
 test("a modal pane shows secondary button if secondary property is present", function() {
   var secondaryText = 'Oh my secondary';
   modalPane = Ember.ModalPane.create({ secondary: secondaryText });
   appendIntoDOM(modalPane);
-  ok(modalPane.$().find('.modal-footer a.secondary').length, 'a modal pane displays secondary button');
-  equal(modalPane.$().find('.modal-footer a.secondary').text(), secondaryText,
+  ok(modalPane.$().find('.modal-footer a.btn-secondary').length, 'a modal pane displays secondary button');
+  equal(modalPane.$().find('.modal-footer a.btn-secondary').text(), secondaryText,
         'a modal pane binds secondary property to secondary button text');
 
   Ember.run(function() {
     modalPane.set('secondary', null);
   });
-  ok(!modalPane.$().find('.modal-footer a.secondary').length, "a modal pane hides secondary button");
+  ok(!modalPane.$().find('.modal-footer a.btn-secondary').length, "a modal pane hides secondary button");
 });
 
 test("a modal pane does not get removed by clicking inside it", function() {

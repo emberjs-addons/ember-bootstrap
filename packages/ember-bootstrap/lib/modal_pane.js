@@ -5,8 +5,8 @@ var modalPaneTemplate = '\
 </div> \
 <div class="modal-body">{{view bodyViewClass}}</div> \
 <div class="modal-footer"> \
-  {{#if primary}}<a href="#" class="btn primary" rel="primary">{{primary}}</a>{{/if}} \
-  {{#if secondary}}<a href="#" class="btn secondary" rel="secondary">{{secondary}}</a>{{/if}} \
+  {{#if primary}}<a href="#" class="btn btn-primary" rel="primary">{{primary}}</a>{{/if}} \
+  {{#if secondary}}<a href="#" class="btn btn-secondary" rel="secondary">{{secondary}}</a>{{/if}} \
 </div>';
 var modalPaneBackdrop = '<div class="modal-backdrop"></div>';
 

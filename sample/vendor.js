@@ -24255,12 +24255,16 @@ Ember.$(document).ready(
 var get = Ember.get;
 
 Ember.AlertMessage = Ember.View.extend({
-  classNameBindings: 'type',
-  classNames: ['alert-message'],
-  template: Ember.Handlebars.compile('<a class="close" rel="close" href="#">×</a><p>{{message}}</p>'),
+  classNameBindings: 'typeClass',
+  classNames: ['alert', 'alert-message'],
+  template: Ember.Handlebars.compile('<a class="close" rel="close" href="#">×</a>{{message}}'),
   type: 'warning',
   message: null,
   removeAfter: null,
+
+  typeClass: Ember.computed(function() {
+    return 'alert-' + get(this, 'type');
+  }).property('type').cacheable(),
 
   didInsertElement: function() {
     var removeAfter = get(this, 'removeAfter');
@@ -24284,7 +24288,7 @@ Ember.AlertMessage = Ember.View.extend({
 
 (function(exports) {
 Ember.BlockAlertMessage = Ember.AlertMessage.extend({
-  classNames: ['block-message']
+  classNames: ['alert', 'alert-block']
 });
 
 })({});
@@ -24298,8 +24302,8 @@ var modalPaneTemplate = '\
 </div> \
 <div class="modal-body">{{view bodyViewClass}}</div> \
 <div class="modal-footer"> \
-  {{#if primary}}<a href="#" class="btn primary" rel="primary">{{primary}}</a>{{/if}} \
-  {{#if secondary}}<a href="#" class="btn secondary" rel="secondary">{{secondary}}</a>{{/if}} \
+  {{#if primary}}<a href="#" class="btn btn-primary" rel="primary">{{primary}}</a>{{/if}} \
+  {{#if secondary}}<a href="#" class="btn btn-secondary" rel="secondary">{{secondary}}</a>{{/if}} \
 </div>';
 var modalPaneBackdrop = '<div class="modal-backdrop"></div>';
 
@@ -24316,7 +24320,7 @@ Ember.ModalPane = Ember.View.extend({
   }),
   bodyViewClass: Ember.View.extend({
     tagName: 'p',
-    template: Ember.Handlebars.compile('{{parentView.message}}')
+    template: Ember.Handlebars.compile('{{{parentView.message}}}')
   }),
 
   didInsertElement: function() {
@@ -24413,7 +24417,7 @@ Ember.PillItem = Ember.View.extend({
 
 (function(exports) {
 Ember.Pills = Ember.CollectionView.extend({
-  classNames: ['pills'],
+  classNames: ['nav', 'nav-pills'],
   tagName: 'ul',
   itemViewClass: Ember.PillItem,
   selection: null
@@ -24424,7 +24428,7 @@ Ember.Pills = Ember.CollectionView.extend({
 
 (function(exports) {
 Ember.Tabs = Ember.CollectionView.extend({
-  classNames: ['tabs'],
+  classNames: ['nav', 'nav-tabs'],
   tagName: 'ul',
   itemViewClass: Ember.PillItem,
   selection: null

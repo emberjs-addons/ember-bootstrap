@@ -20,10 +20,10 @@ test("an alert can be created and appended to DOM", function() {
 });
 
 test("an alert binds type property to layer class", function() {
-  var type = 'test-type';
+  var type = 'error';
   alert = Ember.AlertMessage.create({ type: type });
   appendIntoDOM(alert);
-  ok(alert.$().hasClass(type), 'an alert binds type property to class');
+  ok(alert.$().hasClass('alert-error'), 'an alert binds type property to class');
 });
 
 test("an alert binds message property to DOM", function() {
@@ -34,7 +34,7 @@ test("an alert binds message property to DOM", function() {
     message = 'oh my output';
     alert.set('message', message);
   });
-  equal(alert.$().find('p').text(), message, 'alert binds given message to DOM');
+  equal(alert.$().text(), '×'+message, 'alert binds given message to DOM');
 });
 
 test("an alert has a close button that removes it from the DOM", function() {
