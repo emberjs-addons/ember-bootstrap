@@ -3,7 +3,7 @@ var get = Ember.get;
 Ember.AlertMessage = Ember.View.extend({
   classNameBindings: 'typeClass',
   classNames: ['alert', 'alert-message'],
-  template: Ember.Handlebars.compile('<a class="close" rel="close" href="#">×</a>{{message}}'),
+  template: Ember.Handlebars.compile('<a class="close" rel="close" href="#">×</a>{{{message}}}'),
   type: 'warning',
   message: null,
   removeAfter: null,

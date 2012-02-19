@@ -24257,7 +24257,7 @@ var get = Ember.get;
 Ember.AlertMessage = Ember.View.extend({
   classNameBindings: 'typeClass',
   classNames: ['alert', 'alert-message'],
-  template: Ember.Handlebars.compile('<a class="close" rel="close" href="#">×</a>{{message}}'),
+  template: Ember.Handlebars.compile('<a class="close" rel="close" href="#">×</a>{{{message}}}'),
   type: 'warning',
   message: null,
   removeAfter: null,
@@ -24449,6 +24449,7 @@ Ember.ProgressBar = Ember.View.extend({
   isAnimated: false,
   isStriped: false,
   progress: 0,
+
   style: Ember.computed(function() {
     var progress = get(this, 'progress');
     return "width:" + progress + "%;";
@@ -24459,4 +24460,6 @@ Ember.ProgressBar = Ember.View.extend({
 
 
 (function(exports) {
+EmB = EB = Ember.Namespace.create();
+
 })({});
