@@ -24418,6 +24418,7 @@ Ember.PillItem = Ember.View.extend({
 (function(exports) {
 Ember.Pills = Ember.CollectionView.extend({
   classNames: ['nav', 'nav-pills'],
+  classNameBindings: ['isStacked:nav-stacked'],
   tagName: 'ul',
   itemViewClass: Ember.PillItem,
   selection: null
@@ -24429,6 +24430,7 @@ Ember.Pills = Ember.CollectionView.extend({
 (function(exports) {
 Ember.Tabs = Ember.CollectionView.extend({
   classNames: ['nav', 'nav-tabs'],
+  classNameBindings: ['isStacked:nav-stacked'],
   tagName: 'ul',
   itemViewClass: Ember.PillItem,
   selection: null

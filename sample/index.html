@@ -95,7 +95,7 @@ Ember.ModalPane.popup({
   primary: "OK",
   secondary: "Cancel"
 }); </pre>
-            <h3>Sample</h3>
+            <h4>Sample</h4>
             <script type="text/x-handlebars">
               {{#view Ember.Button class="btn" action="popup"
                   target="SampleApp.modalPaneController"}}Show me the
@@ -110,7 +110,7 @@ Ember.AlertMessage.create({
   message: "Sample alert message",
   type: "warning"
 }).append(); </pre>
-            <h3>Sample</h3>
+            <h4>Sample</h4>
             <script type="text/x-handlebars">
               {{view Ember.AlertMessage message="What a sweet alert message."}}
               {{view Ember.AlertMessage type="error" message="What a sweet alert message."}}
@@ -126,7 +126,7 @@ Ember.BlockAlertMessage.create({
   message: "Sample alert message",
   type: "warning"
 }).append(); </pre>
-            <h3>Sample</h3>
+            <h4>Sample</h4>
             <script type="text/x-handlebars">
               {{view Ember.BlockAlertMessage message="What a sweet alert message."}}
             </script>
@@ -139,9 +139,26 @@ Ember.Tabs.create({
   content: ["A", "B", "C"],
   selectionBinding: "App.tabsController.selection"
 }).append(); </pre>
-            <h3>Sample</h3>
+            <h4>Sample</h4>
             <script type="text/x-handlebars">
               {{view Ember.Tabs
+                  contentBinding="SampleApp.tabsController.content"
+                  selectionBinding="SampleApp.tabsController.selection"}}
+              <p>Selected tab:
+              {{SampleApp.tabsController.selection}}</p>
+            </script>
+
+            <h3>Stacked tabs</h3>
+            <pre>
+Ember.Tabs.create({
+  content: ["A", "B", "C"],
+  isStacked: true,
+  selectionBinding: "App.tabsController.selection"
+}).append(); </pre>
+            <h4>Sample</h4>
+            <script type="text/x-handlebars">
+              {{view Ember.Tabs
+                  isStacked=true
                   contentBinding="SampleApp.tabsController.content"
                   selectionBinding="SampleApp.tabsController.selection"}}
               <p>Selected tab:
@@ -156,9 +173,26 @@ Ember.Pills.create({
   content: ["A", "B", "C"],
   selectionBinding: "App.pillsController.selection"
 }).append(); </pre>
-            <h3>Sample</h3>
+            <h4>Sample</h4>
             <script type="text/x-handlebars">
               {{view Ember.Pills
+                  contentBinding="SampleApp.pillsController.content"
+                  selectionBinding="SampleApp.pillsController.selection"}}
+              <p>Selected pill:
+              {{SampleApp.pillsController.selection}}</p>
+            </script>
+
+            <h3>Stacked pills</h3>
+            <pre>
+Ember.Pills.create({
+  content: ["A", "B", "C"],
+  isStacked: true,
+  selectionBinding: "App.pillsController.selection"
+}).append(); </pre>
+            <h4>Sample</h4>
+            <script type="text/x-handlebars">
+              {{view Ember.Pills
+                  isStacked=true
                   contentBinding="SampleApp.pillsController.content"
                   selectionBinding="SampleApp.pillsController.selection"}}
               <p>Selected pill:

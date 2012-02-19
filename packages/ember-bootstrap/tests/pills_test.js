@@ -19,3 +19,9 @@ test("pills can be created and appended to DOM", function() {
   ok(isAppendedToDOM(pills), 'a pills pane has a layer in the DOM');
 });
 
+test("pills can be stacked", function() {
+  pills = Ember.Pills.create({ content: A(), isStacked: true });
+  appendIntoDOM(pills);
+  ok(pills.$().hasClass('nav-stacked'), 'an alert binds type property to class');
+});
+

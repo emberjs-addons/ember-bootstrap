@@ -19,4 +19,9 @@ test("tabs can be created and appended to DOM", function() {
   ok(isAppendedToDOM(tabs), 'a tabs pane has a layer in the DOM');
 });
 
+test("tabs can be stacked", function() {
+  tabs = Ember.Tabs.create({ content: A(), isStacked: true });
+  appendIntoDOM(tabs);
+  ok(tabs.$().hasClass('nav-stacked'), 'an alert binds type property to class');
+});
 
