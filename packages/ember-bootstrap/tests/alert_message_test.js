@@ -1,7 +1,7 @@
 var application, alert;
 var get = Ember.get, set = Ember.set;
 
-module("Ember.AlertMessage", {
+module("Bootstrap.AlertMessage", {
   setup: function() {
     application = Ember.Application.create();
     get(application, 'eventDispatcher').setup();
@@ -14,21 +14,21 @@ module("Ember.AlertMessage", {
 });
 
 test("an alert can be created and appended to DOM", function() {
-  alert = Ember.AlertMessage.create();
+  alert = Bootstrap.AlertMessage.create();
   appendIntoDOM(alert);
   ok(isAppendedToDOM(alert), 'an alert has a layer in the DOM');
 });
 
 test("an alert binds type property to layer class", function() {
   var type = 'error';
-  alert = Ember.AlertMessage.create({ type: type });
+  alert = Bootstrap.AlertMessage.create({ type: type });
   appendIntoDOM(alert);
   ok(alert.$().hasClass('alert-error'), 'an alert binds type property to class');
 });
 
 test("an alert binds message property to DOM", function() {
   var message;
-  alert = Ember.AlertMessage.create();
+  alert = Bootstrap.AlertMessage.create();
   Ember.run(function() {
     alert.append();
     message = 'oh my output';
@@ -39,7 +39,7 @@ test("an alert binds message property to DOM", function() {
 
 test("an alert has a close button that removes it from the DOM", function() {
   var close;
-  alert = Ember.AlertMessage.create();
+  alert = Bootstrap.AlertMessage.create();
   appendIntoDOM(alert);
   clickRelLink(alert, 'close');
   ok(!isAppendedToDOM(alert), 'alert should not have a layer');
@@ -47,7 +47,7 @@ test("an alert has a close button that removes it from the DOM", function() {
 });
 
 test("an alert removes iteself from the DOM after given amount of time", function() {
-  alert = Ember.AlertMessage.create({
+  alert = Bootstrap.AlertMessage.create({
     removeAfter: 25
   });
   Ember.run(function() {

@@ -24252,44 +24252,7 @@ Ember.$(document).ready(
 })({});
 
 (function(exports) {
-var get = Ember.get;
-
-Ember.AlertMessage = Ember.View.extend({
-  classNameBindings: 'typeClass',
-  classNames: ['alert', 'alert-message'],
-  template: Ember.Handlebars.compile('<a class="close" rel="close" href="#">×</a>{{{message}}}'),
-  type: 'warning',
-  message: null,
-  removeAfter: null,
-
-  typeClass: Ember.computed(function() {
-    return 'alert-' + get(this, 'type');
-  }).property('type').cacheable(),
-
-  didInsertElement: function() {
-    var removeAfter = get(this, 'removeAfter');
-    if (removeAfter > 0) {
-      Ember.run.later(this, 'destroy', removeAfter);
-    }
-  },
-
-  click: function(event) {
-    var target = jQuery(event.target),
-        targetRel = target.attr('rel');
-    if (targetRel === 'close') {
-      this.destroy();
-      return false;
-    }
-  }
-});
-
-})({});
-
-
-(function(exports) {
-Ember.BlockAlertMessage = Ember.AlertMessage.extend({
-  classNames: ['alert', 'alert-block']
-});
+window.Bootstrap = Ember.Namespace.create();
 
 })({});
 
@@ -24307,7 +24270,7 @@ var modalPaneTemplate = '\
 </div>';
 var modalPaneBackdrop = '<div class="modal-backdrop"></div>';
 
-Ember.ModalPane = Ember.View.extend({
+Bootstrap.ModalPane = Ember.View.extend({
   classNames: 'modal',
   template: Ember.Handlebars.compile(modalPaneTemplate),
   heading: null,
@@ -24377,7 +24340,7 @@ Ember.ModalPane = Ember.View.extend({
   }
 });
 
-Ember.ModalPane.reopenClass({
+Bootstrap.ModalPane.reopenClass({
   popup: function(options) {
     var modalPane;
     if (!options) options = {}
@@ -24392,9 +24355,52 @@ Ember.ModalPane.reopenClass({
 
 
 (function(exports) {
+var get = Ember.get;
+
+Bootstrap.AlertMessage = Ember.View.extend({
+  classNameBindings: 'typeClass',
+  classNames: ['alert', 'alert-message'],
+  template: Ember.Handlebars.compile('<a class="close" rel="close" href="#">×</a>{{{message}}}'),
+  type: 'warning',
+  message: null,
+  removeAfter: null,
+
+  typeClass: Ember.computed(function() {
+    return 'alert-' + get(this, 'type');
+  }).property('type').cacheable(),
+
+  didInsertElement: function() {
+    var removeAfter = get(this, 'removeAfter');
+    if (removeAfter > 0) {
+      Ember.run.later(this, 'destroy', removeAfter);
+    }
+  },
+
+  click: function(event) {
+    var target = jQuery(event.target),
+        targetRel = target.attr('rel');
+    if (targetRel === 'close') {
+      this.destroy();
+      return false;
+    }
+  }
+});
+
+})({});
+
+
+(function(exports) {
+Bootstrap.BlockAlertMessage = Bootstrap.AlertMessage.extend({
+  classNames: ['alert', 'alert-block']
+});
+
+})({});
+
+
+(function(exports) {
 var get = Ember.get, getPath = Ember.getPath, set = Ember.set;
 
-Ember.PillItem = Ember.View.extend({
+Bootstrap.PillItem = Ember.View.extend({
   classNameBindings: 'isActive:active',
   template: Ember.Handlebars.compile('<a href="#">{{content}}</a>'),
 
@@ -24416,11 +24422,11 @@ Ember.PillItem = Ember.View.extend({
 
 
 (function(exports) {
-Ember.Pills = Ember.CollectionView.extend({
+Bootstrap.Pills = Ember.CollectionView.extend({
   classNames: ['nav', 'nav-pills'],
   classNameBindings: ['isStacked:nav-stacked'],
   tagName: 'ul',
-  itemViewClass: Ember.PillItem,
+  itemViewClass: Bootstrap.PillItem,
   selection: null
 });
 
@@ -24428,11 +24434,11 @@ Ember.Pills = Ember.CollectionView.extend({
 
 
 (function(exports) {
-Ember.Tabs = Ember.CollectionView.extend({
+Bootstrap.Tabs = Ember.CollectionView.extend({
   classNames: ['nav', 'nav-tabs'],
   classNameBindings: ['isStacked:nav-stacked'],
   tagName: 'ul',
-  itemViewClass: Ember.PillItem,
+  itemViewClass: Bootstrap.PillItem,
   selection: null
 });
 
@@ -24442,7 +24448,7 @@ Ember.Tabs = Ember.CollectionView.extend({
 (function(exports) {
 var get = Ember.get;
 
-Ember.ProgressBar = Ember.View.extend({
+Bootstrap.ProgressBar = Ember.View.extend({
   classNames: ['progress'],
   classNameBindings: ['isStriped:progress-striped', 'isAnimated:active'],
   template: Ember.Handlebars.compile('<div class="bar" {{bindAttr style="style"}}></div>'),
@@ -24460,6 +24466,4 @@ Ember.ProgressBar = Ember.View.extend({
 
 
 (function(exports) {
-EmB = EB = Ember.Namespace.create();
-
 })({});

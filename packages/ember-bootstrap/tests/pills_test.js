@@ -1,7 +1,7 @@
 var application, pills;
 var get = Ember.get, set = Ember.set, A = Ember.A;
 
-module("Ember.Pills", {
+module("Bootstrap.Pills", {
   setup: function() {
     application = Ember.Application.create();
     get(application, 'eventDispatcher').setup();
@@ -14,13 +14,13 @@ module("Ember.Pills", {
 });
 
 test("pills can be created and appended to DOM", function() {
-  pills = Ember.Pills.create({ content: A() });
+  pills = Bootstrap.Pills.create({ content: A() });
   appendIntoDOM(pills);
   ok(isAppendedToDOM(pills), 'a pills pane has a layer in the DOM');
 });
 
 test("pills can be stacked", function() {
-  pills = Ember.Pills.create({ content: A(), isStacked: true });
+  pills = Bootstrap.Pills.create({ content: A(), isStacked: true });
   appendIntoDOM(pills);
   ok(pills.$().hasClass('nav-stacked'), 'an alert binds type property to class');
 });

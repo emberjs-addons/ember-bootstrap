@@ -1,7 +1,7 @@
 var application, blockAlert;
 var get = Ember.get, set = Ember.set, A = Ember.A;
 
-module("Ember.BlockAlertMessage", {
+module("Bootstrap.BlockAlertMessage", {
   setup: function() {
     application = Ember.Application.create();
     get(application, 'eventDispatcher').setup();
@@ -14,7 +14,7 @@ module("Ember.BlockAlertMessage", {
 });
 
 test("a block alert message can be created and appended to DOM", function() {
-  blockAlert = Ember.BlockAlertMessage.create();
+  blockAlert = Bootstrap.BlockAlertMessage.create();
   appendIntoDOM(blockAlert);
   ok(isAppendedToDOM(blockAlert), 'a blockAlert pane has a layer in the DOM');
 });

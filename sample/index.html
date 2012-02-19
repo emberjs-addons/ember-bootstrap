@@ -89,7 +89,7 @@
           <section>
             <h2>Modal panes</h2>
             <pre>
-Ember.ModalPane.popup({
+Bootstrap.ModalPane.popup({
   heading: "Sample modal pane",
   message: "Sample message",
   primary: "OK",
@@ -106,13 +106,13 @@ Ember.ModalPane.popup({
           <section>
             <h2>Tabs</h2>
             <pre>
-Ember.Tabs.create({
+Bootstrap.Tabs.create({
   content: ["A", "B", "C"],
   selectionBinding: "App.tabsController.selection"
 }).append(); </pre>
             <h4>Sample</h4>
             <script type="text/x-handlebars">
-              {{view Ember.Tabs
+              {{view Bootstrap.Tabs
                   contentBinding="SampleApp.tabsController.content"
                   selectionBinding="SampleApp.tabsController.selection"}}
               <p>Selected tab:
@@ -121,14 +121,14 @@ Ember.Tabs.create({
 
             <h3>Stacked tabs</h3>
             <pre>
-Ember.Tabs.create({
+Bootstrap.Tabs.create({
   content: ["A", "B", "C"],
   isStacked: true,
   selectionBinding: "App.tabsController.selection"
 }).append(); </pre>
             <h4>Sample</h4>
             <script type="text/x-handlebars">
-              {{view Ember.Tabs
+              {{view Bootstrap.Tabs
                   isStacked=true
                   contentBinding="SampleApp.tabsController.content"
                   selectionBinding="SampleApp.tabsController.selection"}}
@@ -140,13 +140,13 @@ Ember.Tabs.create({
           <section>
             <h2>Pills</h2>
             <pre>
-Ember.Pills.create({
+Bootstrap.Pills.create({
   content: ["A", "B", "C"],
   selectionBinding: "App.pillsController.selection"
 }).append(); </pre>
             <h4>Sample</h4>
             <script type="text/x-handlebars">
-              {{view Ember.Pills
+              {{view Bootstrap.Pills
                   contentBinding="SampleApp.pillsController.content"
                   selectionBinding="SampleApp.pillsController.selection"}}
               <p>Selected pill:
@@ -155,14 +155,14 @@ Ember.Pills.create({
 
             <h3>Stacked pills</h3>
             <pre>
-Ember.Pills.create({
+Bootstrap.Pills.create({
   content: ["A", "B", "C"],
   isStacked: true,
   selectionBinding: "App.pillsController.selection"
 }).append(); </pre>
             <h4>Sample</h4>
             <script type="text/x-handlebars">
-              {{view Ember.Pills
+              {{view Bootstrap.Pills
                   isStacked=true
                   contentBinding="SampleApp.pillsController.content"
                   selectionBinding="SampleApp.pillsController.selection"}}
@@ -174,42 +174,42 @@ Ember.Pills.create({
           <section>
             <h2>Alert messages</h2>
             <pre>
-Ember.AlertMessage.create({
+Bootstrap.AlertMessage.create({
   message: "Sample alert message",
   type: "warning"
 }).append(); </pre>
             <h4>Sample</h4>
             <script type="text/x-handlebars">
-              {{view Ember.AlertMessage message="What a sweet alert message."}}
-              {{view Ember.AlertMessage type="error" message="What a sweet alert message."}}
-              {{view Ember.AlertMessage type="success" message="What a sweet alert message."}}
-              {{view Ember.AlertMessage type="info" message="What a sweet alert message."}}
+              {{view Bootstrap.AlertMessage message="What a sweet alert message."}}
+              {{view Bootstrap.AlertMessage type="error" message="What a sweet alert message."}}
+              {{view Bootstrap.AlertMessage type="success" message="What a sweet alert message."}}
+              {{view Bootstrap.AlertMessage type="info" message="What a sweet alert message."}}
             </script>
           </section>
 
           <section>
             <h2>Block alert messages</h2>
             <pre>
-Ember.BlockAlertMessage.create({
+Bootstrap.BlockAlertMessage.create({
   message: "Sample alert message",
   type: "warning"
 }).append(); </pre>
             <h4>Sample</h4>
             <script type="text/x-handlebars">
-              {{view Ember.BlockAlertMessage message="What a sweet alert message."}}
+              {{view Bootstrap.BlockAlertMessage message="What a sweet alert message."}}
             </script>
           </section>
 
           <section>
             <h2>Progress bars</h2>
             <pre>
-Ember.ProgressBar.create({
+Bootstrap.ProgressBar.create({
   isStriped: true,
   progress: 50
 }).append(); </pre>
             <h4>Sample</h4>
             <script type="text/x-handlebars">
-              {{view Ember.ProgressBar isStriped=true isAnimated=true progress=50}}
+              {{view Bootstrap.ProgressBar isStriped=true isAnimated=true progress=50}}
             </script>
           </section>
 

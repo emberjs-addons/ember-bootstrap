@@ -10,12 +10,12 @@ Nope, not yet. So either fork, do your magic and send pull request or move along
 
 ## What's implemented so far?
 
-* Modal panes - Ember.ModalPane
-* Alert messages - Ember.AlertMessage
-* Block alert messages - Ember.BlockAlertMessage
-* Pills - Ember.Pills
-* Tabs (header) - Ember.Tabs
-* Progress bars - Ember.ProgressBar
+* Modal panes - Bootstrap.ModalPane
+* Alert messages - Bootstrap.AlertMessage
+* Block alert messages - Bootstrap.BlockAlertMessage
+* Pills - Bootstrap.Pills
+* Tabs (header) - Bootstrap.Tabs
+* Progress bars - Bootstrap.ProgressBar
 
 
 ## Unit Tests

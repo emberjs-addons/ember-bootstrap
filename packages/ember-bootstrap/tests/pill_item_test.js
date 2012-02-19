@@ -1,7 +1,7 @@
 var application, pillItem;
 var get = Ember.get, set = Ember.set, A = Ember.A;
 
-module("Ember.PillItem", {
+module("Bootstrap.PillItem", {
   setup: function() {
     application = Ember.Application.create();
     get(application, 'eventDispatcher').setup();
@@ -14,14 +14,14 @@ module("Ember.PillItem", {
 });
 
 test("a pill item can be created and appended to DOM", function() {
-  pillItem = Ember.PillItem.create();
+  pillItem = Bootstrap.PillItem.create();
   appendIntoDOM(pillItem);
   ok(isAppendedToDOM(pillItem), 'a pillItem pane has a layer in the DOM');
 });
 
 test("a pill item binds content property to DOM", function() {
   var content;
-  pillItem = Ember.PillItem.create();
+  pillItem = Bootstrap.PillItem.create();
   Ember.run(function() {
     pillItem.append();
     content = 'oh my output';
@@ -33,7 +33,7 @@ test("a pill item binds content property to DOM", function() {
 test("a pill sets selection on parentView when clicked", function() {
   var parentView = Ember.CollectionView.create({
     tagName: 'ul',
-    itemViewClass: Ember.PillItem,
+    itemViewClass: Bootstrap.PillItem,
     content: A(['A', 'B', 'C']),
     selection: null
   });
@@ -48,7 +48,7 @@ test("a pill sets selection on parentView when clicked", function() {
 test("a pill has active class when parent view has selection of item content", function() {
   var parentView = Ember.CollectionView.create({
     tagName: 'ul',
-    itemViewClass: Ember.PillItem,
+    itemViewClass: Bootstrap.PillItem,
     content: A(['A', 'B', 'C']),
     selection: 'A'
   });

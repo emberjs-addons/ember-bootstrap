@@ -3,7 +3,7 @@ require('ember-bootstrap/~tests/test_helpers');
 var application, modalPane;
 var get = Ember.get, set = Ember.set;
 
-module("Ember.ModalPane", {
+module("Bootstrap.ModalPane", {
   setup: function() {
     application = Ember.Application.create();
     get(application, 'eventDispatcher').setup();
@@ -17,20 +17,20 @@ module("Ember.ModalPane", {
 
 test("a modal pane can be created and appended to DOM using popup() call", function() {
   Ember.run(function() {
-    modalPane = Ember.ModalPane.popup();
+    modalPane = Bootstrap.ModalPane.popup();
   });
   ok(isAppendedToDOM(modalPane), 'a modal pane has a layer in the DOM');
 });
 
 test("a modal pane can be created and appended to DOM", function() {
-  modalPane = Ember.ModalPane.create();
+  modalPane = Bootstrap.ModalPane.create();
   appendIntoDOM(modalPane);
   ok(isAppendedToDOM(modalPane), 'a modal pane has a layer in the DOM');
 });
 
 test("a modal pane binds heading property to layer", function() {
   var heading = 'Oh my heading';
-  modalPane = Ember.ModalPane.create({ heading: heading });
+  modalPane = Bootstrap.ModalPane.create({ heading: heading });
   appendIntoDOM(modalPane);
   equal(modalPane.$().find('.modal-header h3').text(), heading,
         'a modal pane binds heading property modal pane header h3 tag');
@@ -38,7 +38,7 @@ test("a modal pane binds heading property to layer", function() {
 
 test("a modal pane binds message property to layer", function() {
   var message = 'Oh my message';
-  modalPane = Ember.ModalPane.create({ message: message });
+  modalPane = Bootstrap.ModalPane.create({ message: message });
   appendIntoDOM(modalPane);
   equal(modalPane.$().find('.modal-body>p').text(), message,
         'a modal pane binds message property to modal pane body');
@@ -46,7 +46,7 @@ test("a modal pane binds message property to layer", function() {
 
 test("a modal pane shows primary button if primary property is present", function() {
   var primaryText = 'Oh my primary';
-  modalPane = Ember.ModalPane.create({ primary: primaryText });
+  modalPane = Bootstrap.ModalPane.create({ primary: primaryText });
   appendIntoDOM(modalPane);
   ok(modalPane.$().find('.modal-footer a.btn-primary').length, 'a modal pane displays primary button');
   equal(modalPane.$().find('.modal-footer a.btn-primary').text(), primaryText,
@@ -60,7 +60,7 @@ test("a modal pane shows primary button if primary property is present", functio
 
 test("a modal pane shows secondary button if secondary property is present", function() {
   var secondaryText = 'Oh my secondary';
-  modalPane = Ember.ModalPane.create({ secondary: secondaryText });
+  modalPane = Bootstrap.ModalPane.create({ secondary: secondaryText });
   appendIntoDOM(modalPane);
   ok(modalPane.$().find('.modal-footer a.btn-secondary').length, 'a modal pane displays secondary button');
   equal(modalPane.$().find('.modal-footer a.btn-secondary').text(), secondaryText,
@@ -73,7 +73,7 @@ test("a modal pane shows secondary button if secondary property is present", fun
 });
 
 test("a modal pane does not get removed by clicking inside it", function() {
-  modalPane = Ember.ModalPane.create();
+  modalPane = Bootstrap.ModalPane.create();
   appendIntoDOM(modalPane);
   modalPane.$().click();
   ok(isAppendedToDOM(modalPane), "modal pane is still in the DOM");
@@ -81,7 +81,7 @@ test("a modal pane does not get removed by clicking inside it", function() {
 
 test("a modal pane has a close button that removes it from the DOM", function() {
   var close;
-  modalPane = Ember.ModalPane.create();
+  modalPane = Bootstrap.ModalPane.create();
   appendIntoDOM(modalPane);
   clickRelLink(modalPane, 'close');
   ok(!isAppendedToDOM(modalPane), "modal pane is not in the DOM");
@@ -91,7 +91,7 @@ test("a modal pane has a close button that removes it from the DOM", function() 
 test("a modal pane calls callback when close button clicked", function() {
   var callback = function() { callbackWasCalled = true },
       callbackWasCalled = false;
-  modalPane = Ember.ModalPane.create({
+  modalPane = Bootstrap.ModalPane.create({
     callback: callback
   });
   appendIntoDOM(modalPane);
@@ -104,7 +104,7 @@ test("a modal pane calls callback when close button clicked", function() {
 test("a modal pane calls callback when primary button clicked and removes pane from the DOM", function() {
   var callback = function() { callbackWasCalled = true },
       callbackWasCalled = false;
-  modalPane = Ember.ModalPane.create({
+  modalPane = Bootstrap.ModalPane.create({
     primary: 'Primary button',
     callback: callback
   });
@@ -118,7 +118,7 @@ test("a modal pane calls callback when primary button clicked and removes pane f
 test("a modal pane calls callback when secondary button clicked and removes pane from the DOM", function() {
   var callback = function() { callbackWasCalled = true },
       callbackWasCalled = false;
-  modalPane = Ember.ModalPane.create({
+  modalPane = Bootstrap.ModalPane.create({
     secondary: 'Secondary button',
     callback: callback
   });
@@ -133,7 +133,7 @@ test("a modal pane removes itself from the DOM when escape pressed", function() 
   var callback = function() { callbackWasCalled = true },
       callbackWasCalled = false,
       event;
-  modalPane = Ember.ModalPane.create({
+  modalPane = Bootstrap.ModalPane.create({
     secondary: 'Secondary button',
     callback: callback
   });
@@ -146,7 +146,7 @@ test("a modal pane removes itself from the DOM when escape pressed", function() 
 });
 
 test("a modal pane appends and removes backdrop to its parent", function() {
-  modalPane = Ember.ModalPane.create();
+  modalPane = Bootstrap.ModalPane.create();
   ok(!documentHasSelector('body > .modal-backdrop'), "modal pane does not append backdrop before inserting into DOM");
   appendIntoDOM(modalPane);
   ok(documentHasSelector('body > .modal-backdrop'), "modal pane appends backdrop after inserting into DOM");
