@@ -24359,8 +24359,8 @@ Bootstrap.ModalPane.reopenClass({
 var get = Ember.get;
 
 Bootstrap.AlertMessage = Ember.View.extend({
-  classNameBindings: 'typeClass',
   classNames: ['alert', 'alert-message'],
+  classNameBindings: 'typeClass',
   template: Ember.Handlebars.compile('<a class="close" rel="close" href="#">×</a>{{{message}}}'),
   type: 'warning',
   message: null,
@@ -24391,8 +24391,15 @@ Bootstrap.AlertMessage = Ember.View.extend({
 
 
 (function(exports) {
+var get = Ember.get;
+
 Bootstrap.Button = Ember.Button.extend({
-  classNames: ['btn']
+  classNames: ['btn'],
+  classNameBindings: 'typeClass',
+
+  typeClass: Ember.computed(function() {
+    return 'btn-' + get(this, 'type');
+  }).property('type').cacheable()
 });
 
 })({});
@@ -24458,10 +24465,24 @@ Bootstrap.BlockAlertMessage = Bootstrap.AlertMessage.extend({
 
 
 (function(exports) {
-var get = Ember.get, set = Ember.set;
+var get = Ember.get, getPath = Ember.getPath, set = Ember.set;
 
-Bootstrap.PillItem = Ember.View.extend(Bootstrap.ItemSelectionSupport, {
-  template: Ember.Handlebars.compile('<a href="#">{{content}}</a>')
+Bootstrap.PillItem = Ember.View.extend({
+  classNameBindings: 'isActive:active',
+  template: Ember.Handlebars.compile('<a href="#">{{content}}</a>'),
+
+  isActive: Ember.computed(function() {
+    var selection = getPath(this, 'parentView.selection'),
+        content = get(this, 'content');
+    return selection === content;
+  }).property('parentView.selection', 'content').cacheable(),
+
+  click: function(event) {
+    var content = get(this, 'content'),
+        parentView = get(this, 'parentView');
+    set(parentView, 'selection', content);
+    return false;
+  }
 });
 
 })({});
@@ -24512,10 +24533,4 @@ Bootstrap.ProgressBar = Ember.View.extend({
 
 
 (function(exports) {
-})({});
-
-
-(function(exports) {
-
-
 })({});

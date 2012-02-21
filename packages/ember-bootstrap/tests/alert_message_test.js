@@ -46,7 +46,7 @@ test("an alert has a close button that removes it from the DOM", function() {
   ok(isDestroyed(alert), 'alert should be destroyed');
 });
 
-test("an alert removes iteself from the DOM after given amount of time", function() {
+test("an alert removes itself from the DOM after given amount of time", function() {
   alert = Bootstrap.AlertMessage.create({
     removeAfter: 25
   });

@@ -21,3 +21,10 @@ test("a button can be created and appended to DOM", function() {
   ok(isAppendedToDOM(button), 'a button has a layer in the DOM');
 });
 
+test("a button binds type property to layer class", function() {
+  var type = 'error';
+  alert = Bootstrap.AlertMessage.create({ type: type });
+  appendIntoDOM(alert);
+  ok(alert.$().hasClass('btn-error'), 'an alert binds type property to class');
+});
+
