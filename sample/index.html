@@ -12,9 +12,8 @@
     <![endif]-->
 
     <!-- Le styles -->
-    <link rel="stylesheet" href="bootstrap.min.css">
-    <script src="vendor.js" type="text/javascript"></script>
-    <script src="sample.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="prettify.css">
     <style type="text/css">
       /* Override some defaults */
       html, body {
@@ -75,7 +74,7 @@
     <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
   </head>
 
-  <body>
+  <body onload="prettyPrint()">
 
     <div class="container">
 
@@ -88,12 +87,22 @@
         <div class="row">
           <section>
             <h2>Modal panes</h2>
-            <pre>
+            <pre class="prettyprint linenums">
 Bootstrap.ModalPane.popup({
   heading: "Sample modal pane",
   message: "Sample message",
   primary: "OK",
-  secondary: "Cancel"
+  secondary: "Cancel",
+  showBackdrop: true,
+  callback: function(opts, event) {
+    if (opts.primary) {
+     // primary button was pressed
+    } else if (opts.secondary) {
+      // secondary button was pressed
+    } else {
+      // close was pressed
+    }
+  }
 }); </pre>
             <h4>Sample</h4>
             <script type="text/x-handlebars">
@@ -105,7 +114,7 @@ Bootstrap.ModalPane.popup({
 
           <section>
             <h2>Tabs</h2>
-            <pre>
+            <pre class="prettyprint linenums">
 Bootstrap.Tabs.create({
   content: ["A", "B", "C"],
   selectionBinding: "App.tabsController.selection"
@@ -120,7 +129,7 @@ Bootstrap.Tabs.create({
             </script>
 
             <h3>Stacked tabs</h3>
-            <pre>
+            <pre class="prettyprint linenums">
 Bootstrap.Tabs.create({
   content: ["A", "B", "C"],
   isStacked: true,
@@ -139,7 +148,7 @@ Bootstrap.Tabs.create({
 
           <section>
             <h2>Pills</h2>
-            <pre>
+            <pre class="prettyprint linenums">
 Bootstrap.Pills.create({
   content: ["A", "B", "C"],
   selectionBinding: "App.pillsController.selection"
@@ -154,7 +163,7 @@ Bootstrap.Pills.create({
             </script>
 
             <h3>Stacked pills</h3>
-            <pre>
+            <pre class="prettyprint linenums">
 Bootstrap.Pills.create({
   content: ["A", "B", "C"],
   isStacked: true,
@@ -173,7 +182,7 @@ Bootstrap.Pills.create({
 
           <section>
             <h2>Alert messages</h2>
-            <pre>
+            <pre class="prettyprint linenums">
 Bootstrap.AlertMessage.create({
   message: "Sample alert message",
   type: "warning"
@@ -189,7 +198,7 @@ Bootstrap.AlertMessage.create({
 
           <section>
             <h2>Block alert messages</h2>
-            <pre>
+            <pre class="prettyprint linenums">
 Bootstrap.BlockAlertMessage.create({
   message: "Sample alert message",
   type: "warning"
@@ -202,7 +211,7 @@ Bootstrap.BlockAlertMessage.create({
 
           <section>
             <h2>Progress bars</h2>
-            <pre>
+            <pre class="prettyprint linenums">
 Bootstrap.ProgressBar.create({
   isStriped: true,
   progress: 50
@@ -235,6 +244,9 @@ Bootstrap.ProgressBar.create({
 
     </div> <!-- /container -->
 
+    <script src="vendor.js" type="text/javascript"></script>
+    <script src="sample.js" type="text/javascript"></script>
+    <script src="prettify.js" type="text/javascript"></script>
   </body>
 </html>
 
