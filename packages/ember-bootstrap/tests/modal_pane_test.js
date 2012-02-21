@@ -154,3 +154,9 @@ test("a modal pane appends and removes backdrop to its parent", function() {
   ok(!documentHasSelector('body > .modal-backdrop'), "modal pane removes backdrop after destroying");
 });
 
+test("a modal pane does not append or remove backdrop to its parent if showBackdrop is false", function() {
+  modalPane = Bootstrap.ModalPane.create({ showBackdrop: false });
+  appendIntoDOM(modalPane);
+  ok(!documentHasSelector('body > .modal-backdrop'), "modal pane does not append backdrop after inserting into DOM");
+});
+

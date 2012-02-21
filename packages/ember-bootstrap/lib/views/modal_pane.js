@@ -1,3 +1,5 @@
+var get = Ember.get;
+
 var modalPaneTemplate = '\
 <div class="modal-header"> \
   <a href="#" class="close" rel="close">×</a> \
@@ -17,6 +19,7 @@ Bootstrap.ModalPane = Ember.View.extend({
   message: null,
   primary: null,
   secondary: null,
+  showBackdrop: true,
   headerViewClass: Ember.View.extend({
     tagName: 'h3',
     template: Ember.Handlebars.compile('{{parentView.heading}}')
@@ -27,12 +30,12 @@ Bootstrap.ModalPane = Ember.View.extend({
   }),
 
   didInsertElement: function() {
-    this._appendBackdrop();
+    if (get(this, 'showBackdrop')) this._appendBackdrop();
     this._setupDocumentKeyHandler();
   },
 
   willDestroyElement: function() {
-    this._backdrop.remove();
+    if (this._backdrop) this._backdrop.remove();
     this._removeDocumentKeyHandler();
   },
 
@@ -73,9 +76,7 @@ Bootstrap.ModalPane = Ember.View.extend({
   },
 
   _triggerCallbackAndDestroy: function(options, event) {
-    if (this.callback) {
-      this.callback(options, event);
-    }
+    if (this.callback) this.callback(options, event);
     this.destroy();
   }
 });
