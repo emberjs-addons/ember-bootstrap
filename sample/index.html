@@ -214,7 +214,13 @@ Bootstrap.BlockAlertMessage.create({
 }).append(); </pre>
             <h4>Sample</h4>
             <script type="text/x-handlebars">
-              {{view Bootstrap.BlockAlertMessage message="What a sweet alert message."}}
+              {{#view Bootstrap.BlockAlertMessage}}
+                <p>This is a block message</p>
+                <p>
+                  {{#view Bootstrap.Button type="danger"}}Yes{{/view}}
+                  {{#view Bootstrap.Button}}No{{/view}}
+                </p>
+              {{/view}}
             </script>
           </section>
 
