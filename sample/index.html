@@ -15,18 +15,13 @@
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="prettify.css">
     <style type="text/css">
-      /* Override some defaults */
       html, body {
         background-color: #eee;
       }
       .container > footer p {
-        text-align: center; /* center align it with the container */
-      }
-      .container {
-        width: 820px; /* downsize our container to make the content feel a bit tighter and more cohesive. NOTE: this removes two full columns from the grid, meaning you only go to 14 columns and not 16. */
+        text-align: center;
       }
 
-      /* The white background content wrapper */
       .content {
         background-color: #fff;
         padding: 20px;
@@ -39,7 +34,6 @@
                 box-shadow: 0 1px 2px rgba(0,0,0,.15);
       }
 
-      /* Page header tweaks */
       .page-header {
         background-color: #f5f5f5;
         padding: 20px 20px 10px;
@@ -50,7 +44,6 @@
         font-size: 18px;
       }
 
-      /* Styles you shouldn't keep as they are for displaying this base example only */
       .content .row {
         padding: 0 20px 0 20px;
       }
@@ -111,6 +104,22 @@ Bootstrap.ModalPane.popup({
               mighty modal pane{{/view}}
             </script>
           </section>
+
+          <section>
+            <h2>Nav List</h2>
+            <pre class="prettyprint linenums">
+Bootstrap.NavList.create({
+  content: ["A", "B", "C"],
+  selectionBinding: "App.tabsController.selection"
+}).append(); </pre>
+            <h4>Sample</h4>
+            <script type="text/x-handlebars">
+              <div class="well" style="padding:12px 0;">
+                {{view Bootstrap.NavList
+                    contentBinding="SampleApp.tabsController.content"
+                    selectionBinding="SampleApp.tabsController.selection"}}
+              </div>
+            </script>
 
           <section>
             <h2>Tabs</h2>

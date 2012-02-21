@@ -38,3 +38,9 @@ SampleApp.progressController = Ember.Object.create({
     }, 150);
   }
 });
+
+SampleApp.navListController = Ember.Object.create({
+  content: ['Tab A', 'Tab B', 'Tab C'],
+  selection: 'Tab A'
+});
+

@@ -24391,8 +24391,8 @@ Bootstrap.AlertMessage = Ember.View.extend({
 
 
 (function(exports) {
-Bootstrap.BlockAlertMessage = Bootstrap.AlertMessage.extend({
-  classNames: ['alert', 'alert-block']
+Bootstrap.Button = Ember.Button.extend({
+  classNames: ['btn']
 });
 
 })({});
@@ -24401,9 +24401,8 @@ Bootstrap.BlockAlertMessage = Bootstrap.AlertMessage.extend({
 (function(exports) {
 var get = Ember.get, getPath = Ember.getPath, set = Ember.set;
 
-Bootstrap.PillItem = Ember.View.extend({
+Bootstrap.ItemSelectionSupport = Ember.Mixin.create({
   classNameBindings: 'isActive:active',
-  template: Ember.Handlebars.compile('<a href="#">{{content}}</a>'),
 
   isActive: Ember.computed(function() {
     var selection = getPath(this, 'parentView.selection'),
@@ -24417,6 +24416,52 @@ Bootstrap.PillItem = Ember.View.extend({
     set(parentView, 'selection', content);
     return false;
   }
+});
+
+})({});
+
+
+(function(exports) {
+var get = Ember.get, set = Ember.set;
+
+Bootstrap.NavList = Ember.CollectionView.extend({
+  classNames: ['nav', 'nav-list'],
+  tagName: 'ul',
+  itemTitleKey: 'title',
+
+  itemViewClass: SC.View.extend(Bootstrap.ItemSelectionSupport, {
+    template: Ember.Handlebars.compile("<a href='#'>{{title}}</a>"),
+
+    title: Ember.computed(function() {
+      var pV = get(this, 'parentView'),
+          content = get(this, 'content');
+      if (pV && content) {
+        if ('string' === typeof content) {
+          return content;
+        } else {
+          return get(content, get(pV, 'itemTitleKey'));
+        }
+      }
+    }).property('parentView', 'content').cacheable()
+  })
+});
+
+})({});
+
+
+(function(exports) {
+Bootstrap.BlockAlertMessage = Bootstrap.AlertMessage.extend({
+  classNames: ['alert', 'alert-block']
+});
+
+})({});
+
+
+(function(exports) {
+var get = Ember.get, set = Ember.set;
+
+Bootstrap.PillItem = Ember.View.extend(Bootstrap.ItemSelectionSupport, {
+  template: Ember.Handlebars.compile('<a href="#">{{content}}</a>')
 });
 
 })({});
@@ -24467,4 +24512,10 @@ Bootstrap.ProgressBar = Ember.View.extend({
 
 
 (function(exports) {
+})({});
+
+
+(function(exports) {
+
+
 })({});
