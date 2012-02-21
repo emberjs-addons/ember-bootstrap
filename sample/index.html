@@ -218,7 +218,8 @@ Bootstrap.ProgressBar.create({
 }).append(); </pre>
             <h4>Sample</h4>
             <script type="text/x-handlebars">
-              {{view Bootstrap.ProgressBar isStriped=true isAnimated=true progress=50}}
+              {{view Bootstrap.ProgressBar isStriped=true isAnimated=true 
+                  progressBinding="SampleApp.progressController.progress"}}
             </script>
           </section>
 

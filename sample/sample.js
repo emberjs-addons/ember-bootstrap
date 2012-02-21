@@ -24,3 +24,17 @@ SampleApp.tabsController = Ember.Object.create({
   content: ['Tab A', 'Tab B', 'Tab C'],
   selection: 'Tab A'
 });
+
+SampleApp.progressController = Ember.Object.create({
+  progress: 0,
+
+  init: function() {
+    this._super();
+    var that = this;
+    setInterval(function() {
+      var progress = that.get('progress');
+      if (progress <= 100) that.incrementProperty('progress');
+      else that.set('progress', 0);
+    }, 150);
+  }
+});
