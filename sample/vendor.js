@@ -24395,7 +24395,7 @@ var get = Ember.get;
 
 Bootstrap.Button = Ember.Button.extend({
   classNames: ['btn'],
-  classNameBindings: 'typeClass',
+  classNameBindings: ['typeClass', 'disabled'],
 
   typeClass: Ember.computed(function() {
     return 'btn-' + get(this, 'type');
@@ -24409,7 +24409,7 @@ Bootstrap.Button = Ember.Button.extend({
 var get = Ember.get, getPath = Ember.getPath, set = Ember.set;
 
 Bootstrap.ItemSelectionSupport = Ember.Mixin.create({
-  classNameBindings: 'isActive:active',
+  classNameBindings: ['isActive:active'],
 
   isActive: Ember.computed(function() {
     var selection = getPath(this, 'parentView.selection'),

@@ -23,8 +23,15 @@ test("a button can be created and appended to DOM", function() {
 
 test("a button binds type property to layer class", function() {
   var type = 'error';
-  alert = Bootstrap.AlertMessage.create({ type: type });
-  appendIntoDOM(alert);
-  ok(alert.$().hasClass('btn-error'), 'an alert binds type property to class');
+  button = Bootstrap.Button.create({ type: type });
+  appendIntoDOM(button);
+  ok(button.$().hasClass('btn-error'), 'an button binds type property to class');
+});
+
+test("a button binds disabled class", function() {
+  var type = 'error';
+  button = Bootstrap.Button.create({ disabled: true });
+  appendIntoDOM(button);
+  ok(button.$().hasClass('disabled'), 'an button binds disabled class');
 });
 
