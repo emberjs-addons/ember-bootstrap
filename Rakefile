@@ -128,7 +128,7 @@ end
 desc "Build files necessary to view samples"
 task :gh_pages => :sample do
   other_branch = 'master'
-  files = %w(index.html bootstrap.min.css sample.js vendor.js)
+  files = %w(index.html bootstrap.min.css sample.js vendor.js prettify.css prettify.js)
   sh "git checkout gh-pages"
   files.each do |file|
     sh "git show #{other_branch}:sample/#{file} > #{file}"
