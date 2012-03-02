@@ -59,7 +59,7 @@ Bootstrap.ModalPane.popup({
 
 ### Bootstrap.NavList
 
-```javascript
+```html
 <script type="text/x-handlebars">
   {{view Bootstrap.NavList
       contentBinding="SampleApp.navController.content"
@@ -70,7 +70,7 @@ Bootstrap.ModalPane.popup({
 
 ### Bootstrap.Tabs
 
-```javascript
+```html
 <script type="text/x-handlebars">
   {{view Bootstrap.Tabs
       contentBinding="SampleApp.tabsController.content"
@@ -81,7 +81,7 @@ Bootstrap.ModalPane.popup({
 
 ### Bootstrap.Pills
 
-```javascript
+```html
 <script type="text/x-handlebars">
   {{view Bootstrap.Pills
       contentBinding="SampleApp.pillsController.content"
@@ -92,7 +92,7 @@ Bootstrap.ModalPane.popup({
 
 ### Bootstrap.AlertMessage
 
-```javascript
+```html
 <script type="text/x-handlebars">
   {{view Bootstrap.AlertMessage type="success" message="You did it!"}}
 </script>
@@ -101,7 +101,7 @@ Bootstrap.ModalPane.popup({
 
 ### Bootstrap.ProgressBar
 
-```javascript
+```html
 <script type="text/x-handlebars">
   {{view Bootstrap.ProgressBar isStriped=true isAnimated=true 
       progressBinding="SampleApp.progressController.progress"}}
