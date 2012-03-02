@@ -22,4 +22,10 @@ isDestroyed = function(object) {
 
 documentHasSelector = function(selector) {
   return jQuery(selector).length > 0;
-}
+};
+
+destroyIfNecessary = function(object) {
+  if (object && !object.get('isDestroyed')) {
+    object.destroy();
+  }
+};

@@ -1,15 +1,15 @@
-var application, pills;
 var get = Ember.get, set = Ember.set, A = Ember.A;
+var application, pills;
 
 module("Bootstrap.Pills", {
   setup: function() {
     application = Ember.Application.create();
-    get(application, 'eventDispatcher').setup();
   },
   teardown: function() {
-    if (pills && !pills.get('isDestroyed')) {
-      pills.destroy();
-    }
+    Ember.run(function() {
+      destroyIfNecessary(pills);
+      application.destroy();
+    });
   }
 });
 

@@ -1,17 +1,17 @@
 require('ember-bootstrap/~tests/test_helpers');
 
-var application, modalPane;
 var get = Ember.get, set = Ember.set;
+var application, modalPane;
 
 module("Bootstrap.ModalPane", {
   setup: function() {
     application = Ember.Application.create();
-    get(application, 'eventDispatcher').setup();
   },
   teardown: function() {
-    if (modalPane && !modalPane.get('isDestroyed')) {
-      modalPane.destroy();
-    }
+    Ember.run(function() {
+      destroyIfNecessary(modalPane);
+      application.destroy();
+    });
   }
 });
 

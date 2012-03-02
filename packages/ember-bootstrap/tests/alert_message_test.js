@@ -1,15 +1,15 @@
-var application, alert;
 var get = Ember.get, set = Ember.set;
+var application, alert;
 
 module("Bootstrap.AlertMessage", {
   setup: function() {
     application = Ember.Application.create();
-    get(application, 'eventDispatcher').setup();
   },
   teardown: function() {
-    if (alert && !alert.get('isDestroyed')) {
-      alert.destroy();
-    }
+    Ember.run(function() {
+      destroyIfNecessary(alert);
+      application.destroy();
+    });
   }
 });
 

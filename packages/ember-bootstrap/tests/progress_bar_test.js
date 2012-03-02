@@ -1,15 +1,13 @@
-var application, progressBar;
 var get = Ember.get, set = Ember.set, A = Ember.A;
+var progressBar;
 
 module("Bootstrap.ProgressBar", {
   setup: function() {
-    application = Ember.Application.create();
-    get(application, 'eventDispatcher').setup();
   },
   teardown: function() {
-    if (progressBar && !progressBar.get('isDestroyed')) {
-      progressBar.destroy();
-    }
+    Ember.run(function() {
+      destroyIfNecessary(progressBar);
+    });
   }
 });
 

@@ -1,15 +1,13 @@
-var application, tabs;
 var get = Ember.get, set = Ember.set, A = Ember.A;
+var tabs;
 
 module("Bootstrap.Tabs", {
   setup: function() {
-    application = Ember.Application.create();
-    get(application, 'eventDispatcher').setup();
   },
   teardown: function() {
-    if (tabs && !tabs.get('isDestroyed')) {
-      tabs.destroy();
-    }
+    Ember.run(function() {
+      destroyIfNecessary(tabs);
+    });
   }
 });
 

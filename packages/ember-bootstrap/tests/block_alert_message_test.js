@@ -1,15 +1,13 @@
-var application, blockAlert;
 var get = Ember.get, set = Ember.set, A = Ember.A;
+var blockAlert;
 
 module("Bootstrap.BlockAlertMessage", {
   setup: function() {
-    application = Ember.Application.create();
-    get(application, 'eventDispatcher').setup();
   },
   teardown: function() {
-    if (blockAlert && !blockAlert.get('isDestroyed')) {
-      blockAlert.destroy();
-    }
+    Ember.run(function() {
+      destroyIfNecessary(blockAlert);
+    });
   }
 });
 
