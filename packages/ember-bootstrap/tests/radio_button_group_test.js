@@ -45,3 +45,38 @@ test("a radio button group binds selection", function() {
   equals(radioButtonGroup.get('selection'), 'Three');
 });
 
+test("a radio button group sets first item as selection when allowsEmptySelection is false", function() {
+  radioButtonGroup = Bootstrap.RadioButtonGroup.create({
+    content: A(["One", "Two", "Three"]),
+    allowsEmptySelection: false
+  });
+  appendIntoDOM(radioButtonGroup);
+  equals(radioButtonGroup.get('selection'), 'One');
+  radioButtonGroup.$('a.btn:contains(Two)').trigger('click');
+  equals(radioButtonGroup.get('selection'), 'Two');
+});
+
+test("a radio button group unsets selection when allowsEmptySelection is true", function() {
+  radioButtonGroup = Bootstrap.RadioButtonGroup.create({
+    content: A(["One", "Two", "Three"]),
+    allowsEmptySelection: true
+  });
+  appendIntoDOM(radioButtonGroup);
+  radioButtonGroup.$('a.btn:contains(One)').trigger('click');
+  equals(radioButtonGroup.get('selection'), 'One');
+  radioButtonGroup.$('a.btn:contains(One)').trigger('click');
+  equals(radioButtonGroup.get('selection'), null);
+});
+
+test("a radio button group does not unset selection when allowsEmptySelection is false", function() {
+  radioButtonGroup = Bootstrap.RadioButtonGroup.create({
+    content: A(["One", "Two", "Three"]),
+    allowsEmptySelection: false
+  });
+  appendIntoDOM(radioButtonGroup);
+  radioButtonGroup.$('a.btn:contains(One)').trigger('click');
+  equals(radioButtonGroup.get('selection'), 'One');
+  radioButtonGroup.$('a.btn:contains(One)').trigger('click');
+  equals(radioButtonGroup.get('selection'), 'One');
+});
+

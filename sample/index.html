@@ -106,19 +106,21 @@ Bootstrap.ModalPane.popup({
           </section>
 
           <section>
-            <h2>Button groups</h2>
+            <h2>Radio button groups</h2>
             <pre class="prettyprint linenums">
 Bootstrap.RadioButtonGroup.create({
-  content: ["A", "B", "C"]
+  content: ["A", "B", "C"],
+  allowsEmptySelection: true
 }).append(); </pre>
             <h4>Sample</h4>
             <script type="text/x-handlebars">
-              <div class="well" style="padding:12px 0;">
+              <div class="well">
                 {{view Bootstrap.RadioButtonGroup
+                    allowsEmptySelection=true
                     selectionBinding="SampleApp.buttonGroupController.selection"
                     contentBinding="SampleApp.buttonGroupController.content"}}
               </div>
-              {{SampleApp.buttonGroupController.selection}}
+              <p>Selected button: {{SampleApp.buttonGroupController.selection}}</p>
             </script>
 
           <section>

@@ -25730,7 +25730,12 @@ Bootstrap.ItemSelectionSupport = Ember.Mixin.create({
 
   click: function(event) {
     var content = get(this, 'content'),
-        parentView = get(this, 'parentView');
+        parentView = get(this, 'parentView'),
+        allowsEmptySelection = get(parentView, 'allowsEmptySelection');
+        selection = get(parentView, 'selection');
+    if (selection === content && allowsEmptySelection === true) {
+      content = null;
+    }
     set(parentView, 'selection', content);
     return false;
   }
@@ -25740,8 +25745,19 @@ Bootstrap.ItemSelectionSupport = Ember.Mixin.create({
 
 
 (function(exports) {
+var get = Ember.get, set = Ember.set;
+
 Bootstrap.RadioButtonGroup = Bootstrap.ButtonGroup.extend({
   selection: null,
+  allowsEmptySelection: false,
+
+  init: function() {
+    this._super();
+    var content = get(this, 'content');
+    if (content && get(this, 'allowsEmptySelection') === false) {
+      set(this, 'selection', content.get('firstObject'));
+    }
+  },
 
   itemViewClass: Em.View.extend(Bootstrap.ItemSelectionSupport, {
     classNames: 'btn',
