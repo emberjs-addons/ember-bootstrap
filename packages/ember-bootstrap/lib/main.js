@@ -3,6 +3,7 @@ require("ember-bootstrap/views/modal_pane");
 require("ember-bootstrap/views/alert_message");
 require("ember-bootstrap/views/button");
 require("ember-bootstrap/views/button_group");
+require("ember-bootstrap/views/radio_button_group");
 require("ember-bootstrap/views/nav_list");
 require("ember-bootstrap/views/block_alert_message");
 require("ember-bootstrap/views/pill_item");

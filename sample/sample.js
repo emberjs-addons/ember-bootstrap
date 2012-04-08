@@ -45,6 +45,7 @@ SampleApp.navListController = Ember.Object.create({
 });
 
 SampleApp.buttonGroupController = Ember.Object.create({
-  content: ['Tab A', 'Tab B', 'Tab C']
+  content: ['Tab A', 'Tab B', 'Tab C'],
+  selection: 'Tab A'
 });
 

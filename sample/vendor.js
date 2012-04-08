@@ -25740,6 +25740,21 @@ Bootstrap.ItemSelectionSupport = Ember.Mixin.create({
 
 
 (function(exports) {
+Bootstrap.RadioButtonGroup = Bootstrap.ButtonGroup.extend({
+  selection: null,
+
+  itemViewClass: Em.View.extend(Bootstrap.ItemSelectionSupport, {
+    classNames: 'btn',
+    tagName: 'a',
+    template: Ember.Handlebars.compile('{{content}}')
+  })
+});
+
+
+})({});
+
+
+(function(exports) {
 var get = Ember.get, set = Ember.set;
 
 Bootstrap.NavList = Ember.CollectionView.extend({

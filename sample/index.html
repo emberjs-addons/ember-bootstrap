@@ -108,15 +108,17 @@ Bootstrap.ModalPane.popup({
           <section>
             <h2>Button groups</h2>
             <pre class="prettyprint linenums">
-Bootstrap.ButtonGroup.create({
+Bootstrap.RadioButtonGroup.create({
   content: ["A", "B", "C"]
 }).append(); </pre>
             <h4>Sample</h4>
             <script type="text/x-handlebars">
               <div class="well" style="padding:12px 0;">
-                {{view Bootstrap.ButtonGroup
+                {{view Bootstrap.RadioButtonGroup
+                    selectionBinding="SampleApp.buttonGroupController.selection"
                     contentBinding="SampleApp.buttonGroupController.content"}}
               </div>
+              {{SampleApp.buttonGroupController.selection}}
             </script>
 
           <section>
