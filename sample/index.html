@@ -106,6 +106,20 @@ Bootstrap.ModalPane.popup({
           </section>
 
           <section>
+            <h2>Button groups</h2>
+            <pre class="prettyprint linenums">
+Bootstrap.ButtonGroup.create({
+  content: ["A", "B", "C"]
+}).append(); </pre>
+            <h4>Sample</h4>
+            <script type="text/x-handlebars">
+              <div class="well" style="padding:12px 0;">
+                {{view Bootstrap.ButtonGroup
+                    contentBinding="SampleApp.buttonGroupController.content"}}
+              </div>
+            </script>
+
+          <section>
             <h2>Nav List</h2>
             <pre class="prettyprint linenums">
 Bootstrap.NavList.create({
