@@ -11,7 +11,12 @@ Bootstrap.ItemSelectionSupport = Ember.Mixin.create({
 
   click: function(event) {
     var content = get(this, 'content'),
-        parentView = get(this, 'parentView');
+        parentView = get(this, 'parentView'),
+        allowsEmptySelection = get(parentView, 'allowsEmptySelection');
+        selection = get(parentView, 'selection');
+    if (selection === content && allowsEmptySelection === true) {
+      content = null;
+    }
     set(parentView, 'selection', content);
     return false;
   }
