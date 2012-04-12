@@ -10,3 +10,6 @@ require("ember-bootstrap/views/pill_item");
 require("ember-bootstrap/views/pills");
 require("ember-bootstrap/views/tabs");
 require("ember-bootstrap/views/progress_bar");
+require("ember-bootstrap/views/badge");
+require("ember-bootstrap/views/label");
+require("ember-bootstrap/views/well");
