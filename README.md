@@ -1,7 +1,7 @@
-# Ember Bootstrap
+# Ember Bootstrap [![Travis](https://secure.travis-ci.org/jzajpt/ember-bootstrap.png)](http://travis-ci.org/jzajpt/ember-bootstrap)
+
 
 Ember Bootstrap is set of UI elements styled using Twitter Bootstrap (currently version 2) toolkit to use with Ember.js. The ultimate goal is to provide all elements from the Bootstrap toolkit.
-
 
 ## Is this thing even usable?
 
