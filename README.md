@@ -136,6 +136,11 @@ To run unit tests, run `rackup` from the root directory and visit
 `http://localhost:9292/tests/index.html?package=ember-bootstrap`.
 
 
+### License
+
+MIT License. Copyright 2012 Jiri Zajpt, Damien Mathieu, Franck Verrot
+
+
 ## Authors & contributors
 
 * Jiri Zajpt <jz@blueberry.cz>
