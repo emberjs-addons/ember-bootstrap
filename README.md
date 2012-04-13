@@ -114,6 +114,33 @@ Bootstrap.ModalPane.popup({
 ```
 
 
+### Bootstrap.Label
+
+```html
+<script type="text/x-handlebars">
+  {{view Bootstrap.Label type="important" content="Important"}}
+</script>
+```
+
+
+### Bootstrap.Badge
+
+```html
+<script type="text/x-handlebars">
+  {{view Bootstrap.Badge type="success" contentBinding="SampleApp.TodoController.completed"}}
+</script>
+```
+
+
+### Bootstrap.Well
+
+```html
+<script type="text/x-handlebars">
+  {{view Bootstrap.Well content="Important note about Ember and Bootstrap" }}
+</script>
+```
+
+
 ### Bootstrap.Forms.TextField
 ```html
 <script type="text/x-handlebars">

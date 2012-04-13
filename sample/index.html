@@ -260,13 +260,13 @@ Bootstrap.ProgressBar.create({
             <h2>Badges</h2>
             <pre class="prettyprint linenums">
 Bootstrap.Badge.create({
-  content: '99',
+  contentBinding: 'SampleApp.TodoController.completed',
   type: 'success'
 }).append(); </pre>
             <h4>Sample</h4>
-            <script type="text/x-handlebars">
-              {{view Bootstrap.Badge type="success" content="99" }}
-            </script>
+              <script type="text/x-handlebars">
+                {{view Bootstrap.Badge type="success" contentBinding="SampleApp.TodoController.completed"}}
+              </script>
           </section>
 
           <section>
@@ -277,9 +277,9 @@ Bootstrap.Label.create({
   type: 'important'
 }).append(); </pre>
             <h4>Sample</h4>
-            <script type="text/x-handlebars">
-              {{view Bootstrap.Label type="important" content="Important" }}
-            </script>
+              <script type="text/x-handlebars">
+                {{view Bootstrap.Label type="important" content="Important"}}
+              </script>
           </section>
 
           <section>
