@@ -19,6 +19,9 @@ Nope, not yet. So either fork, do your magic and send pull request or move along
 * Alert messages - Bootstrap.AlertMessage
 * Block alert messages - Bootstrap.BlockAlertMessage
 * Progress bars - Bootstrap.ProgressBar
+* Badges - Bootstrap.Badge
+* Labels - Bootstrap.Label
+* Wells - Bootstrap.Well
 
 ### Forms
 * Text Field - Bootstrap.Forms.TextField
@@ -114,6 +117,33 @@ Bootstrap.ModalPane.popup({
 ```
 
 
+### Bootstrap.Label
+
+```html
+<script type="text/x-handlebars">
+  {{view Bootstrap.Label type="important" content="Important"}}
+</script>
+```
+
+
+### Bootstrap.Badge
+
+```html
+<script type="text/x-handlebars">
+  {{view Bootstrap.Badge type="success" contentBinding="SampleApp.TodoController.completed"}}
+</script>
+```
+
+
+### Bootstrap.Well
+
+```html
+<script type="text/x-handlebars">
+  {{view Bootstrap.Well content="Important note about Ember and Bootstrap" }}
+</script>
+```
+
+
 ### Bootstrap.Forms.TextField
 ```html
 <script type="text/x-handlebars">
@@ -132,7 +162,7 @@ Bootstrap.ModalPane.popup({
 
 ## Unit Tests
 
-To run unit tests, run `rackup` from the root directory and visit
+To run unit tests, run `bundle exec rackup` from the root directory and visit
 `http://localhost:9292/tests/index.html?package=ember-bootstrap`.
 
 
