@@ -1,7 +1,7 @@
-# Ember Boostrap
+# Ember Bootstrap [![Travis](https://secure.travis-ci.org/jzajpt/ember-bootstrap.png)](http://travis-ci.org/jzajpt/ember-bootstrap)
 
-Ember Boostrap is set of UI elements styled using Twitter Boostrap (currently version 2) toolkit to use with Ember.js. The ultimate goal is to provide all elements from the Bootstrap toolkit.
 
+Ember Bootstrap is set of UI elements styled using Twitter Bootstrap (currently version 2) toolkit to use with Ember.js. The ultimate goal is to provide all elements from the Bootstrap toolkit.
 
 ## Is this thing even usable?
 
@@ -10,6 +10,7 @@ Nope, not yet. So either fork, do your magic and send pull request or move along
 
 ## What's implemented so far?
 
+### Views
 * Buttons - Bootstrap.Button
 * Modal panes - Bootstrap.ModalPane
 * Nav lists - Bootstrap.NavList
@@ -18,6 +19,10 @@ Nope, not yet. So either fork, do your magic and send pull request or move along
 * Alert messages - Bootstrap.AlertMessage
 * Block alert messages - Bootstrap.BlockAlertMessage
 * Progress bars - Bootstrap.ProgressBar
+
+### Forms
+* Text Field - Bootstrap.Forms.TextField
+* Text Area  - Bootstrap.Forms.TextArea
 
 
 ## Usage
@@ -109,6 +114,22 @@ Bootstrap.ModalPane.popup({
 ```
 
 
+### Bootstrap.Forms.TextField
+```html
+<script type="text/x-handlebars">
+  {{view EmBootstrap.TextField valueBinding="myObject.content" label="content"}}
+</script>
+```
+
+
+### Bootstrap.Forms.TextArea
+```html
+<script type="text/x-handlebars">
+  {{view EmBootstrap.TextArea valueBinding="myObject.content" label="content"}}
+</script>
+```
+
+
 ## Unit Tests
 
 To run unit tests, run `bundle exec rackup` from the root directory and visit
@@ -118,3 +139,5 @@ To run unit tests, run `bundle exec rackup` from the root directory and visit
 ## Authors & contributors
 
 * Jiri Zajpt <jz@blueberry.cz>
+* Damien Mathieu <42@dmathieu.com>
+* Franck Verrot <franck@verrot.fr>

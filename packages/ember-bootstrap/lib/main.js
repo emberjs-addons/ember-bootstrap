@@ -1,4 +1,5 @@
 require("ember-bootstrap/core");
+
 require("ember-bootstrap/views/modal_pane");
 require("ember-bootstrap/views/alert_message");
 require("ember-bootstrap/views/button");
@@ -10,6 +11,14 @@ require("ember-bootstrap/views/pill_item");
 require("ember-bootstrap/views/pills");
 require("ember-bootstrap/views/tabs");
 require("ember-bootstrap/views/progress_bar");
+<<<<<<< HEAD
 require("ember-bootstrap/views/badge");
 require("ember-bootstrap/views/label");
 require("ember-bootstrap/views/well");
+=======
+
+require("ember-bootstrap/forms");
+require("ember-bootstrap/forms/field");
+require("ember-bootstrap/forms/controls/text_field");
+require("ember-bootstrap/forms/controls/text_area");
+>>>>>>> jzajpt/master
