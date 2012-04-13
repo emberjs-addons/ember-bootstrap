@@ -19,6 +19,9 @@ Nope, not yet. So either fork, do your magic and send pull request or move along
 * Alert messages - Bootstrap.AlertMessage
 * Block alert messages - Bootstrap.BlockAlertMessage
 * Progress bars - Bootstrap.ProgressBar
+* Badge - Bootstrap.Badge
+* Label - Bootstrap.Label
+* Well - Bootstrap.Well
 
 ### Forms
 * Text Field - Bootstrap.Forms.TextField
