@@ -49,7 +49,23 @@ SampleApp.buttonGroupController = Ember.Object.create({
   selection: 'Tab A'
 });
 
-SampleApp.TodoController = Ember.Object.create({
+SampleApp.todoController = Ember.Object.create({
   completed: 4,
   content: ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6', 'Item 7', 'Item 8', 'Item 9', 'Item 10', 'Item 11']
 });
+
+
+SampleApp.breadcrumbsController = Ember.ArrayController.create();
+SampleApp.breadcrumbsController.set('content', [
+    Ember.Object.create({title: 'Home', href: '#home'}), 
+    Ember.Object.create({title: 'Library', href: '#library'}), 
+    Ember.Object.create({title: 'Data', href: '#data'})
+  ]
+);
+
+
+
+
+
+
+

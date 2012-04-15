@@ -257,6 +257,19 @@ Bootstrap.ProgressBar.create({
           </section>
 
           <section>
+            <h2>Breadcrumbs</h2>
+            <pre class="prettyprint linenums">
+Bootstrap.Breadcrumb.create({
+  contentBinding: 'SampleApp.BreadcrumbsController.content'
+}).append(); 
+            </pre>
+            <h4>Sample</h4>
+              <script type="text/x-handlebars">
+                {{view Bootstrap.Breadcrumb contentBinding="SampleApp.breadcrumbsController.content"}}
+              </script>
+          </section>
+
+          <section>
             <h2>Badges</h2>
             <pre class="prettyprint linenums">
 Bootstrap.Badge.create({
@@ -265,7 +278,7 @@ Bootstrap.Badge.create({
 }).append(); </pre>
             <h4>Sample</h4>
               <script type="text/x-handlebars">
-                {{view Bootstrap.Badge type="success" contentBinding="SampleApp.TodoController.completed"}}
+                {{view Bootstrap.Badge type="success" contentBinding="SampleApp.todoController.completed"}}
               </script>
           </section>
 
