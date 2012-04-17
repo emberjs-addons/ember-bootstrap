@@ -257,6 +257,44 @@ Bootstrap.ProgressBar.create({
           </section>
 
           <section>
+            <h2>Badges</h2>
+            <pre class="prettyprint linenums">
+Bootstrap.Badge.create({
+  contentBinding: 'SampleApp.TodoController.completed',
+  type: 'success'
+}).append(); </pre>
+            <h4>Sample</h4>
+              <script type="text/x-handlebars">
+                {{view Bootstrap.Badge type="success" contentBinding="SampleApp.TodoController.completed"}}
+              </script>
+          </section>
+
+          <section>
+            <h2>Labels</h2>
+            <pre class="prettyprint linenums">
+Bootstrap.Label.create({
+  content: 'Important',
+  type: 'important'
+}).append(); </pre>
+            <h4>Sample</h4>
+              <script type="text/x-handlebars">
+                {{view Bootstrap.Label type="important" content="Important"}}
+              </script>
+          </section>
+
+          <section>
+            <h2>Wells</h2>
+            <pre class="prettyprint linenums">
+Bootstrap.Well.create({
+  content: 'Important note about Ember and Bootstrap'
+}).append(); </pre>
+            <h4>Sample</h4>
+            <script type="text/x-handlebars">
+              {{view Bootstrap.Well content="Important note about Ember and Bootstrap" }}
+            </script>
+          </section>
+
+          <section>
             <h2>Download</h2>
             <p>
               You can download this project in either

@@ -25694,11 +25694,17 @@ var get = Ember.get;
 
 Bootstrap.Button = Ember.Button.extend({
   classNames: ['btn'],
-  classNameBindings: ['typeClass', 'disabled'],
+  classNameBindings: ['typeClass', 'sizeClass', 'disabled'],
+  size: 'small',
 
   typeClass: Ember.computed(function() {
-    return 'btn-' + get(this, 'type');
-  }).property('type').cacheable()
+  	var type = get(this, 'type');
+    return type ? 'btn-' + type : null;
+  }).property('type').cacheable(),
+  
+  sizeClass: Ember.computed(function() {
+    return 'btn-' + get(this, 'size');
+  }).property('size').cacheable()
 });
 
 })({});
@@ -25861,4 +25867,93 @@ Bootstrap.ProgressBar = Ember.View.extend({
 
 
 (function(exports) {
+var get = Ember.get, getPath = Ember.getPath, set = Ember.set;
+
+Bootstrap.TypeSupport = Ember.Mixin.create({
+  template: Ember.Handlebars.compile('{{content}}'),
+  tagName: 'span',
+  content: null,
+  typeName: null,
+  classNameBindings: 'typeClass',
+  type: null, // 'success', 'warning', 'error', 'info' || 'inverse'
+  typeClass: Ember.computed(function() {
+    var type = get(this, 'type'),
+        typeName = get(this, 'typeName');
+    return type ? typeName + '-' + type : null;
+  }).property('type').cacheable()
+});
+
+})({});
+
+
+(function(exports) {
+var get = Ember.get;
+
+Bootstrap.Badge = Ember.View.extend(Bootstrap.TypeSupport, {
+  classNames: 'badge',
+  typeName: 'badge',
+  content: null
+});
+
+})({});
+
+
+(function(exports) {
+var get = Ember.get;
+
+Bootstrap.Label = Ember.View.extend(Bootstrap.TypeSupport, {
+  classNames: 'label',
+  typeName: 'label',
+  content: null
+});
+
+})({});
+
+
+(function(exports) {
+var get = Ember.get;
+
+Bootstrap.Well = Ember.View.extend({
+  template: Ember.Handlebars.compile('{{content}}'),
+  classNames: 'well',
+  content: null
+});
+
+})({});
+
+
+(function(exports) {
+})({});
+
+
+(function(exports) {
+// Not done!
+
+var get = Ember.get;
+
+Bootstrap.Breadcrumb = Ember.CollectionView.extend({
+  tagName: 'ul',
+  classNames: ['breadcrumb'],
+  itemViewClass: Ember.View.extend(Bootstrap.ItemSelectionSupport, {
+    template: Ember.Handlebars.compile("<a href='#'>{{title}}</a>")
+  })
+});
+
+})({});
+
+
+(function(exports) {
+var get = Ember.get;
+
+Bootstrap.Thumbnails = Ember.CollectionView.extend({
+  tagName: 'ul',
+  classNames: ['thumbnails'],
+  content: null,
+
+  thumbnailViewClass: Ember.View.extend({
+  	tagName: 'a',
+  	classNames: ['thumbnail']
+  })
+});
+
 })({});
