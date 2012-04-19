@@ -21,9 +21,19 @@ test("a button group can be created and appended to DOM", function() {
   ok(isAppendedToDOM(radioButtonGroup), 'a button has a layer in the DOM');
 });
 
-test("a button group can be created and appended to DOM", function() {
+test("a button group binds it's items to DOM", function() {
   radioButtonGroup = Bootstrap.RadioButtonGroup.create({
-    content: A(["Left", "Right"])
+    itemTitleKey: 'title',
+    itemValueKey: 'value',
+    content: A([
+      {
+        title: "Left",
+        value: "Left"
+      },
+      {
+        title: "Right",
+        value: "Right"
+      }])
   });
   appendIntoDOM(radioButtonGroup);
   layer = radioButtonGroup.$();
