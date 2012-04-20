@@ -1,4 +1,4 @@
-require("ember-bootstrap/views/item_selection_support");
+require("ember-bootstrap/mixins/item_selection_support");
 
 var get = Ember.get, getPath = Ember.getPath, set = Ember.set;
 

@@ -308,6 +308,33 @@ Bootstrap.Well.create({
           </section>
 
           <section>
+            <h2>Paginations</h2>
+            <pre class="prettyprint linenums">
+Bootstrap.Pagination.create({
+  content: ['1', '2', '3'],
+  selection: '2'
+}).append(); </pre>
+            <h4>Sample</h4>
+              <script type="text/x-handlebars">
+                {{view Bootstrap.Pagination contentBinding="SampleApp.paginationController.content"selectionBinding="SampleApp.paginationController.selection"}}
+              </script>
+          </section>
+
+          <section>
+            <h2>Pagers</h2>
+            <pre class="prettyprint linenums">
+Bootstrap.Pager.create({
+  content: ['< previous', 'next >'],
+  previous: true,
+  next: true
+}).append(); </pre>
+            <h4>Sample</h4>
+              <script type="text/x-handlebars">
+                {{view Bootstrap.Pager contentBinding="SampleApp.pagerController.content" next=true previous=true}}
+              </script>
+          </section>
+
+          <section>
             <h2>Download</h2>
             <p>
               You can download this project in either

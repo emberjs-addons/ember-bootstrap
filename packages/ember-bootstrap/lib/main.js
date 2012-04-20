@@ -15,6 +15,8 @@ require("ember-bootstrap/views/badge");
 require("ember-bootstrap/views/label");
 require("ember-bootstrap/views/well");
 require("ember-bootstrap/views/breadcrumb");
+require("ember-bootstrap/views/pagination");
+require("ember-bootstrap/views/pager");
 
 require("ember-bootstrap/forms");
 require("ember-bootstrap/forms/field");

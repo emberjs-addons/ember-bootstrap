@@ -3,12 +3,8 @@ var breadcrumb, single, many;
 
 module("Bootstrap.Breadcrumb", {
   setup: function() {
-    single = [Ember.Object.create({title: 'Home', href: '#home'})];
-    many = [
-      Ember.Object.create({ title: 'Home', href: '#home' }),
-      Ember.Object.create({ title: 'Library', href: '#library' }),
-      Ember.Object.create({ title: 'Data', href: '#data' })
-    ];
+    single = ['Home'];
+    many = ['Home', 'Library', 'Data'];
   },
   teardown: function() {
     run(function() {
@@ -47,7 +43,7 @@ test("a breadcrumb have children", function() {
   equal(breadcrumb.$().children().size(), 3, 'the breadcrumb with 3 elements have 3 children');
 
   run(function() {
-    get(breadcrumb, 'content').addObject({title: 'Another'});
+    get(breadcrumb, 'content').addObject('Another');
   });
   equal(breadcrumb.$().children().size(), 4, 'the breadcrumb with 3 elements have 3 children');
 

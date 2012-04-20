@@ -25669,8 +25669,6 @@ Bootstrap.Forms.TextField = Bootstrap.Forms.Field.extend({
 
 })({});
 
-
-
 (function(exports) {
 var get = Ember.get;
 
@@ -25805,21 +25803,46 @@ Bootstrap.AlertMessage = Ember.View.extend({
 
 
 (function(exports) {
+var get = Ember.get, getPath = Ember.getPath, set = Ember.set;
+
+Bootstrap.TypeSupport = Ember.Mixin.create({
+  baseClassName: Ember.required(String),
+  classNameBindings: 'typeClass',
+  type: null, // success, warning, error, info || inverse
+  typeClass: Ember.computed(function() {
+    var type = get(this, 'type'),
+        baseClassName = get(this, 'baseClassName');
+    return type ? baseClassName + '-' + type : null;
+  }).property('type').cacheable()
+});
+
+})({});
+
+
+(function(exports) {
 var get = Ember.get;
 
-Bootstrap.Button = Ember.Button.extend({
-  classNames: ['btn'],
-  classNameBindings: ['typeClass', 'sizeClass', 'disabled'],
-  
-  typeClass: Ember.computed(function() {
-    var type = get(this, 'type');
-    return type ? 'btn-' + type : null;
-  }).property('type').cacheable(),
-  
+Bootstrap.SizeSupport = Ember.Mixin.create({
+  baseClassName: Ember.required(String),
+  classNameBindings: 'sizeClass',
+  size: null, // mini, small || large
   sizeClass: Ember.computed(function() {
-    var size = get(this, 'size');
-    return size ? 'btn-' + size : null;
+    var size = get(this, 'size'),
+        baseClassName = get(this, 'baseClassName');
+    return size ? baseClassName + '-' + size : null;
   }).property('size').cacheable()
+});
+
+})({});
+
+
+(function(exports) {
+var get = Ember.get;
+
+Bootstrap.Button = Ember.Button.extend(Bootstrap.TypeSupport, Bootstrap.SizeSupport, {
+  classNames: ['btn'],
+  classNameBindings: ['disabled'],
+  baseClassName: 'btn'
 });
 
 })({});
@@ -25892,16 +25915,9 @@ Bootstrap.RadioButtonGroup = Bootstrap.ButtonGroup.extend({
 
 
 (function(exports) {
-var get = Ember.get, set = Ember.set;
+var get = Ember.get;
 
-Bootstrap.NavList = Ember.CollectionView.extend({
-  classNames: ['nav', 'nav-list'],
-  tagName: 'ul',
-  itemTitleKey: 'title',
-
-  itemViewClass: Em.View.extend(Bootstrap.ItemSelectionSupport, {
-    template: Ember.Handlebars.compile("<a href='#'>{{title}}</a>"),
-
+Bootstrap.ItemViewTitleSupport = Ember.Mixin.create({
     title: Ember.computed(function() {
       var pV = get(this, 'parentView'),
           content = get(this, 'content');
@@ -25913,6 +25929,21 @@ Bootstrap.NavList = Ember.CollectionView.extend({
         }
       }
     }).property('parentView', 'content').cacheable()
+});
+
+})({});
+
+
+(function(exports) {
+var get = Ember.get, set = Ember.set;
+
+Bootstrap.NavList = Ember.CollectionView.extend({
+  classNames: ['nav', 'nav-list'],
+  tagName: 'ul',
+  itemTitleKey: 'title',
+
+  itemViewClass: Em.View.extend(Bootstrap.ItemSelectionSupport, Bootstrap.ItemViewTitleSupport, {
+    template: Ember.Handlebars.compile("<a href='#'>{{title}}</a>")
   })
 });
 
@@ -25982,56 +26013,31 @@ Bootstrap.ProgressBar = Ember.View.extend({
 
 
 (function(exports) {
-var get = Ember.get, getPath = Ember.getPath, set = Ember.set;
-
-Bootstrap.TypeSupport = Ember.Mixin.create({
-  template: Ember.Handlebars.compile('{{content}}'),
-  tagName: 'span',
-  content: null,
-  typeName: null,
-  classNameBindings: 'typeClass',
-  type: null, // 'success', 'warning', 'error', 'info' || 'inverse'
-  typeClass: Ember.computed(function() {
-    var type = get(this, 'type'),
-        typeName = get(this, 'typeName');
-    return type ? typeName + '-' + type : null;
-  }).property('type').cacheable()
-});
-
-})({});
-
-
-(function(exports) {
-var get = Ember.get;
-
 Bootstrap.Badge = Ember.View.extend(Bootstrap.TypeSupport, {
+  tagName: 'span',
   classNames: 'badge',
-  typeName: 'badge',
-  content: null
+  baseClassName: 'badge',
+  template: Ember.Handlebars.compile('{{content}}')
 });
 
 })({});
 
 
 (function(exports) {
-var get = Ember.get;
-
 Bootstrap.Label = Ember.View.extend(Bootstrap.TypeSupport, {
+  tagName: 'span',
   classNames: 'label',
-  typeName: 'label',
-  content: null
+  baseClassName: 'label',
+  template: Ember.Handlebars.compile('{{content}}')
 });
 
 })({});
 
 
 (function(exports) {
-var get = Ember.get;
-
 Bootstrap.Well = Ember.View.extend({
   template: Ember.Handlebars.compile('{{content}}'),
-  classNames: 'well',
-  content: null
+  classNames: 'well'
 });
 
 })({});
@@ -26040,20 +26046,16 @@ Bootstrap.Well = Ember.View.extend({
 (function(exports) {
 var get = Ember.get;
 
-Bootstrap.Breadcrumb = Ember.CollectionView.extend({
-	tagName: 'ul',
-	classNames: ['breadcrumb'],
-	divider: '/',
-	itemViewClass: Ember.View.extend({
-		template: Ember.Handlebars.compile('<a {{bindAttr href="content.href"}}>{{content.title}}</a><span class="divider">{{parentView.divider}}</span>')
-	}),
-	lastItemViewClass: Ember.View.extend({
-		classNames: ['active'],
-		template: Ember.Handlebars.compile('{{content.title}}')
-	}),
+Bootstrap.FirstLastViewSupport = Ember.Mixin.create({
 	createChildView: function(view, attrs) {
-		if (attrs && attrs.content === get(get(this, 'content'), 'lastObject')) {
-			view = get(this, 'lastItemViewClass');
+		if (attrs) {
+			var content = get(this, 'content');
+			if (attrs.contentIndex === 0) {
+				view = get(this, "firstItemViewClass") || view;
+			}
+			if (attrs.contentIndex === (content.get('length') - 1)) {
+				view = get(this, "lastItemViewClass") || view;
+			}
 		}
 		return this._super(view, attrs);
 	}
@@ -26063,4 +26065,102 @@ Bootstrap.Breadcrumb = Ember.CollectionView.extend({
 
 
 (function(exports) {
+var get = Ember.get;
+
+Bootstrap.Breadcrumb = Ember.CollectionView.extend(Bootstrap.FirstLastViewSupport, {
+	tagName: "ul",
+	classNames: "breadcrumb",
+	divider: "/",
+	itemTitleKey: "title",
+
+	itemViewClass: Ember.View.extend(Bootstrap.ItemViewTitleSupport, {
+		template: Ember.Handlebars.compile('<a href="#">{{title}}</a><span class="divider">{{parentView.divider}}</span>')
+	}),
+	lastItemViewClass: Ember.View.extend(Bootstrap.ItemViewTitleSupport, {
+		classNames: "active",
+		template: Ember.Handlebars.compile("{{title}}")
+	})
+});
+
+})({});
+
+
+(function(exports) {
+Bootstrap.Pagination = Ember.ContainerView.extend({
+	childViews: ['contentViewClass'],
+	classNames: 'pagination',
+	itemTitleKey: 'title',
+	contentViewClass: Ember.CollectionView.extend({
+		tagName: 'ul',
+		itemTitleKeyBinding: 'parentView.itemTitleKey',
+		contentBinding: 'parentView.content',
+		selectionBinding: 'parentView.selection',
+		itemViewClass: Ember.View.extend(Bootstrap.ItemSelectionSupport, Bootstrap.ItemViewTitleSupport, {
+			template: Ember.Handlebars.compile('<a href="#">{{title}}</a>')
+		})
+	})
+});
+
+})({});
+
+
+(function(exports) {
+var A = Ember.A, get = Ember.get, itemViewClass = function(name) {
+	return Ember.View.extend(Bootstrap.ItemViewTitleSupport, {
+		classNameBindings: ["parentView." + name + ":" + name],
+		template: Ember.Handlebars.compile('<a href="#">{{title}}</a>')
+	});
+};
+
+Bootstrap.Pager = Ember.CollectionView.extend(Bootstrap.FirstLastViewSupport, {
+	tagName: 'ul',
+	classNames: 'pager',
+	content: A(['&larr;', '&rarr;']),
+	previous: false,
+	next: false,
+	firstItemViewClass: itemViewClass("previous"),
+	lastItemViewClass: itemViewClass("next"),
+	// init: function() {
+	// 	ember_assert("content must always has at the most 2 element", get(content, "length") <= 2);
+	// 	this._super();
+	// },
+	arrayDidChange: function(content, start, removed, added) {
+		ember_assert("content must always has at the most 2 element", get(content, "length") <= 2);
+		return this._super(content, start, removed, added);
+	}
+});
+
+})({});
+
+
+(function(exports) {
+})({});
+
+
+(function(exports) {
+var get = Ember.get;
+
+Bootstrap.FirstLastViewSupport = Ember.Mixin.create({
+	createChildView: function(view, attrs) {
+		if (attrs) {
+			var content = get(this, 'content');
+			if (attrs.contentIndex === 0) {
+				view = get(this, "firstItemViewClass") || view;
+			}
+			if (attrs.contentIndex === (content.get('length') - 1)) {
+				view = get(this, "lastItemViewClass") || view;
+			}
+		}
+		return this._super(view, attrs);
+	}
+});
+
+})({});
+
+
+(function(exports) {
+Bootstrap.LabelList = Ember.CollectionView.extend({
+	itemViewClass: Bootstrap.Label
+});
+
 })({});

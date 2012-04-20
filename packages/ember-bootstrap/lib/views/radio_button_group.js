@@ -1,4 +1,4 @@
-require("ember-bootstrap/views/item_selection_support");
+require("ember-bootstrap/mixins/item_selection_support");
 require("ember-bootstrap/views/button_group");
 
 var get = Ember.get, set = Ember.set;

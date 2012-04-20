@@ -1,9 +1,8 @@
-require("ember-bootstrap/views/type_support");
-
-var get = Ember.get;
+require("ember-bootstrap/mixins/type_support");
 
 Bootstrap.Label = Ember.View.extend(Bootstrap.TypeSupport, {
-  classNames: 'label',
-  typeName: 'label',
-  content: null
+  tagName: "span",
+  classNames: "label",
+  baseClassName: "label",
+  template: Ember.Handlebars.compile("{{content}}")
 });

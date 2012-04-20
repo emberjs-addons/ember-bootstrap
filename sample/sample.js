@@ -56,16 +56,15 @@ SampleApp.todoController = Ember.Object.create({
 
 
 SampleApp.breadcrumbsController = Ember.ArrayController.create();
-SampleApp.breadcrumbsController.set('content', [
-    Ember.Object.create({title: 'Home', href: '#home'}), 
-    Ember.Object.create({title: 'Library', href: '#library'}), 
-    Ember.Object.create({title: 'Data', href: '#data'})
-  ]
-);
+SampleApp.breadcrumbsController.set('content', ['Home', 'Library', 'Data']);
 
 
 
+SampleApp.paginationController = Ember.Object.create({
+  content: ['1', '2', '3'],
+  selection: '2'
+});
 
-
-
-
+SampleApp.pagerController = Ember.Object.create({
+  content: ['< previous', 'next >']
+});
