@@ -20,12 +20,11 @@ test("a pill item can be created and appended to DOM", function() {
 });
 
 test("a pill item binds content property to DOM", function() {
-  var content;
+  var content = 'oh my output';
   pillItem = Bootstrap.PillItem.create();
+  pillItem.set('content', content);
   Ember.run(function() {
     pillItem.append();
-    content = 'oh my output';
-    pillItem.set('content', content);
   });
   equal(pillItem.$().find('a').text(), content, 'pill item binds given content to DOM');
 });
