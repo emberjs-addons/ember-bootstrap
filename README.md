@@ -22,6 +22,9 @@ Nope, not yet. So either fork, do your magic and send pull request or move along
 * Badges - Bootstrap.Badge
 * Labels - Bootstrap.Label
 * Wells - Bootstrap.Well
+* Breadcrumbs - Bootstrap.Breadcrumb
+* Paginations - Bootstrap.Pagination
+* Pagers - Bootstrap.Pager
 
 ### Forms
 * Text Field - Bootstrap.Forms.TextField
