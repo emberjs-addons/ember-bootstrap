@@ -25575,6 +25575,35 @@ Bootstrap.Forms = Ember.Namespace.create({
 
 
 (function(exports) {
+<<<<<<< HEAD
+=======
+Bootstrap.Forms.TextArea = Bootstrap.Forms.Field.extend({
+
+  inputField: Ember.TextArea.extend({
+    valueBinding: 'parentView.value',
+    nameBinding: 'parentView.label',
+    attributeBindings: ['name']
+  })
+});
+
+})({});
+
+
+(function(exports) {
+Bootstrap.Forms.TextField = Bootstrap.Forms.Field.extend({
+
+  inputField: Ember.TextField.extend({
+    valueBinding: 'parentView.value',
+    nameBinding: 'parentView.label',
+    attributeBindings: ['name']
+  })
+});
+
+})({});
+
+
+(function(exports) {
+>>>>>>> jzajpt/master
 Bootstrap.Forms.Field = Ember.View.extend({
   tagName: 'div',
   template: Ember.Handlebars.compile('<div class="control-group">\
@@ -25644,6 +25673,7 @@ Bootstrap.Forms.Field = Ember.View.extend({
 
 })({});
 
+<<<<<<< HEAD
 (function(exports) {
 Bootstrap.Forms.TextArea = Bootstrap.Forms.Field.extend({
 
@@ -25670,6 +25700,8 @@ Bootstrap.Forms.TextField = Bootstrap.Forms.Field.extend({
 })({});
 
 
+=======
+>>>>>>> jzajpt/master
 
 (function(exports) {
 var get = Ember.get;
@@ -25805,6 +25837,7 @@ Bootstrap.AlertMessage = Ember.View.extend({
 
 
 (function(exports) {
+<<<<<<< HEAD
 var get = Ember.get, getPath = Ember.getPath, set = Ember.set;
 
 Bootstrap.TypeSupport = Ember.Mixin.create({
@@ -25845,6 +25878,23 @@ Bootstrap.Button = Ember.Button.extend(Bootstrap.TypeSupport, Bootstrap.SizeSupp
   classNames: ['btn'],
   classNameBindings: ['disabled'],
   baseClassName: 'btn'
+=======
+var get = Ember.get;
+
+Bootstrap.Button = Ember.Button.extend({
+  classNames: ['btn'],
+  classNameBindings: ['typeClass', 'sizeClass', 'disabled'],
+  
+  typeClass: Ember.computed(function() {
+    var type = get(this, 'type');
+    return type ? 'btn-' + type : null;
+  }).property('type').cacheable(),
+  
+  sizeClass: Ember.computed(function() {
+    var size = get(this, 'size');
+    return size ? 'btn-' + size : null;
+  }).property('size').cacheable()
+>>>>>>> jzajpt/master
 });
 
 })({});
@@ -25904,6 +25954,27 @@ var get = Ember.get, getPath = Ember.getPath, set = Ember.set;
 
 Bootstrap.ItemSelectionSupport = Ember.Mixin.create(Bootstrap.ItemViewValueSupport, Bootstrap.ItemViewTitleSupport, {
   classNameBindings: ["isActive:active"],
+
+  title: Ember.computed(function() {
+    var parentView = get(this, 'parentView'),
+        content, titleKey;
+    content = get(this, 'content');
+    if (parentView) {
+      titleKey = get(parentView, 'itemTitleKey');
+      if (titleKey) return get(content, titleKey);
+    }
+    return content;
+  }).property('content').cacheable(),
+
+  value: Ember.computed(function() {
+    var parentView = get(this, 'parentView'),
+        content, valueKey;
+    if (!parentView) return null;
+    content = get(this, 'content');
+    valueKey = get(parentView, 'itemValueKey');
+    if (valueKey) return get(content, valueKey);
+    return content;
+  }).property('content').cacheable(),
 
   isActive: Ember.computed(function() {
     var parentView = get(this, 'parentView'),
@@ -26100,6 +26171,7 @@ Bootstrap.Breadcrumb = Ember.CollectionView.extend(Bootstrap.FirstLastViewSuppor
 });
 
 })({});
+<<<<<<< HEAD
 
 
 (function(exports) {
@@ -26184,3 +26256,5 @@ Bootstrap.Pager = Ember.CollectionView.extend({
 
 (function(exports) {
 })({});
+=======
+>>>>>>> jzajpt/master
