@@ -1,5 +1,4 @@
 require("ember-bootstrap/mixins/item_selection_support");
-require("ember-bootstrap/mixins/item_view_title_support");
 require("ember-bootstrap/mixins/item_view_href_support");
 
 var get = Ember.get, set = Ember.set, A = Ember.A;
@@ -8,6 +7,7 @@ Bootstrap.Pagination = Ember.View.extend({
 	childViews: ["contentView"],
 	classNames: "pagination",
 	template: Ember.Handlebars.compile('{{view contentView}}'),
+	itemTitleKey: 'title',
 	init: function() {
 		this._super();
 		if (!this.get("content")) {
@@ -20,7 +20,7 @@ Bootstrap.Pagination = Ember.View.extend({
 		selectionBinding: "parentView.selection",
 		itemTitleKeyBinding: "parentView.title",
 		itemHrefKeyBinding: "parentView.href",
-		itemViewClass: Ember.View.extend(Bootstrap.ItemSelectionSupport, Bootstrap.ItemViewTitleSupport, Bootstrap.ItemViewHrefSupport, {
+		itemViewClass: Ember.View.extend(Bootstrap.ItemSelectionSupport, Bootstrap.ItemViewHrefSupport, {
 			classNameBindings: ["content.disabled"],
 			template: Ember.Handlebars.compile('<a {{bindAttr href="href"}}>{{title}}</a>')
 		})

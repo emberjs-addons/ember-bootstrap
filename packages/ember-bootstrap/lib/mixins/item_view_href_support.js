@@ -1,15 +1,14 @@
 var get = Ember.get;
 
 Bootstrap.ItemViewHrefSupport = Ember.Mixin.create({
-    href: Ember.computed(function() {
-      var pV = get(this, "parentView"),
-          content = get(this, "content");
-      if (pV && content) {
-        if ("string" === typeof content) {
-          return content;
-        } else {
-          return get(content, get(pV, "itemHrefKey") || "href") || "#";
-        }
-      }
-    }).property("parentView", "content").cacheable()
+  href: Ember.computed(function() {
+    var parentView = get(this, 'parentView'),
+        content, hrefKey;
+    content = get(this, 'content');
+    if (parentView) {
+      hrefKey = get(parentView, 'itemHrefKey');
+      if (hrefKey) return get(content, hrefKey);
+    }
+    return content;
+  }).property('content').cacheable()
 });

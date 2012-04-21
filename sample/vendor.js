@@ -25575,35 +25575,6 @@ Bootstrap.Forms = Ember.Namespace.create({
 
 
 (function(exports) {
-<<<<<<< HEAD
-=======
-Bootstrap.Forms.TextArea = Bootstrap.Forms.Field.extend({
-
-  inputField: Ember.TextArea.extend({
-    valueBinding: 'parentView.value',
-    nameBinding: 'parentView.label',
-    attributeBindings: ['name']
-  })
-});
-
-})({});
-
-
-(function(exports) {
-Bootstrap.Forms.TextField = Bootstrap.Forms.Field.extend({
-
-  inputField: Ember.TextField.extend({
-    valueBinding: 'parentView.value',
-    nameBinding: 'parentView.label',
-    attributeBindings: ['name']
-  })
-});
-
-})({});
-
-
-(function(exports) {
->>>>>>> jzajpt/master
 Bootstrap.Forms.Field = Ember.View.extend({
   tagName: 'div',
   template: Ember.Handlebars.compile('<div class="control-group">\
@@ -25673,7 +25644,6 @@ Bootstrap.Forms.Field = Ember.View.extend({
 
 })({});
 
-<<<<<<< HEAD
 (function(exports) {
 Bootstrap.Forms.TextArea = Bootstrap.Forms.Field.extend({
 
@@ -25698,8 +25668,8 @@ Bootstrap.Forms.TextField = Bootstrap.Forms.Field.extend({
 });
 
 })({});
-=======
->>>>>>> jzajpt/master
+
+
 
 (function(exports) {
 var get = Ember.get;
@@ -25835,18 +25805,17 @@ Bootstrap.AlertMessage = Ember.View.extend({
 
 
 (function(exports) {
-<<<<<<< HEAD
 var get = Ember.get, getPath = Ember.getPath, set = Ember.set;
 
 Bootstrap.TypeSupport = Ember.Mixin.create({
   baseClassName: Ember.required(String),
-  classNameBindings: 'typeClass',
+  classNameBindings: "typeClass",
   type: null, // success, warning, error, info || inverse
   typeClass: Ember.computed(function() {
-    var type = get(this, 'type'),
-        baseClassName = get(this, 'baseClassName');
-    return type ? baseClassName + '-' + type : null;
-  }).property('type').cacheable()
+    var type = get(this, "type"),
+        baseClassName = get(this, "baseClassName");
+    return type ? baseClassName + "-" + type : null;
+  }).property("type").cacheable()
 });
 
 })({});
@@ -25857,29 +25826,13 @@ var get = Ember.get;
 
 Bootstrap.SizeSupport = Ember.Mixin.create({
   baseClassName: Ember.required(String),
-  classNameBindings: 'sizeClass',
+  classNameBindings: "sizeClass",
   size: null, // mini, small || large
   sizeClass: Ember.computed(function() {
-    var size = get(this, 'size'),
-        baseClassName = get(this, 'baseClassName');
-    return size ? baseClassName + '-' + size : null;
-=======
-var get = Ember.get;
-
-Bootstrap.Button = Ember.Button.extend({
-  classNames: ['btn'],
-  classNameBindings: ['typeClass', 'sizeClass', 'disabled'],
-  
-  typeClass: Ember.computed(function() {
-    var type = get(this, 'type');
-    return type ? 'btn-' + type : null;
-  }).property('type').cacheable(),
-  
-  sizeClass: Ember.computed(function() {
-    var size = get(this, 'size');
-    return size ? 'btn-' + size : null;
->>>>>>> jzajpt/master
-  }).property('size').cacheable()
+    var size = get(this, "size"),
+        baseClassName = get(this, "baseClassName");
+    return size ? baseClassName + "-" + size : null;
+  }).property("size").cacheable()
 });
 
 })({});
@@ -25913,47 +25866,23 @@ Bootstrap.ButtonGroup = Ember.CollectionView.extend({
 var get = Ember.get, getPath = Ember.getPath, set = Ember.set;
 
 Bootstrap.ItemSelectionSupport = Ember.Mixin.create({
-  classNameBindings: ['isActive:active'],
-
-  title: Ember.computed(function() {
-    var parentView = get(this, 'parentView'),
-        content, titleKey;
-    content = get(this, 'content');
-    if (parentView) {
-      titleKey = get(parentView, 'itemTitleKey');
-      if (titleKey) return get(content, titleKey);
-    }
-    return content;
-  }).property('content').cacheable(),
-
-  value: Ember.computed(function() {
-    var parentView = get(this, 'parentView'),
-        content, valueKey;
-    if (!parentView) return null;
-    content = get(this, 'content');
-    valueKey = get(parentView, 'itemValueKey');
-    if (valueKey) return get(content, valueKey);
-    return content;
-  }).property('content').cacheable(),
+  classNameBindings: ["isActive:active"],
 
   isActive: Ember.computed(function() {
-    var parentView = get(this, 'parentView'),
-        selection, value;
-    if (!parentView) return false;
-    selection = get(parentView, 'selection');
-    value = get(this, 'value');
-    return selection === value;
-  }).property('parentView.selection', 'value').cacheable(),
+    var selection = getPath(this, "parentView.selection"),
+        content = get(this, "content");
+    return selection === content;
+  }).property("parentView.selection", "content").cacheable(),
 
   click: function(event) {
-    var value = get(this, 'value'),
-        parentView = get(this, 'parentView'),
-        allowsEmptySelection = get(parentView, 'allowsEmptySelection');
-        selection = get(parentView, 'selection');
-    if (selection === value && allowsEmptySelection === true) {
-      value = null;
+    var content = get(this, "content"),
+        parentView = get(this, "parentView"),
+        allowsEmptySelection = get(parentView, "allowsEmptySelection");
+        selection = get(parentView, "selection");
+    if (selection === content && allowsEmptySelection === true) {
+      content = null;
     }
-    set(parentView, 'selection', value);
+    set(parentView, "selection", content);
     return false;
   }
 });
@@ -25988,41 +25917,33 @@ Bootstrap.RadioButtonGroup = Bootstrap.ButtonGroup.extend({
 
 
 (function(exports) {
-<<<<<<< HEAD
 var get = Ember.get;
 
 Bootstrap.ItemViewTitleSupport = Ember.Mixin.create({
     title: Ember.computed(function() {
-      var pV = get(this, 'parentView'),
-          content = get(this, 'content');
+      var pV = get(this, "parentView"),
+          content = get(this, "content");
       if (pV && content) {
-        if ('string' === typeof content) {
+        if ("string" === typeof content) {
           return content;
         } else {
-          return get(content, get(pV, 'itemTitleKey'));
+          return get(content, get(pV, "itemTitleKey") || "title");
         }
       }
-    }).property('parentView', 'content').cacheable()
+    }).property("parentView", "content").cacheable()
 });
 
 })({});
 
 
 (function(exports) {
-=======
->>>>>>> jzajpt/master
 var get = Ember.get, set = Ember.set;
 
 Bootstrap.NavList = Ember.CollectionView.extend({
   classNames: ['nav', 'nav-list'],
   tagName: 'ul',
-  itemTitleKey: 'title',
 
-<<<<<<< HEAD
   itemViewClass: Em.View.extend(Bootstrap.ItemSelectionSupport, Bootstrap.ItemViewTitleSupport, {
-=======
-  itemViewClass: Em.View.extend(Bootstrap.ItemSelectionSupport, {
->>>>>>> jzajpt/master
     template: Ember.Handlebars.compile("<a href='#'>{{title}}</a>")
   })
 });
@@ -26092,10 +26013,10 @@ Bootstrap.ProgressBar = Ember.View.extend({
 
 (function(exports) {
 Bootstrap.Badge = Ember.View.extend(Bootstrap.TypeSupport, {
-  tagName: 'span',
-  classNames: 'badge',
-  baseClassName: 'badge',
-  template: Ember.Handlebars.compile('{{content}}')
+  tagName: "span",
+  classNames: "badge",
+  baseClassName: "badge",
+  template: Ember.Handlebars.compile("{{content}}")
 });
 
 })({});
@@ -26103,10 +26024,10 @@ Bootstrap.Badge = Ember.View.extend(Bootstrap.TypeSupport, {
 
 (function(exports) {
 Bootstrap.Label = Ember.View.extend(Bootstrap.TypeSupport, {
-  tagName: 'span',
-  classNames: 'label',
-  baseClassName: 'label',
-  template: Ember.Handlebars.compile('{{content}}')
+  tagName: "span",
+  classNames: "label",
+  baseClassName: "label",
+  template: Ember.Handlebars.compile("{{content}}")
 });
 
 })({});
@@ -26127,11 +26048,11 @@ var get = Ember.get;
 Bootstrap.FirstLastViewSupport = Ember.Mixin.create({
 	createChildView: function(view, attrs) {
 		if (attrs) {
-			var content = get(this, 'content');
+			var content = get(this, "content");
 			if (attrs.contentIndex === 0) {
 				view = get(this, "firstItemViewClass") || view;
 			}
-			if (attrs.contentIndex === (content.get('length') - 1)) {
+			if (attrs.contentIndex === (content.get("length") - 1)) {
 				view = get(this, "lastItemViewClass") || view;
 			}
 		}
@@ -26149,8 +26070,6 @@ Bootstrap.Breadcrumb = Ember.CollectionView.extend(Bootstrap.FirstLastViewSuppor
 	tagName: "ul",
 	classNames: "breadcrumb",
 	divider: "/",
-	itemTitleKey: "title",
-
 	itemViewClass: Ember.View.extend(Bootstrap.ItemViewTitleSupport, {
 		template: Ember.Handlebars.compile('<a href="#">{{title}}</a><span class="divider">{{parentView.divider}}</span>')
 	}),
@@ -26164,47 +26083,75 @@ Bootstrap.Breadcrumb = Ember.CollectionView.extend(Bootstrap.FirstLastViewSuppor
 
 
 (function(exports) {
-Bootstrap.Pagination = Ember.ContainerView.extend({
-	childViews: ['contentViewClass'],
-	classNames: 'pagination',
-	itemTitleKey: 'title',
-	contentViewClass: Ember.CollectionView.extend({
-		tagName: 'ul',
-		itemTitleKeyBinding: 'parentView.itemTitleKey',
-		contentBinding: 'parentView.content',
-		selectionBinding: 'parentView.selection',
-		itemViewClass: Ember.View.extend(Bootstrap.ItemSelectionSupport, Bootstrap.ItemViewTitleSupport, {
-			template: Ember.Handlebars.compile('<a href="#">{{title}}</a>')
+var get = Ember.get;
+
+Bootstrap.ItemViewHrefSupport = Ember.Mixin.create({
+    href: Ember.computed(function() {
+      var pV = get(this, "parentView"),
+          content = get(this, "content");
+      if (pV && content) {
+        if ("string" === typeof content) {
+          return content;
+        } else {
+          return get(content, get(pV, "itemHrefKey") || "href") || "#";
+        }
+      }
+    }).property("parentView", "content").cacheable()
+});
+
+})({});
+
+
+(function(exports) {
+var get = Ember.get, set = Ember.set, A = Ember.A;
+
+Bootstrap.Pagination = Ember.View.extend({
+	childViews: ["contentView"],
+	classNames: "pagination",
+	template: Ember.Handlebars.compile('{{view contentView}}'),
+	init: function() {
+		this._super();
+		if (!this.get("content")) {
+			this.set("content", A([]));
+		}
+	},
+	contentView: Ember.CollectionView.extend({
+		tagName: "ul",
+		contentBinding: "parentView.content",
+		selectionBinding: "parentView.selection",
+		itemTitleKeyBinding: "parentView.title",
+		itemHrefKeyBinding: "parentView.href",
+		itemViewClass: Ember.View.extend(Bootstrap.ItemSelectionSupport, Bootstrap.ItemViewTitleSupport, Bootstrap.ItemViewHrefSupport, {
+			classNameBindings: ["content.disabled"],
+			template: Ember.Handlebars.compile('<a {{bindAttr href="href"}}>{{title}}</a>')
 		})
 	})
 });
 
 })({});
-<<<<<<< HEAD
 
 
 (function(exports) {
-var A = Ember.A, get = Ember.get, itemViewClass = function(name) {
-	return Ember.View.extend(Bootstrap.ItemViewTitleSupport, {
-		classNameBindings: ["parentView." + name + ":" + name],
-		template: Ember.Handlebars.compile('<a href="#">{{title}}</a>')
-	});
-};
-
-Bootstrap.Pager = Ember.CollectionView.extend(Bootstrap.FirstLastViewSupport, {
-	tagName: 'ul',
-	classNames: 'pager',
-	content: A(['&larr;', '&rarr;']),
-	previous: false,
-	next: false,
-	firstItemViewClass: itemViewClass("previous"),
-	lastItemViewClass: itemViewClass("next"),
-	// init: function() {
-	// 	ember_assert("content must always has at the most 2 element", get(content, "length") <= 2);
-	// 	this._super();
-	// },
+Bootstrap.Pager = Ember.CollectionView.extend({
+	tagName: "ul",
+	classNames: "pager",
+	init: function() {
+		this._super();
+		if (!this.get("content")) {
+			this.set("content", Ember.A([
+				Ember.Object.create({ title: "&larr;" }), 
+				Ember.Object.create({ title: "&rarr;" })
+			]));
+		}
+	},
+	itemViewClass: Ember.View.extend(Bootstrap.ItemViewTitleSupport, Bootstrap.ItemViewHrefSupport, {
+		classNameBindings: ["content.next", "content.previous", "content.disabled"],
+		template: Ember.Handlebars.compile('<a {{bindAttr href="href"}}>{{title}}</a>')
+	}),
 	arrayDidChange: function(content, start, removed, added) {
-		ember_assert("content must always has at the most 2 element", get(content, "length") <= 2);
+		if (content) {
+			ember_assert("content must always has at the most 2 element", content.get("length") <= 2);
+		}
 		return this._super(content, start, removed, added);
 	}
 });
@@ -26217,31 +26164,52 @@ Bootstrap.Pager = Ember.CollectionView.extend(Bootstrap.FirstLastViewSupport, {
 
 
 (function(exports) {
-var get = Ember.get;
+var get = Ember.get, getPath = Ember.getPath, set = Ember.set;
 
-Bootstrap.FirstLastViewSupport = Ember.Mixin.create({
-	createChildView: function(view, attrs) {
-		if (attrs) {
-			var content = get(this, 'content');
-			if (attrs.contentIndex === 0) {
-				view = get(this, "firstItemViewClass") || view;
-			}
-			if (attrs.contentIndex === (content.get('length') - 1)) {
-				view = get(this, "lastItemViewClass") || view;
-			}
-		}
-		return this._super(view, attrs);
-	}
+Bootstrap.ItemSelectionSupport = Ember.Mixin.create({
+  classNameBindings: ['isActive:active'],
+
+  title: Ember.computed(function() {
+    var parentView = get(this, 'parentView'),
+        content, titleKey;
+    content = get(this, 'content');
+    if (parentView) {
+      titleKey = get(parentView, 'itemTitleKey');
+      if (titleKey) return get(content, titleKey);
+    }
+    return content;
+  }).property('content').cacheable(),
+
+  value: Ember.computed(function() {
+    var parentView = get(this, 'parentView'),
+        content, valueKey;
+    if (!parentView) return null;
+    content = get(this, 'content');
+    valueKey = get(parentView, 'itemValueKey');
+    if (valueKey) return get(content, valueKey);
+    return content;
+  }).property('content').cacheable(),
+
+  isActive: Ember.computed(function() {
+    var parentView = get(this, 'parentView'),
+        selection, value;
+    if (!parentView) return false;
+    selection = get(parentView, 'selection');
+    value = get(this, 'value');
+    return selection === value;
+  }).property('parentView.selection', 'value').cacheable(),
+
+  click: function(event) {
+    var value = get(this, 'value'),
+        parentView = get(this, 'parentView'),
+        allowsEmptySelection = get(parentView, 'allowsEmptySelection');
+        selection = get(parentView, 'selection');
+    if (selection === value && allowsEmptySelection === true) {
+      value = null;
+    }
+    set(parentView, 'selection', value);
+    return false;
+  }
 });
 
 })({});
-
-
-(function(exports) {
-Bootstrap.LabelList = Ember.CollectionView.extend({
-	itemViewClass: Bootstrap.Label
-});
-
-})({});
-=======
->>>>>>> jzajpt/master

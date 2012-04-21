@@ -36,7 +36,7 @@ test("a pager has defaults", function() {
 });
 
 test("a pager binds content to innerHTML anchor", function() {
-  pager = Bootstrap.Pager.create({ content: A(["previous", "next"]) });
+  pager = Bootstrap.Pager.create({ content: A([Ember.Object.create({title:"previous"}), Ember.Object.create({title:"next"})]) });
   appendIntoDOM(pager);
   equal(pager.$().children(":first").text(), "previous", "the first pager child text should be 'previous'");
   equal(pager.$().children(":last").text(), "next", "the last (second) pager child text should be 'next'");
@@ -47,7 +47,7 @@ test("a pager binds content to innerHTML anchor", function() {
   equal(pager.$().children(":first").text(), "previous", "the first pager child text should be 'previous'");
   equal(pager.$().children(":last").text(), "next", "the last (second) pager child text should be 'next'");
   Ember.run(function() {
-    pager.set("content", A(["< previous", "next >"]));
+    pager.set("content", A([Ember.Object.create({title:"< previous"}), Ember.Object.create({title:"next >"})]) );
   });
   equal(pager.$().children(":first").text(), "< previous", "the first pager child text should be '< previous'");
   equal(pager.$().children(":last").text(), "next >", "the last (second) pager child text should be 'next >'");
