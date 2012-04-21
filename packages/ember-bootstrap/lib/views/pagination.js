@@ -6,8 +6,9 @@ var get = Ember.get, set = Ember.set, A = Ember.A;
 Bootstrap.Pagination = Ember.View.extend({
 	childViews: ["contentView"],
 	classNames: "pagination",
-	template: Ember.Handlebars.compile('{{view contentView}}'),
-	itemTitleKey: 'title',
+	template: Ember.Handlebars.compile('{{view contentView}}'),	// Using ContainerView as not working
+	itemTitleKey: "title",
+	itemHrefKey: "href",
 	init: function() {
 		this._super();
 		if (!this.get("content")) {
@@ -18,8 +19,8 @@ Bootstrap.Pagination = Ember.View.extend({
 		tagName: "ul",
 		contentBinding: "parentView.content",
 		selectionBinding: "parentView.selection",
-		itemTitleKeyBinding: "parentView.title",
-		itemHrefKeyBinding: "parentView.href",
+		itemTitleKeyBinding: "parentView.itemTitleKey",
+		itemHrefKeyBinding: "parentView.itemHrefKey",
 		itemViewClass: Ember.View.extend(Bootstrap.ItemSelectionSupport, Bootstrap.ItemViewHrefSupport, {
 			classNameBindings: ["content.disabled"],
 			template: Ember.Handlebars.compile('<a {{bindAttr href="href"}}>{{title}}</a>')

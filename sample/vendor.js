@@ -25863,26 +25863,66 @@ Bootstrap.ButtonGroup = Ember.CollectionView.extend({
 
 
 (function(exports) {
+var get = Ember.get;
+
+Bootstrap.ItemViewValueSupport = Ember.Mixin.create({
+  value: Ember.computed(function() {
+    var parentView = get(this, 'parentView'),
+        content, valueKey;
+    if (!parentView) return null;
+    content = get(this, 'content');
+    valueKey = get(parentView, 'itemValueKey');
+    if (valueKey) return get(content, valueKey);
+    return content;
+  }).property('content').cacheable()
+});
+
+})({});
+
+
+(function(exports) {
+var get = Ember.get;
+
+Bootstrap.ItemViewTitleSupport = Ember.Mixin.create({
+  title: Ember.computed(function() {
+    var parentView = get(this, 'parentView'),
+        content, titleKey;
+    content = get(this, 'content');
+    if (parentView) {
+      titleKey = get(parentView, 'itemTitleKey');
+      if (titleKey) return get(content, titleKey) || content;
+    }
+    return content;
+  }).property('content').cacheable()
+});
+
+})({});
+
+
+(function(exports) {
 var get = Ember.get, getPath = Ember.getPath, set = Ember.set;
 
-Bootstrap.ItemSelectionSupport = Ember.Mixin.create({
+Bootstrap.ItemSelectionSupport = Ember.Mixin.create(Bootstrap.ItemViewValueSupport, Bootstrap.ItemViewTitleSupport, {
   classNameBindings: ["isActive:active"],
 
   isActive: Ember.computed(function() {
-    var selection = getPath(this, "parentView.selection"),
-        content = get(this, "content");
-    return selection === content;
-  }).property("parentView.selection", "content").cacheable(),
+    var parentView = get(this, 'parentView'),
+        selection, value;
+    if (!parentView) return false;
+    selection = get(parentView, 'selection');
+    value = get(this, 'value');
+    return selection === value;
+  }).property('parentView.selection', 'value').cacheable(),
 
   click: function(event) {
-    var content = get(this, "content"),
-        parentView = get(this, "parentView"),
-        allowsEmptySelection = get(parentView, "allowsEmptySelection");
-        selection = get(parentView, "selection");
-    if (selection === content && allowsEmptySelection === true) {
-      content = null;
+    var value = get(this, 'value'),
+        parentView = get(this, 'parentView'),
+        allowsEmptySelection = get(parentView, 'allowsEmptySelection');
+        selection = get(parentView, 'selection');
+    if (selection === value && allowsEmptySelection === true) {
+      value = null;
     }
-    set(parentView, "selection", content);
+    set(parentView, 'selection', value);
     return false;
   }
 });
@@ -25917,34 +25957,14 @@ Bootstrap.RadioButtonGroup = Bootstrap.ButtonGroup.extend({
 
 
 (function(exports) {
-var get = Ember.get;
-
-Bootstrap.ItemViewTitleSupport = Ember.Mixin.create({
-    title: Ember.computed(function() {
-      var pV = get(this, "parentView"),
-          content = get(this, "content");
-      if (pV && content) {
-        if ("string" === typeof content) {
-          return content;
-        } else {
-          return get(content, get(pV, "itemTitleKey") || "title");
-        }
-      }
-    }).property("parentView", "content").cacheable()
-});
-
-})({});
-
-
-(function(exports) {
 var get = Ember.get, set = Ember.set;
 
 Bootstrap.NavList = Ember.CollectionView.extend({
   classNames: ['nav', 'nav-list'],
   tagName: 'ul',
-
-  itemViewClass: Em.View.extend(Bootstrap.ItemSelectionSupport, Bootstrap.ItemViewTitleSupport, {
-    template: Ember.Handlebars.compile("<a href='#'>{{title}}</a>")
+  itemTitleKey: 'title',
+  itemViewClass: Em.View.extend(Bootstrap.ItemSelectionSupport, {
+    template: Ember.Handlebars.compile('<a href="#">{{title}}</a>')
   })
 });
 
@@ -26086,17 +26106,16 @@ Bootstrap.Breadcrumb = Ember.CollectionView.extend(Bootstrap.FirstLastViewSuppor
 var get = Ember.get;
 
 Bootstrap.ItemViewHrefSupport = Ember.Mixin.create({
-    href: Ember.computed(function() {
-      var pV = get(this, "parentView"),
-          content = get(this, "content");
-      if (pV && content) {
-        if ("string" === typeof content) {
-          return content;
-        } else {
-          return get(content, get(pV, "itemHrefKey") || "href") || "#";
-        }
-      }
-    }).property("parentView", "content").cacheable()
+  href: Ember.computed(function() {
+    var parentView = get(this, 'parentView'),
+        content, hrefKey;
+    content = get(this, 'content');
+    if (parentView) {
+      hrefKey = get(parentView, 'itemHrefKey');
+      if (hrefKey) return get(content, hrefKey) || "#";
+    }
+    return content;
+  }).property('content').cacheable()
 });
 
 })({});
@@ -26108,7 +26127,9 @@ var get = Ember.get, set = Ember.set, A = Ember.A;
 Bootstrap.Pagination = Ember.View.extend({
 	childViews: ["contentView"],
 	classNames: "pagination",
-	template: Ember.Handlebars.compile('{{view contentView}}'),
+	template: Ember.Handlebars.compile('{{view contentView}}'),	// Using ContainerView as not working
+	itemTitleKey: "title",
+	itemHrefKey: "href",
 	init: function() {
 		this._super();
 		if (!this.get("content")) {
@@ -26119,9 +26140,9 @@ Bootstrap.Pagination = Ember.View.extend({
 		tagName: "ul",
 		contentBinding: "parentView.content",
 		selectionBinding: "parentView.selection",
-		itemTitleKeyBinding: "parentView.title",
-		itemHrefKeyBinding: "parentView.href",
-		itemViewClass: Ember.View.extend(Bootstrap.ItemSelectionSupport, Bootstrap.ItemViewTitleSupport, Bootstrap.ItemViewHrefSupport, {
+		itemTitleKeyBinding: "parentView.itemTitleKey",
+		itemHrefKeyBinding: "parentView.itemHrefKey",
+		itemViewClass: Ember.View.extend(Bootstrap.ItemSelectionSupport, Bootstrap.ItemViewHrefSupport, {
 			classNameBindings: ["content.disabled"],
 			template: Ember.Handlebars.compile('<a {{bindAttr href="href"}}>{{title}}</a>')
 		})
@@ -26135,6 +26156,8 @@ Bootstrap.Pagination = Ember.View.extend({
 Bootstrap.Pager = Ember.CollectionView.extend({
 	tagName: "ul",
 	classNames: "pager",
+	itemTitleKey: "title",
+	itemHrefKey: "href",
 	init: function() {
 		this._super();
 		if (!this.get("content")) {
@@ -26150,7 +26173,7 @@ Bootstrap.Pager = Ember.CollectionView.extend({
 	}),
 	arrayDidChange: function(content, start, removed, added) {
 		if (content) {
-			ember_assert("content must always has at the most 2 element", content.get("length") <= 2);
+			ember_assert("content must always has at the most 2 elements", content.get("length") <= 2);
 		}
 		return this._super(content, start, removed, added);
 	}
@@ -26160,56 +26183,4 @@ Bootstrap.Pager = Ember.CollectionView.extend({
 
 
 (function(exports) {
-})({});
-
-
-(function(exports) {
-var get = Ember.get, getPath = Ember.getPath, set = Ember.set;
-
-Bootstrap.ItemSelectionSupport = Ember.Mixin.create({
-  classNameBindings: ['isActive:active'],
-
-  title: Ember.computed(function() {
-    var parentView = get(this, 'parentView'),
-        content, titleKey;
-    content = get(this, 'content');
-    if (parentView) {
-      titleKey = get(parentView, 'itemTitleKey');
-      if (titleKey) return get(content, titleKey);
-    }
-    return content;
-  }).property('content').cacheable(),
-
-  value: Ember.computed(function() {
-    var parentView = get(this, 'parentView'),
-        content, valueKey;
-    if (!parentView) return null;
-    content = get(this, 'content');
-    valueKey = get(parentView, 'itemValueKey');
-    if (valueKey) return get(content, valueKey);
-    return content;
-  }).property('content').cacheable(),
-
-  isActive: Ember.computed(function() {
-    var parentView = get(this, 'parentView'),
-        selection, value;
-    if (!parentView) return false;
-    selection = get(parentView, 'selection');
-    value = get(this, 'value');
-    return selection === value;
-  }).property('parentView.selection', 'value').cacheable(),
-
-  click: function(event) {
-    var value = get(this, 'value'),
-        parentView = get(this, 'parentView'),
-        allowsEmptySelection = get(parentView, 'allowsEmptySelection');
-        selection = get(parentView, 'selection');
-    if (selection === value && allowsEmptySelection === true) {
-      value = null;
-    }
-    set(parentView, 'selection', value);
-    return false;
-  }
-});
-
 })({});

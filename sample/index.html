@@ -324,13 +324,11 @@ Bootstrap.Pagination.create({
             <h2>Pagers</h2>
             <pre class="prettyprint linenums">
 Bootstrap.Pager.create({
-  content: ['< previous', 'next >'],
-  previous: true,
-  next: true
+  content: ['< previous', 'next >']
 }).append(); </pre>
             <h4>Sample</h4>
               <script type="text/x-handlebars">
-                {{view Bootstrap.Pager contentBinding="SampleApp.pagerController.content" next=true previous=true}}
+                {{view Bootstrap.Pager contentBinding="SampleApp.pagerController.content"}}
               </script>
           </section>
 
