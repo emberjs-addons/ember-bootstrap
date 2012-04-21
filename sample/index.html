@@ -257,6 +257,19 @@ Bootstrap.ProgressBar.create({
           </section>
 
           <section>
+            <h2>Breadcrumbs</h2>
+            <pre class="prettyprint linenums">
+Bootstrap.Breadcrumb.create({
+  contentBinding: 'SampleApp.BreadcrumbsController.content'
+}).append(); 
+            </pre>
+            <h4>Sample</h4>
+              <script type="text/x-handlebars">
+                {{view Bootstrap.Breadcrumb contentBinding="SampleApp.breadcrumbsController.content"}}
+              </script>
+          </section>
+
+          <section>
             <h2>Badges</h2>
             <pre class="prettyprint linenums">
 Bootstrap.Badge.create({
@@ -265,7 +278,7 @@ Bootstrap.Badge.create({
 }).append(); </pre>
             <h4>Sample</h4>
               <script type="text/x-handlebars">
-                {{view Bootstrap.Badge type="success" contentBinding="SampleApp.TodoController.completed"}}
+                {{view Bootstrap.Badge type="success" contentBinding="SampleApp.todoController.completed"}}
               </script>
           </section>
 
@@ -292,6 +305,31 @@ Bootstrap.Well.create({
             <script type="text/x-handlebars">
               {{view Bootstrap.Well content="Important note about Ember and Bootstrap" }}
             </script>
+          </section>
+
+          <section>
+            <h2>Paginations</h2>
+            <pre class="prettyprint linenums">
+Bootstrap.Pagination.create({
+  content: ['1', '2', '3'],
+  selection: '2'
+}).append(); </pre>
+            <h4>Sample</h4>
+              <script type="text/x-handlebars">
+                {{view Bootstrap.Pagination contentBinding="SampleApp.paginationController.content"selectionBinding="SampleApp.paginationController.selection"}}
+              </script>
+          </section>
+
+          <section>
+            <h2>Pagers</h2>
+            <pre class="prettyprint linenums">
+Bootstrap.Pager.create({
+  content: ['< previous', 'next >']
+}).append(); </pre>
+            <h4>Sample</h4>
+              <script type="text/x-handlebars">
+                {{view Bootstrap.Pager contentBinding="SampleApp.pagerController.content"}}
+              </script>
           </section>
 
           <section>
