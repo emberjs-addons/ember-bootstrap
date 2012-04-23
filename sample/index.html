@@ -128,14 +128,14 @@ Bootstrap.RadioButtonGroup.create({
             <pre class="prettyprint linenums">
 Bootstrap.NavList.create({
   content: ["A", "B", "C"],
-  selectionBinding: "App.tabsController.selection"
+  selectionBinding: "App.navListController.selection"
 }).append(); </pre>
             <h4>Sample</h4>
             <script type="text/x-handlebars">
               <div class="well" style="padding:12px 0;">
                 {{view Bootstrap.NavList
-                    contentBinding="SampleApp.tabsController.content"
-                    selectionBinding="SampleApp.tabsController.selection"}}
+                    contentBinding="SampleApp.navListController.content"
+                    selectionBinding="SampleApp.navListController.selection"}}
               </div>
             </script>
 
@@ -166,10 +166,10 @@ Bootstrap.Tabs.create({
             <script type="text/x-handlebars">
               {{view Bootstrap.Tabs
                   isStacked=true
-                  contentBinding="SampleApp.tabsController.content"
-                  selectionBinding="SampleApp.tabsController.selection"}}
+                  contentBinding="SampleApp.stackedTabsController.content"
+                  selectionBinding="SampleApp.stackedTabsController.selection"}}
               <p>Selected tab:
-              {{SampleApp.tabsController.selection}}</p>
+              {{SampleApp.stackedTabsController.selection}}</p>
             </script>
           </section>
 
@@ -194,16 +194,16 @@ Bootstrap.Pills.create({
 Bootstrap.Pills.create({
   content: ["A", "B", "C"],
   isStacked: true,
-  selectionBinding: "App.pillsController.selection"
+  selectionBinding: "App.stackedPillsController.selection"
 }).append(); </pre>
             <h4>Sample</h4>
             <script type="text/x-handlebars">
               {{view Bootstrap.Pills
                   isStacked=true
-                  contentBinding="SampleApp.pillsController.content"
-                  selectionBinding="SampleApp.pillsController.selection"}}
+                  contentBinding="SampleApp.stackedPillsController.content"
+                  selectionBinding="SampleApp.stackedPillsController.selection"}}
               <p>Selected pill:
-              {{SampleApp.pillsController.selection}}</p>
+              {{SampleApp.stackedPillsController.selection}}</p>
             </script>
           </section>
 
