@@ -22,6 +22,9 @@ Nope, not yet. So either fork, do your magic and send pull request or move along
 * Badges - Bootstrap.Badge
 * Labels - Bootstrap.Label
 * Wells - Bootstrap.Well
+* Badges - Bootstrap.Badge
+* Labels - Bootstrap.Label
+* Wells - Bootstrap.Well
 
 ### Forms
 * Text Field - Bootstrap.Forms.TextField

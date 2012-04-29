@@ -1,9 +1,8 @@
-require("ember-bootstrap/views/type_support");
-
-var get = Ember.get;
+require("ember-bootstrap/mixins/type_support");
 
 Bootstrap.Badge = Ember.View.extend(Bootstrap.TypeSupport, {
-  classNames: 'badge',
-  typeName: 'badge',
-  content: null
+  tagName: "span",
+  classNames: "badge",
+  baseClassName: "badge",
+  template: Ember.Handlebars.compile("{{content}}")
 });
