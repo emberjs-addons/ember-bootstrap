@@ -25770,19 +25770,31 @@ Bootstrap.ModalPane.reopenClass({
 
 
 (function(exports) {
+var get = Ember.get, getPath = Ember.getPath, set = Ember.set;
+
+Bootstrap.TypeSupport = Ember.Mixin.create({
+  baseClassName: Ember.required(String),
+  classNameBindings: "typeClass",
+  type: null, // success, warning, error, info || inverse
+  typeClass: Ember.computed(function() {
+    var type = get(this, "type"),
+        baseClassName = get(this, "baseClassName");
+    return type ? baseClassName + "-" + type : null;
+  }).property("type").cacheable()
+});
+
+})({});
+
+
+(function(exports) {
 var get = Ember.get;
 
-Bootstrap.AlertMessage = Ember.View.extend({
+Bootstrap.AlertMessage = Ember.View.extend(Bootstrap.TypeSupport, {
   classNames: ['alert', 'alert-message'],
-  classNameBindings: 'typeClass',
+  baseClassName: 'alert',
   template: Ember.Handlebars.compile('<a class="close" rel="close" href="#">×</a>{{{message}}}'),
-  type: 'warning',
   message: null,
   removeAfter: null,
-
-  typeClass: Ember.computed(function() {
-    return 'alert-' + get(this, 'type');
-  }).property('type').cacheable(),
 
   didInsertElement: function() {
     var removeAfter = get(this, 'removeAfter');
@@ -25807,19 +25819,27 @@ Bootstrap.AlertMessage = Ember.View.extend({
 (function(exports) {
 var get = Ember.get;
 
-Bootstrap.Button = Ember.Button.extend({
-  classNames: ['btn'],
-  classNameBindings: ['typeClass', 'sizeClass', 'disabled'],
-  
-  typeClass: Ember.computed(function() {
-    var type = get(this, 'type');
-    return type ? 'btn-' + type : null;
-  }).property('type').cacheable(),
-  
+Bootstrap.SizeSupport = Ember.Mixin.create({
+  baseClassName: Ember.required(String),
+  classNameBindings: "sizeClass",
+  size: null, // mini, small || large
   sizeClass: Ember.computed(function() {
-    var size = get(this, 'size');
-    return size ? 'btn-' + size : null;
-  }).property('size').cacheable()
+    var size = get(this, "size"),
+        baseClassName = get(this, "baseClassName");
+    return size ? baseClassName + "-" + size : null;
+  }).property("size").cacheable()
+});
+
+})({});
+
+
+(function(exports) {
+var get = Ember.get;
+
+Bootstrap.Button = Ember.Button.extend(Bootstrap.TypeSupport, Bootstrap.SizeSupport, {
+  classNames: ['btn'],
+  classNameBindings: ['disabled'],
+  baseClassName: 'btn'
 });
 
 })({});
@@ -25838,33 +25858,49 @@ Bootstrap.ButtonGroup = Ember.CollectionView.extend({
 
 
 (function(exports) {
-var get = Ember.get, getPath = Ember.getPath, set = Ember.set;
+var get = Ember.get;
 
-Bootstrap.ItemSelectionSupport = Ember.Mixin.create({
-  classNameBindings: ['isActive:active'],
-
-  title: Ember.computed(function() {
-    var parentView = get(this, 'parentView'),
-        content = get(this, 'content'),
-        titleKey;
-    if (parentView) {
-      titleKey = get(parentView, 'itemTitleKey');
-      if (titleKey) return get(content, titleKey);
-    }
-    return content;
-  }).property('content', 'parentView').cacheable(),
-
+Bootstrap.ItemViewValueSupport = Ember.Mixin.create({
   value: Ember.computed(function() {
     var parentView = get(this, 'parentView'),
-        content = get(this, 'content'),
-        valueKey;
+        content, valueKey;
+    if (!parentView) return null;
+    content = get(this, 'content');
+    valueKey = get(parentView, 'itemValueKey');
+    if (valueKey) return get(content, valueKey);
+    return content;
+  }).property('content').cacheable()
+});
+
+})({});
+
+
+(function(exports) {
+var get = Ember.get;
+
+Bootstrap.ItemViewTitleSupport = Ember.Mixin.create({
+  title: Ember.computed(function() {
+    var parentView = get(this, 'parentView'),
+        content, titleKey;
+    content = get(this, 'content');
     if (parentView) {
-      valueKey = get(parentView, 'itemValueKey');
-      if (valueKey) return get(content, valueKey);
+      titleKey = get(parentView, 'itemTitleKey');
+      if (titleKey) return get(content, titleKey) || content;
     }
     return content;
-  }).property('content', 'parentView').cacheable(),
+  }).property('content').cacheable()
+});
 
+})({});
+
+
+(function(exports) {
+var get = Ember.get, getPath = Ember.getPath, set = Ember.set;
+
+Bootstrap.ItemSelectionSupport = Ember.Mixin.create(Bootstrap.ItemViewValueSupport, Bootstrap.ItemViewTitleSupport, {
+  classNameBindings: ["isActive:active"],
+  allowsEmptySelection: false,
+  
   isActive: Ember.computed(function() {
     var parentView = get(this, 'parentView'),
         selection, value;
@@ -25895,7 +25931,6 @@ var get = Ember.get, set = Ember.set;
 
 Bootstrap.RadioButtonGroup = Bootstrap.ButtonGroup.extend({
   selection: null,
-  allowsEmptySelection: false,
 
   init: function() {
     this._super();
@@ -25992,44 +26027,22 @@ Bootstrap.ProgressBar = Ember.View.extend({
 
 
 (function(exports) {
-var get = Ember.get, getPath = Ember.getPath, set = Ember.set;
-
-Bootstrap.TypeSupport = Ember.Mixin.create({
-  template: Ember.Handlebars.compile('{{content}}'),
-  tagName: 'span',
-  content: null,
-  typeName: null,
-  classNameBindings: 'typeClass',
-  type: null, // 'success', 'warning', 'error', 'info' || 'inverse'
-  typeClass: Ember.computed(function() {
-    var type = get(this, 'type'),
-        typeName = get(this, 'typeName');
-    return type ? typeName + '-' + type : null;
-  }).property('type').cacheable()
-});
-
-})({});
-
-
-(function(exports) {
-var get = Ember.get;
-
 Bootstrap.Badge = Ember.View.extend(Bootstrap.TypeSupport, {
-  classNames: 'badge',
-  typeName: 'badge',
-  content: null
+  tagName: "span",
+  classNames: "badge",
+  baseClassName: "badge",
+  template: Ember.Handlebars.compile("{{content}}")
 });
 
 })({});
 
 
 (function(exports) {
-var get = Ember.get;
-
 Bootstrap.Label = Ember.View.extend(Bootstrap.TypeSupport, {
-  classNames: 'label',
-  typeName: 'label',
-  content: null
+  tagName: "span",
+  classNames: "label",
+  baseClassName: "label",
+  template: Ember.Handlebars.compile("{{content}}")
 });
 
 })({});
@@ -26042,74 +26055,6 @@ Bootstrap.Well = Ember.View.extend({
   template: Ember.Handlebars.compile('{{content}}'),
   classNames: 'well',
   content: null
-});
-
-})({});
-
-
-(function(exports) {
-var get = Ember.get;
-
-Bootstrap.ItemViewValueSupport = Ember.Mixin.create({
-  value: Ember.computed(function() {
-    var parentView = get(this, 'parentView'),
-        content, valueKey;
-    if (!parentView) return null;
-    content = get(this, 'content');
-    valueKey = get(parentView, 'itemValueKey');
-    if (valueKey) return get(content, valueKey);
-    return content;
-  }).property('content').cacheable()
-});
-
-})({});
-
-
-(function(exports) {
-var get = Ember.get;
-
-Bootstrap.ItemViewTitleSupport = Ember.Mixin.create({
-  title: Ember.computed(function() {
-    var parentView = get(this, 'parentView'),
-        content, titleKey;
-    content = get(this, 'content');
-    if (parentView) {
-      titleKey = get(parentView, 'itemTitleKey');
-      if (titleKey) return get(content, titleKey) || content;
-    }
-    return content;
-  }).property('content').cacheable()
-});
-
-})({});
-
-
-(function(exports) {
-var get = Ember.get, getPath = Ember.getPath, set = Ember.set;
-
-Bootstrap.ItemSelectionSupport = Ember.Mixin.create(Bootstrap.ItemViewValueSupport, Bootstrap.ItemViewTitleSupport, {
-  classNameBindings: ["isActive:active"],
-
-  isActive: Ember.computed(function() {
-    var parentView = get(this, 'parentView'),
-        selection, value;
-    if (!parentView) return false;
-    selection = get(parentView, 'selection');
-    value = get(this, 'value');
-    return selection === value;
-  }).property('parentView.selection', 'value').cacheable(),
-
-  click: function(event) {
-    var value = get(this, 'value'),
-        parentView = get(this, 'parentView'),
-        allowsEmptySelection = get(parentView, 'allowsEmptySelection'),
-        selection = get(parentView, 'selection');
-    if (allowsEmptySelection === true && selection === value) {
-      value = null;
-    }
-    set(parentView, 'selection', value);
-    return false;
-  }
 });
 
 })({});
@@ -26236,38 +26181,4 @@ Bootstrap.Breadcrumb = Ember.CollectionView.extend(Bootstrap.FirstLastViewSuppor
 
 
 (function(exports) {
-})({});
-
-
-(function(exports) {
-var get = Ember.get;
-
-Bootstrap.SizeSupport = Ember.Mixin.create({
-  baseClassName: Ember.required(String),
-  classNameBindings: "sizeClass",
-  size: null, // mini, small || large
-  sizeClass: Ember.computed(function() {
-    var size = get(this, "size"),
-        baseClassName = get(this, "baseClassName");
-    return size ? baseClassName + "-" + size : null;
-  }).property("size").cacheable()
-});
-
-})({});
-
-
-(function(exports) {
-var get = Ember.get, getPath = Ember.getPath, set = Ember.set;
-
-Bootstrap.TypeSupport = Ember.Mixin.create({
-  baseClassName: Ember.required(String),
-  classNameBindings: "typeClass",
-  type: null, // success, warning, error, info || inverse
-  typeClass: Ember.computed(function() {
-    var type = get(this, "type"),
-        baseClassName = get(this, "baseClassName");
-    return type ? baseClassName + "-" + type : null;
-  }).property("type").cacheable()
-});
-
 })({});
