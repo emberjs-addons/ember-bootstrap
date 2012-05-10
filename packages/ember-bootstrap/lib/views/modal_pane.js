@@ -3,12 +3,12 @@ var get = Ember.get;
 var modalPaneTemplate = '\
 <div class="modal-header"> \
   <a href="#" class="close" rel="close">×</a> \
-  {{view headerViewClass}} \
+  {{view view.headerViewClass}} \
 </div> \
-<div class="modal-body">{{view bodyViewClass}}</div> \
+<div class="modal-body">{{view view.bodyViewClass}}</div> \
 <div class="modal-footer"> \
-  {{#if primary}}<a href="#" class="btn btn-primary" rel="primary">{{primary}}</a>{{/if}} \
-  {{#if secondary}}<a href="#" class="btn btn-secondary" rel="secondary">{{secondary}}</a>{{/if}} \
+  {{#if view.primary}}<a href="#" class="btn btn-primary" rel="primary">{{view.primary}}</a>{{/if}} \
+  {{#if view.secondary}}<a href="#" class="btn btn-secondary" rel="secondary">{{view.secondary}}</a>{{/if}} \
 </div>';
 var modalPaneBackdrop = '<div class="modal-backdrop"></div>';
 
@@ -22,11 +22,11 @@ Bootstrap.ModalPane = Ember.View.extend({
   showBackdrop: true,
   headerViewClass: Ember.View.extend({
     tagName: 'h3',
-    template: Ember.Handlebars.compile('{{parentView.heading}}')
+    template: Ember.Handlebars.compile('{{view.parentView.heading}}')
   }),
   bodyViewClass: Ember.View.extend({
     tagName: 'p',
-    template: Ember.Handlebars.compile('{{{parentView.message}}}')
+    template: Ember.Handlebars.compile('{{{view.parentView.message}}}')
   }),
 
   didInsertElement: function() {
