@@ -25,6 +25,17 @@
     var extendPrototypes = location.search.match(/extendprototypes=([^&]+)/);
     ENV['EXTEND_PROTOTYPES'] = !!(extendPrototypes && decodeURIComponent(extendPrototypes[1]));
 
+    // Handle CP cacheable by default
+    QUnit.config.urlConfig.push('cpdefaultcacheable');
+
+    var cpDefaultCacheable = QUnit.urlParams.cpdefaultcacheable;
+    ENV['CP_DEFAULT_CACHEABLE'] = !!cpDefaultCacheable;
+
+    // Handle preserving context
+    QUnit.config.urlConfig.push('viewpreservescontext');
+
+    var noViewPreservesContext = QUnit.urlParams.noviewpreservescontext;
+    ENV['VIEW_PRESERVES_CONTEXT'] = !noViewPreservesContext;
 
     // hack qunit to not suck for Ember objects
     var originalTypeof = QUnit.jsDump.typeOf;

@@ -1,17 +1,17 @@
 Bootstrap.Forms.Field = Ember.View.extend({
   tagName: 'div',
   template: Ember.Handlebars.compile('<div class="control-group">\
-    {{view labelView}}\
+    {{view view.labelView}}\
     <div class="controls">\
-      {{view inputField}}\
-      {{view errorsView}}\
+      {{view view.inputField}}\
+      {{view view.errorsView}}\
     </div>\
   </div>'),
 
   labelView: Ember.View.extend({
     tagName: 'label',
     classNames: ['control-label'],
-    template: Ember.Handlebars.compile('{{value}}'),
+    template: Ember.Handlebars.compile('{{view.value}}'),
 
     value: Ember.computed(function(key, value) {
       var parent = this.get('parentView');
