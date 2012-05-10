@@ -4,6 +4,6 @@ Bootstrap.ButtonGroup = Ember.CollectionView.extend({
   classNames: ['btn-group'],
   itemViewClass: Bootstrap.Button.extend({
     tagName: 'a',
-    template: Ember.Handlebars.compile('{{content}}')
+    template: Ember.Handlebars.compile('{{view.content}}')
   })
 });
