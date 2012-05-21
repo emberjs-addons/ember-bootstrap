@@ -3,4 +3,6 @@ dist/
 tmp/
 tests/source/
 .DS_Store
+.idea/
+.rvmrc
 
