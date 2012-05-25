@@ -1,16 +1,13 @@
+require("ember-bootstrap/mixins/type_support");
+
 var get = Ember.get;
 
-Bootstrap.AlertMessage = Ember.View.extend({
+Bootstrap.AlertMessage = Ember.View.extend(Bootstrap.TypeSupport, {
   classNames: ['alert', 'alert-message'],
-  classNameBindings: 'typeClass',
+  baseClassName: 'alert',
   template: Ember.Handlebars.compile('<a class="close" rel="close" href="#">×</a>{{{message}}}'),
-  type: 'warning',
   message: null,
   removeAfter: null,
-
-  typeClass: Ember.computed(function() {
-    return 'alert-' + get(this, 'type');
-  }).property('type').cacheable(),
 
   didInsertElement: function() {
     var removeAfter = get(this, 'removeAfter');

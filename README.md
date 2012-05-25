@@ -22,6 +22,9 @@ Nope, not yet. So either fork, do your magic and send pull request or move along
 * Badges - Bootstrap.Badge
 * Labels - Bootstrap.Label
 * Wells - Bootstrap.Well
+* Badges - Bootstrap.Badge
+* Labels - Bootstrap.Label
+* Wells - Bootstrap.Well
 
 ### Forms
 * Text Field - Bootstrap.Forms.TextField
@@ -143,6 +146,32 @@ Bootstrap.ModalPane.popup({
 </script>
 ```
 
+
+### Bootstrap.Breadcrumbs
+
+```html
+<script type="text/x-handlebars">
+  {{view Bootstrap.Breadcrumbs contentBinding="SampleApp.breadcrumbsController.content" }}
+</script>
+```
+
+
+### Bootstrap.Pager
+
+```html
+<script type="text/x-handlebars">
+  {{view Bootstrap.Pager contentBinding="SampleApp.pagerController.content" }}
+</script>
+```
+
+
+### Bootstrap.Pagination
+
+```html
+<script type="text/x-handlebars">
+  {{view Bootstrap.Pagination contentBinding="SampleApp.paginationController.content" selectionBinding="SampleApp.paginationController.selection" }}
+</script>
+```
 
 ### Bootstrap.Forms.TextField
 ```html
