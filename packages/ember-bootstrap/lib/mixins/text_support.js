@@ -5,7 +5,9 @@ Bootstrap.TextSupport = Ember.Mixin.create({
   placeholderBinding: 'parentView.placeholder',
   disabledBinding: 'parentView.disabled',
   maxlengthBinding: 'parentView.maxlength',
-  nameBinding: 'parentView.label',
-  attributeBindings: ['name']
+  classNameBindings: 'parentView.inputClassNames',
+  attributeBindings: ['name'],
+  name: Ember.computed(function() {
+    return getPath(this, 'parentView.name') || getPath(this, 'parentView.label');
+  }).property('parentView.name', 'parentView.label').cacheable()
 });
-

@@ -63,3 +63,25 @@ test("input  attributes can be set", function() {
   equal(textField.prop('disabled'), true, "sets disabled from parent");
   equal(textField.prop('maxlength'), 60, "sets maxlength from parent");
 });
+
+test("input name can be set from name or label", function() {
+  Ember.run(function() {
+    field.set('label', 'First Name');
+    field.append();
+  });
+  textField = field.$().find('input[type=text]')
+  equal(textField.attr('name'), "First Name", "sets name from label");
+
+  Ember.run(function() { field.set('label', 'first_name'); });
+
+  equal(textField.attr('name'), "first_name", "sets name from parent if available");
+});
+
+test("inputClasses can be set from parent", function() {
+  Ember.run(function() {
+    field.set('inputClassNames', ['input-small']);
+    field.append();
+  });
+  textField = field.$().find('input[type=text]')
+  equal(textField.hasClass("input-small"), true, "sets classes on input");
+});
