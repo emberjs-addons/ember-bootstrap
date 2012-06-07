@@ -72,6 +72,14 @@ test("a modal pane shows secondary button if secondary property is present", fun
   ok(!modalPane.$().find('.modal-footer a.btn-secondary').length, "a modal pane hides secondary button");
 });
 
+test("a modal pane defines secondary button first so it sits to the left of the primary button if both are present", function() {
+  var primaryText = 'Oh my primary',
+      secondaryText = 'Oh my secondary';
+  modalPane = Bootstrap.ModalPane.create({ primary: primaryText, secondary: secondaryText  });
+  appendIntoDOM(modalPane);
+  ok(modalPane.$().find('.modal-footer a.btn-secondary').next('a.btn-primary'), 'a modal pane defines secondary button first');
+});
+
 test("a modal pane does not get removed by clicking inside it", function() {
   modalPane = Bootstrap.ModalPane.create();
   appendIntoDOM(modalPane);
