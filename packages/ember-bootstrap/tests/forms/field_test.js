@@ -39,10 +39,6 @@ test("should have the controls", function() {
   equal(field.$().find('div.controls').length, 1, "Every field needs to include the controls");
 });
 
-test("should have the errors", function() {
-  append();
-  equal(field.$().find('div.errors').length, 1, "Every field needs to include the errors");
-});
 
 test("should have the input", function() {
   append();
