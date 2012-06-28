@@ -17,11 +17,11 @@ Bootstrap.Pager = Ember.CollectionView.extend({
 	},
 	itemViewClass: Ember.View.extend(Bootstrap.ItemViewTitleSupport, Bootstrap.ItemViewHrefSupport, {
 		classNameBindings: ["content.next", "content.previous", "content.disabled"],
-		template: Ember.Handlebars.compile('<a {{bindAttr href="href"}}>{{title}}</a>')
+		template: Ember.Handlebars.compile('<a {{bindAttr href="view.href"}}>{{view.title}}</a>')
 	}),
 	arrayDidChange: function(content, start, removed, added) {
 		if (content) {
-			ember_assert("content must always has at the most 2 elements", content.get("length") <= 2);
+			Ember.assert("content must always has at the most 2 elements", content.get("length") <= 2);
 		}
 		return this._super(content, start, removed, added);
 	}
