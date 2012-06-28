@@ -14,7 +14,7 @@ var modalPaneBackdrop = '<div class="modal-backdrop"></div>';
 
 Bootstrap.ModalPane = Ember.View.extend({
   classNames: 'modal',
-  template: Ember.Handlebars.compile(modalPaneTemplate),
+  defaultTemplate: Ember.Handlebars.compile(modalPaneTemplate),
   heading: null,
   message: null,
   primary: null,
