@@ -39,10 +39,6 @@ test("should have the controls", function() {
   equal(field.$().find('div.controls').length, 1, "Every field needs to include the controls");
 });
 
-test("should have the errors", function() {
-  append();
-  equal(field.$().find('div.errors').length, 1, "Every field needs to include the errors");
-});
 
 test("should have the input", function() {
   append();
@@ -59,11 +55,11 @@ test("should display the errors", function() {
 
   object.set('errors', {object: ["can't be null"]});
   object.set('isValid', false);
-  ok(field.$().find('.control-group').hasClass('error'), "the element should have the error tag");
+  ok(field.$().hasClass('error'), "the element should have the error tag");
   equal(field.$().find('.errors').text(), "can't be null", "the error should be displayed");
 
   object.set('errors', null);
   object.set('isValid', true);
-  ok(!field.$().find('.control-group').hasClass('error'), "the element should not have the error tag");
+  ok(!field.$().hasClass('error'), "the element should not have the error tag");
   equal(field.$().find('.errors').text(), "", "no error should be display anymore");
 });
