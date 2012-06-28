@@ -1,12 +1,12 @@
 Bootstrap.Forms.Field = Ember.View.extend({
   tagName: 'div',
-  template: Ember.Handlebars.compile('<div class="control-group">\
+  classNames: ['control-group'],
+  template: Ember.Handlebars.compile('\
     {{view view.labelView}}\
     <div class="controls">\
       {{view view.inputField}}\
       {{view view.errorsView}}\
-    </div>\
-  </div>'),
+    </div>'),
 
   labelView: Ember.View.extend({
     tagName: 'label',
@@ -50,14 +50,14 @@ Bootstrap.Forms.Field = Ember.View.extend({
           errors = context.get('errors');
 
           if (errors != null && errors[label] !== null) {
-            parent.$().find('.control-group').addClass('error')
+            parent.$().addClass('error')
             this.$().html(errors[label].join(', '));
           } else {
-            parent.$().find('.control-group').removeClass('error')
+            parent.$().removeClass('error')
             this.$().html('');
           }
         } else {
-          parent.$().find('.control-group').removeClass('error')
+          parent.$().removeClass('error')
           this.$().html('');
         }
       }
