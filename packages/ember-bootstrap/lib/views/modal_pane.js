@@ -3,9 +3,9 @@ var get = Ember.get;
 var modalPaneTemplate = '\
 <div class="modal-header"> \
   <a href="#" class="close" rel="close">×</a> \
-  {{view view.headerViewClass}} \
+  {{heading}} \
 </div> \
-<div class="modal-body">{{view view.bodyViewClass}}</div> \
+<div class="modal-body">{{message}}</div> \
 <div class="modal-footer"> \
   {{#if view.secondary}}<a href="#" class="btn btn-secondary" rel="secondary">{{view.secondary}}</a>{{/if}} \
   {{#if view.primary}}<a href="#" class="btn btn-primary" rel="primary">{{view.primary}}</a>{{/if}} \
