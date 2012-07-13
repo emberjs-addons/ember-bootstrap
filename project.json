@@ -1,0 +1,13 @@
+{
+  "name": "ember-bootstrap-project",
+  "bpm": "1.0.0",
+  "dependencies": {
+    "ember-bootstrap": ">= 0"
+  },
+
+  "bpm:build": {
+    "bpm_libs.js": {
+      "minifier": "uglify-js"
+    }
+  }
+}

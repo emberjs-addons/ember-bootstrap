@@ -1,4 +1,5 @@
 var get = Ember.get;
+var Bootstrap = window.Bootstrap;
 
 Bootstrap.SizeSupport = Ember.Mixin.create({
   baseClassName: Ember.required(String),

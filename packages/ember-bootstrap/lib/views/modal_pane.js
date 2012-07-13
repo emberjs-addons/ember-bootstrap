@@ -1,15 +1,17 @@
 var get = Ember.get;
+var Bootstrap = window.Bootstrap;
+var jQuery = window.jQuery;
 
-var modalPaneTemplate = '\
-<div class="modal-header"> \
-  <a href="#" class="close" rel="close">×</a> \
-  {{view view.headerViewClass}} \
-</div> \
-<div class="modal-body">{{view view.bodyViewClass}}</div> \
-<div class="modal-footer"> \
-  {{#if view.secondary}}<a href="#" class="btn btn-secondary" rel="secondary">{{view.secondary}}</a>{{/if}} \
-  {{#if view.primary}}<a href="#" class="btn btn-primary" rel="primary">{{view.primary}}</a>{{/if}} \
-</div>';
+var modalPaneTemplate = [
+'<div class="modal-header">',
+'  <a href="#" class="close" rel="close">×</a>',
+'  {{view view.headerViewClass}}',
+'</div>',
+'<div class="modal-body">{{view view.bodyViewClass}}</div>',
+'<div class="modal-footer">',
+'  {{#if view.secondary}}<a href="#" class="btn btn-secondary" rel="secondary">{{view.secondary}}</a>{{/if}}',
+'  {{#if view.primary}}<a href="#" class="btn btn-primary" rel="primary">{{view.primary}}</a>{{/if}}',
+'</div>'].join("\n");
 var modalPaneBackdrop = '<div class="modal-backdrop"></div>';
 
 Bootstrap.ModalPane = Ember.View.extend({
@@ -46,20 +48,21 @@ Bootstrap.ModalPane = Ember.View.extend({
   },
 
   click: function(event) {
-    var target = $(event.target),
-        targetRel = target.attr('rel');
+    var target = event.target,
+        targetRel = target.getAttribute('rel');
+
     if (targetRel === 'close') {
       this._triggerCallbackAndDestroy({ close: true }, event);
-    } else if (targetRel == 'primary') {
+    } else if (targetRel === 'primary') {
       this._triggerCallbackAndDestroy({ primary: true }, event);
-    } else if (targetRel == 'secondary') {
+    } else if (targetRel === 'secondary') {
       this._triggerCallbackAndDestroy({ secondary: true }, event);
     }
   },
 
   _appendBackdrop: function() {
     var parentLayer = this.$().parent();
-    this._backdrop = $(modalPaneBackdrop).appendTo(parentLayer);
+    this._backdrop = jQuery(modalPaneBackdrop).appendTo(parentLayer);
   },
 
   _setupDocumentKeyHandler: function() {
@@ -84,7 +87,7 @@ Bootstrap.ModalPane = Ember.View.extend({
 Bootstrap.ModalPane.reopenClass({
   popup: function(options) {
     var modalPane;
-    if (!options) options = {}
+    if (!options) options = {};
     modalPane = this.create(options);
     modalPane.append();
     return modalPane;

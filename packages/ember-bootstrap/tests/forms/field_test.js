@@ -1,3 +1,6 @@
+var Bootstrap = window.Bootstrap;
+var object, field;
+
 module("Bootstrap.Forms.Field", {
   setup: function() {
     object = Ember.Object.create();

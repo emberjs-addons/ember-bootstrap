@@ -1,5 +1,9 @@
 var get = Ember.get, set = Ember.set, A = Ember.A;
 var badge;
+var Bootstrap = window.Bootstrap;
+var destroyIfNecessary = window.destroyIfNecessary;
+var appendIntoDOM = window.appendIntoDOM;
+var isAppendedToDOM = window.isAppendedToDOM;
 
 module("Bootstrap.Badge", {
   setup: function() {

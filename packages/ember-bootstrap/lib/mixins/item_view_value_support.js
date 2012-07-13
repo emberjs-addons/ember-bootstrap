@@ -1,4 +1,5 @@
 var get = Ember.get;
+var Bootstrap = window.Bootstrap;
 
 Bootstrap.ItemViewValueSupport = Ember.Mixin.create({
   value: Ember.computed(function() {

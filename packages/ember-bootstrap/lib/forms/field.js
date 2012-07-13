@@ -1,12 +1,13 @@
+var Bootstrap = window.Bootstrap;
 Bootstrap.Forms.Field = Ember.View.extend({
   tagName: 'div',
   classNames: ['control-group'],
-  template: Ember.Handlebars.compile('\
-    {{view view.labelView}}\
-    <div class="controls">\
-      {{view view.inputField}}\
-      {{view view.errorsView}}\
-    </div>'),
+  template: Ember.Handlebars.compile([
+    '{{view view.labelView}}',
+    '<div class="controls">',
+    '  {{view view.inputField}}',
+    '  {{view view.errorsView}}',
+    '</div>'].join("\n")),
 
   labelView: Ember.View.extend({
     tagName: 'label',
@@ -16,7 +17,7 @@ Bootstrap.Forms.Field = Ember.View.extend({
     value: Ember.computed(function(key, value) {
       var parent = this.get('parentView');
 
-      if (value && value != parent.get('label')) {
+      if (value && value !== parent.get('label')) {
         parent.set('label', value);
       } else {
         value = parent.get('label');
@@ -40,24 +41,24 @@ Bootstrap.Forms.Field = Ember.View.extend({
     classNames: ['errors', 'help-inline'],
 
     _updateContent: Ember.observer(function() {
-      parent = this.get('parentView');
+      var parent = this.get('parentView');
 
       if (parent !== null) {
-        context = parent.get('bindingContext');
-        label = parent.get('label');
+        var context = parent.get('bindingContext');
+        var label = parent.get('label');
 
         if (context !== null && !context.get('isValid')) {
-          errors = context.get('errors');
+          var errors = context.get('errors');
 
-          if (errors != null && errors[label] !== null) {
-            parent.$().addClass('error')
+          if (errors !== undefined && label in errors) {
+            parent.$().addClass('error');
             this.$().html(errors[label].join(', '));
           } else {
-            parent.$().removeClass('error')
+            parent.$().removeClass('error');
             this.$().html('');
           }
         } else {
-          parent.$().removeClass('error')
+          parent.$().removeClass('error');
           this.$().html('');
         }
       }

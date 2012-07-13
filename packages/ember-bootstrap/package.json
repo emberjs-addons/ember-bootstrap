@@ -3,13 +3,13 @@
   "summary": "Short package description",
   "description": "",
   "homepage": "https://github.com/jzajpt/ember-boostrap",
-  "author": "Jiri Zajpt and contributors",
+  "author": "Jiri Zajpt, Damien Mathieu and contributors",
   "version": "0.0.1",
 
   "directories": {
     "lib": "lib"
   },
-  
+
   "dependencies": {
     "spade": "~> 1.0",
     "ember-runtime": ">= 0"
@@ -17,6 +17,7 @@
   "dependencies:development": {
     "spade-qunit": "~> 1.0.0"
   },
+
   "bpm:build": {
     "bpm_libs.js": {
       "files": ["lib"],

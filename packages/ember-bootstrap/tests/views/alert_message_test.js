@@ -1,5 +1,11 @@
 var get = Ember.get, set = Ember.set;
 var application, alert;
+var Bootstrap = window.Bootstrap;
+var destroyIfNecessary = window.destroyIfNecessary;
+var appendIntoDOM = window.appendIntoDOM;
+var isAppendedToDOM = window.isAppendedToDOM;
+var clickRelLink = window.clickRelLink;
+var isDestroyed = window.isDestroyed;
 
 module("Bootstrap.AlertMessage", {
   setup: function() {

@@ -1,9 +1,13 @@
 var get = Ember.get, set = Ember.set, A = Ember.A;
 var blockAlert;
 
+var Bootstrap = window.Bootstrap;
+var destroyIfNecessary = window.destroyIfNecessary;
+var appendIntoDOM = window.appendIntoDOM;
+var isAppendedToDOM = window.isAppendedToDOM;
+
 module("Bootstrap.BlockAlertMessage", {
-  setup: function() {
-  },
+  setup: function() {},
   teardown: function() {
     Ember.run(function() {
       destroyIfNecessary(blockAlert);
@@ -16,4 +20,3 @@ test("a block alert message can be created and appended to DOM", function() {
   appendIntoDOM(blockAlert);
   ok(isAppendedToDOM(blockAlert), 'a blockAlert pane has a layer in the DOM');
 });
-

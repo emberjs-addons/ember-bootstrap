@@ -1,7 +1,7 @@
-Bootstrap.Forms = Ember.Namespace.create({
+window.Bootstrap.Forms = Ember.Namespace.create({
 
   human: function(value) {
-    if (value == undefined)
+    if (value === undefined)
       return;
 
     // Replace all _ with spaces

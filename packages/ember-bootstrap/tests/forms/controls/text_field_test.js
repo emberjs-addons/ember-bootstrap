@@ -1,3 +1,6 @@
+var Bootstrap = window.Bootstrap;
+var object, field;
+
 module("Bootstrap.Forms.TextField", {
   setup: function() {
     object = Ember.Object.create({
@@ -31,7 +34,7 @@ test("input value is updated when setting value property of view", function() {
     field.set('value', 'foo');
     field.append();
   });
-  textField = field.$().find('input[type=text]')
+  var textField = field.$().find('input[type=text]');
 
   equal(textField.val(), "foo", "renders text field with value");
 
@@ -46,7 +49,7 @@ test("input type and size can be set", function() {
     field.set('size', '60');
     field.append();
   });
-  textField = field.$().find('input[type]')
+  var textField = field.$().find('input[type]');
   equal(textField.attr('type'), "number", "sets input type to number");
   equal(textField.attr('size'), "60", "sets input size of input");
 });
@@ -58,7 +61,7 @@ test("input  attributes can be set", function() {
     field.set('maxlength', '60');
     field.append();
   });
-  textField = field.$().find('input[type=text]')
+  var textField = field.$().find('input[type=text]');
   equal(textField.attr('placeholder'), "First Name", "sets input placeholder from parent");
   equal(textField.prop('disabled'), true, "sets disabled from parent");
   equal(textField.prop('maxlength'), 60, "sets maxlength from parent");
@@ -69,7 +72,7 @@ test("input name can be set from name or label", function() {
     field.set('label', 'First Name');
     field.append();
   });
-  textField = field.$().find('input[type=text]')
+  var textField = field.$().find('input[type=text]');
   equal(textField.attr('name'), "First Name", "sets name from label");
 
   Ember.run(function() { field.set('label', 'first_name'); });
@@ -82,6 +85,6 @@ test("inputClasses can be set from parent", function() {
     field.set('inputClassNames', ['input-small']);
     field.append();
   });
-  textField = field.$().find('input[type=text]')
+  var textField = field.$().find('input[type=text]');
   equal(textField.hasClass("input-small"), true, "sets classes on input");
 });

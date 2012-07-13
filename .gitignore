@@ -2,5 +2,4 @@
 dist/
 tmp/
 tests/source/
-.DS_Store
-
+tests/ember-bootstrap-tests.js

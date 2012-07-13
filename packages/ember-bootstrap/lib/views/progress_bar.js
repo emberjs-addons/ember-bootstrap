@@ -1,4 +1,5 @@
 var get = Ember.get;
+var Bootstrap = window.Bootstrap;
 
 Bootstrap.ProgressBar = Ember.View.extend({
   classNames: ['progress'],

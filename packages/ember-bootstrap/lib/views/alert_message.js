@@ -1,6 +1,7 @@
 require("ember-bootstrap/mixins/type_support");
 
 var get = Ember.get;
+var Bootstrap = window.Bootstrap;
 
 Bootstrap.AlertMessage = Ember.View.extend(Bootstrap.TypeSupport, {
   classNames: ['alert', 'alert-message'],
@@ -17,8 +18,9 @@ Bootstrap.AlertMessage = Ember.View.extend(Bootstrap.TypeSupport, {
   },
 
   click: function(event) {
-    var target = jQuery(event.target),
-        targetRel = target.attr('rel');
+    var target = event.target,
+        targetRel = target.getAttribute('rel');
+
     if (targetRel === 'close') {
       this.destroy();
       return false;

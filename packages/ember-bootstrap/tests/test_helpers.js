@@ -1,4 +1,5 @@
-clickRelLink = function(view, relName) {
+var jQuery = window.jQuery;
+window.clickRelLink = function(view, relName) {
   var selector = 'a[rel=' + relName + ']',
       element = view.$().find(selector);
   ok(element);
@@ -6,25 +7,25 @@ clickRelLink = function(view, relName) {
   return element;
 };
 
-appendIntoDOM = function(view) {
+window.appendIntoDOM = function(view) {
   Ember.run(function() {
     view.append() ;
   });
 };
 
-isAppendedToDOM = function(view) {
+window.isAppendedToDOM = function(view) {
   return view.$().length > 0;
 };
 
-isDestroyed = function(object) {
+window.isDestroyed = function(object) {
   return object.get('isDestroyed');
 };
 
-documentHasSelector = function(selector) {
+window.documentHasSelector = function(selector) {
   return jQuery(selector).length > 0;
 };
 
-destroyIfNecessary = function(object) {
+window.destroyIfNecessary = function(object) {
   if (object && !object.get('isDestroyed')) {
     object.destroy();
   }
