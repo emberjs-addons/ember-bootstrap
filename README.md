@@ -3,11 +3,6 @@
 
 Ember Bootstrap is set of UI elements styled using Twitter Bootstrap (currently version 2) toolkit to use with Ember.js. The ultimate goal is to provide all elements from the Bootstrap toolkit.
 
-## Is this thing even usable?
-
-Nope, not yet. So either fork, do your magic and send pull request or move along.
-
-
 ## What's implemented so far?
 
 ### Views
