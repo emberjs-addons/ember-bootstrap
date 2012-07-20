@@ -31,17 +31,19 @@ GEM
     faraday (0.8.1)
       multipart-post (~> 1.1)
     ffi (1.0.11)
-    github_api (0.6.1)
+    github_api (0.6.3)
       faraday (~> 0.8.1)
       hashie (~> 1.2.0)
       multi_json (~> 1.3)
       nokogiri (~> 1.5.2)
       oauth2
+    github_downloads (0.1.2)
+      github_api (~> 0.6)
+      rest-client (~> 1.6)
     hashie (1.2.0)
     httpauth (0.1)
-    json (1.7.3)
-    jwt (0.1.4)
-      json (>= 1.2.4)
+    jwt (0.1.5)
+      multi_json (>= 1.0)
     kicker (2.6.1)
       listen
     listen (0.4.7)
@@ -78,10 +80,9 @@ PLATFORMS
 DEPENDENCIES
   colored
   ember-docs!
-  github_api
+  github_downloads
   kicker
   rack
   rake-pipeline!
   rake-pipeline-web-filters!
-  rest-client
   uglifier (~> 1.0.3)
