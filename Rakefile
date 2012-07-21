@@ -26,6 +26,31 @@ def upload_file(uploader, filename, description, file)
   end
 end
 
+def update_version
+  require "versionomy"
+  version = File.open("VERSION", "rb").read.strip!
+  Versionomy.parse(version).bump(:tiny)
+end
+
+desc "Release current source and bump to new version"
+task :release, [:new_version] => :dist do |t, args|
+  # Release this version
+  version = File.open("VERSION", "rb").read.strip!
+  puts "Releasing new version #{version}"
+  system "git tag v#{version}"
+  system "git push --tags"
+
+  # Upload minified first, so non-minified shows up on top
+  uploader = setup_uploader
+  upload_file(uploader, "ember-bootstrap-#{version}.min.js", "Ember Bootstrap v#{version} (minified)", "dist/ember-bootstrap.min.js")
+  upload_file(uploader, "ember-bootstrap-#{version}.js", "Ember Bootstrap v#{version}", "dist/ember-bootstrap.js")
+
+  # Bump to new version
+  version = args[:new_version] || update_version
+  File.open("VERSION", "w") {|f| f.write(version)}
+  system "git commit VERSION -m 'Bumped to new version v#{version}'"
+end
+
 desc "Strip trailing whitespace for JavaScript files in packages"
 task :strip_whitespace do
   Dir["packages/**/*.js"].each do |name|
