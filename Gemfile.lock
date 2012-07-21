@@ -25,6 +25,7 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
+    blockenspiel (0.4.5)
     colored (1.2)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -73,6 +74,8 @@ GEM
     uglifier (1.0.4)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
+    versionomy (0.4.4)
+      blockenspiel (>= 0.4.5)
 
 PLATFORMS
   ruby
@@ -86,3 +89,4 @@ DEPENDENCIES
   rake-pipeline!
   rake-pipeline-web-filters!
   uglifier (~> 1.0.3)
+  versionomy
