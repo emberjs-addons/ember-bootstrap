@@ -37,7 +37,6 @@ task :release, [:new_version] => :dist do |t, args|
   # Release this version
   version = File.open("VERSION", "rb").read.strip!
   puts "Releasing new version #{version}"
-  system "git commit VERSION -m 'Release new version v#{version}'"
   system "git tag v#{version}"
   system "git push --tags"
 
