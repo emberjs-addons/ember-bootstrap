@@ -17,5 +17,6 @@ require("ember-bootstrap/views/breadcrumb");
 
 require("ember-bootstrap/forms");
 require("ember-bootstrap/forms/field");
-require("ember-bootstrap/forms/text_field");
+require("ember-bootstrap/forms/select");
 require("ember-bootstrap/forms/text_area");
+require("ember-bootstrap/forms/text_field");
