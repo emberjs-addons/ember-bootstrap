@@ -8,6 +8,7 @@ Bootstrap.NavList = Ember.CollectionView.extend({
   tagName: 'ul',
 
   itemViewClass: Ember.View.extend(Bootstrap.ItemSelectionSupport, {
-    template: Ember.Handlebars.compile("<a href='#'>{{view.title}}</a>")
+    // template: Ember.Handlebars.compile("<a href='#'>{{view.title}}</a>") JAH Update
+    template: Ember.Handlebars.compile('<a {{bindAttr href="url"}}>{{title}}</a>')
   })
 });
