@@ -5,7 +5,7 @@ Bootstrap.Forms.Field = Ember.View.extend({
   template: Ember.Handlebars.compile([
     '{{view view.labelView}}',
     '<div class="controls">',
-    '  {{view view.inputField}}',
+    '  {{view view.inputField viewName="inputFieldView"}}',
     '  {{view view.errorsView}}',
     '</div>'].join("\n")),
 
@@ -26,7 +26,7 @@ Bootstrap.Forms.Field = Ember.View.extend({
       return Bootstrap.Forms.human(value);
     }).property('parentView.label'),
 
-    forBinding: 'value',
+    forBinding: 'parentView.inputFieldView.elementId',
     attributeBindings: ['for']
   }),
 
