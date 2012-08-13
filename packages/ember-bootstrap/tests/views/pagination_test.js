@@ -14,21 +14,21 @@ module("Bootstrap.Pagination", {
 test("a pagination can be created and appended to DOM", function() {
   pagination = Bootstrap.Pagination.create();
   appendIntoDOM(pagination);
-  
+
   ok(isAppendedToDOM(pagination), "a pagination has a layer in the DOM");
 });
 
 test("a pagination has content and defaults", function() {
-  pagination = Bootstrap.Pagination.create({ content: A([]) });
+  pagination = Bootstrap.Pagination.create({ content: new A([]) });
   appendIntoDOM(pagination);
-  
+
   equal(getPath(pagination, "content.length"), 0, "the pagination content is empty");
   ok(pagination.$().hasClass("pagination"), "a pagination has 'pagination' as class name");
 });
 
 test("a pagination has content and defaults", function() {
   pagination = Bootstrap.Pagination.create({
-    content: A(["1", "2", "3"])
+    content: new A(["1", "2", "3"])
   });
   appendIntoDOM(pagination);
   equal(getPath(pagination, "content.length"), 3, "a pagination with content 1, 2, 3 should have a content length of three");
@@ -52,7 +52,7 @@ test("a pagination has content and defaults", function() {
   var o2 = Ember.Object.create({title:"2"});
   var o3 = Ember.Object.create({title:"3"});
   pagination = Bootstrap.Pagination.create({
-    content: A([o1, o2, o3])
+    content: new A([o1, o2, o3])
   });
   appendIntoDOM(pagination);
   equal(getPath(pagination, "content.length"), 3, "a pagination with content 1, 2, 3 should have a content length of three");
@@ -76,7 +76,7 @@ test("a pagination has content and defaults", function() {
   var o2 = Ember.Object.create({title:"2", href:"2"});
   var o3 = Ember.Object.create({title:"3", href:"3"});
   pagination = Bootstrap.Pagination.create({
-    content: A([o1, o2, o3])
+    content: new A([o1, o2, o3])
   });
   appendIntoDOM(pagination);
   equal(getPath(pagination, "content.length"), 3, "a pagination with content 1, 2, 3 should have a content length of three");

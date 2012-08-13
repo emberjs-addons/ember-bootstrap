@@ -1,5 +1,3 @@
-var Bootstrap = window.Bootstrap;
-
 module("Bootstrap", {});
 
 test("human", function() {

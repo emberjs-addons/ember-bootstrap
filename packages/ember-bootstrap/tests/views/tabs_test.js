@@ -12,14 +12,13 @@ module("Bootstrap.Tabs", {
 });
 
 test("tabs can be created and appended to DOM", function() {
-  tabs = Bootstrap.Tabs.create({ content: A() });
+  tabs = Bootstrap.Tabs.create({ content: new A() });
   appendIntoDOM(tabs);
   ok(isAppendedToDOM(tabs), 'a tabs pane has a layer in the DOM');
 });
 
 test("tabs can be stacked", function() {
-  tabs = Bootstrap.Tabs.create({ content: A(), isStacked: true });
+  tabs = Bootstrap.Tabs.create({ content: new A(), isStacked: true });
   appendIntoDOM(tabs);
   ok(tabs.$().hasClass('nav-stacked'), 'an alert binds type property to class');
 });
-

@@ -1,4 +1,3 @@
-var Bootstrap = window.Bootstrap;
 var field, object;
 
 module("Bootstrap.Forms.TextArea", {

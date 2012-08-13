@@ -2,7 +2,7 @@
     "predef": [
         "console",
         "Ember",
-        "DS",
+        "Bootstrap",
         "Handlebars",
         "Metamorph",
         "ember_assert",
@@ -22,7 +22,14 @@
         "strictEqual",
         "module",
         "expect",
-        "minispade"
+        "minispade",
+
+        "clickRelLink",
+        "appendIntoDOM",
+        "isAppendedToDOM",
+        "isDestroyed",
+        "documentHasSelector",
+        "destroyIfNecessary"
     ],
 
     "node" : false,
