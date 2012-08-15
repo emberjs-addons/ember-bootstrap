@@ -3,7 +3,7 @@ Bootstrap.Forms.Field = Ember.View.extend({
   tagName: 'div',
   classNames: ['control-group'],
   template: Ember.Handlebars.compile([
-    '{{view view.labelView}}',
+    '{{view view.labelView viewName="labelView"}}',
     '<div class="controls">',
     '  {{view view.inputField}}',
     '  {{view view.errorsView}}',
@@ -26,14 +26,19 @@ Bootstrap.Forms.Field = Ember.View.extend({
       return Bootstrap.Forms.human(value);
     }).property('parentView.label'),
 
-    forBinding: 'value',
+    inputId: 'for',
+    forBinding: 'inputId',
     attributeBindings: ['for']
   }),
 
   inputField: Ember.View.extend({
     classNames: ['ember-bootstrap-extend'],
     tagName: 'div',
-    template: Ember.Handlebars.compile('This class is not meant to be used directly, but extended.')
+    template: Ember.Handlebars.compile('This class is not meant to be used directly, but extended.'),
+
+    didInsertElement: function() {
+      this.setPath('parentView.labelView.inputId', this.get('elementId'));
+    }  
   }),
 
   errorsView: Ember.View.extend({

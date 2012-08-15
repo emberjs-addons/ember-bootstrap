@@ -87,3 +87,10 @@ test("inputClasses can be set from parent", function() {
   var textField = field.$().find('input[type=text]');
   equal(textField.hasClass("input-small"), true, "sets classes on input");
 });
+
+test("should have the label for attribtue", function() {
+  append();
+
+  var textField = field.$().find('input[type=text]');
+  equal(field.$().find('label').attr('for'), textField.attr('id'), "the label for attribute should be the id of the input field");
+});

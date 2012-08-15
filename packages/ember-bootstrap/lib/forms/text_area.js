@@ -5,6 +5,10 @@ Bootstrap.Forms.TextArea = Bootstrap.Forms.Field.extend({
 
   inputField: Ember.TextArea.extend(Bootstrap.TextSupport, {
     rowsBinding: 'parentView.rows',
-    colsBinding: 'parentView.cols'
+    colsBinding: 'parentView.cols',
+
+    didInsertElement: function() {
+      this.setPath('parentView.labelView.inputId', this.get('elementId'));
+    }  
   })
 });

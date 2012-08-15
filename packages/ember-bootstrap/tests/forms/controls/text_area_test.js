@@ -52,3 +52,10 @@ test("input cols and rows can be set", function() {
   equal(textArea.attr('cols'), "60", "sets cols attribute on textarea");
   equal(textArea.attr('rows'), "3", "sets rows attribute on textarea");
 });
+
+test("should have the label for attribtue", function() {
+  append();
+
+  var textArea = field.$().find('textarea');
+  equal(field.$().find('label').attr('for'), textArea.attr('id'), "the label for attribute should be the id of the text area field");
+});

@@ -6,6 +6,10 @@ Bootstrap.Forms.TextField = Bootstrap.Forms.Field.extend({
 
   inputField: Ember.TextField.extend(Bootstrap.TextSupport, {
     typeBinding: 'parentView.type',
-    sizeBinding: 'parentView.size'
+    sizeBinding: 'parentView.size',
+
+    didInsertElement: function() {
+      this.setPath('parentView.labelView.inputId', this.get('elementId'));
+    }
   })
 });
