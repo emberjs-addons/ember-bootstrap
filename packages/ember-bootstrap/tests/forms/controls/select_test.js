@@ -1,4 +1,3 @@
-var Bootstrap = window.Bootstrap;
 var field, content;
 
 module("Bootstrap.Forms.Select", {

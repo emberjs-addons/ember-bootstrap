@@ -33,7 +33,7 @@ test("a pill sets selection on parentView when clicked", function() {
   var parentView = Ember.CollectionView.create({
     tagName: 'ul',
     itemViewClass: Bootstrap.PillItem,
-    content: A(['A', 'B', 'C']),
+    content: new A(['A', 'B', 'C']),
     selection: null
   });
   appendIntoDOM(parentView);
@@ -48,7 +48,7 @@ test("a pill has active class when parent view has selection of item content", f
   var parentView = Ember.CollectionView.create({
     tagName: 'ul',
     itemViewClass: Bootstrap.PillItem,
-    content: A(['A', 'B', 'C']),
+    content: new A(['A', 'B', 'C']),
     selection: 'A'
   });
   appendIntoDOM(parentView);

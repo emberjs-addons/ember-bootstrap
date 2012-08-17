@@ -1,5 +1,3 @@
-require('ember-bootstrap/~tests/test_helpers');
-
 var get = Ember.get, set = Ember.set;
 var application, modalPane;
 
@@ -97,7 +95,7 @@ test("a modal pane has a close button that removes it from the DOM", function() 
 });
 
 test("a modal pane calls callback when close button clicked", function() {
-  var callback = function() { callbackWasCalled = true },
+  var callback = function() { callbackWasCalled = true; },
       callbackWasCalled = false;
   modalPane = Bootstrap.ModalPane.create({
     callback: callback
@@ -110,7 +108,7 @@ test("a modal pane calls callback when close button clicked", function() {
 });
 
 test("a modal pane calls callback when primary button clicked and removes pane from the DOM", function() {
-  var callback = function() { callbackWasCalled = true },
+  var callback = function() { callbackWasCalled = true; },
       callbackWasCalled = false;
   modalPane = Bootstrap.ModalPane.create({
     primary: 'Primary button',
@@ -124,7 +122,7 @@ test("a modal pane calls callback when primary button clicked and removes pane f
 });
 
 test("a modal pane calls callback when secondary button clicked and removes pane from the DOM", function() {
-  var callback = function() { callbackWasCalled = true },
+  var callback = function() { callbackWasCalled = true; },
       callbackWasCalled = false;
   modalPane = Bootstrap.ModalPane.create({
     secondary: 'Secondary button',
@@ -138,7 +136,7 @@ test("a modal pane calls callback when secondary button clicked and removes pane
 });
 
 test("a modal pane removes itself from the DOM when escape pressed", function() {
-  var callback = function() { callbackWasCalled = true },
+  var callback = function() { callbackWasCalled = true; },
       callbackWasCalled = false,
       event;
   modalPane = Bootstrap.ModalPane.create({

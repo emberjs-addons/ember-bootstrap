@@ -1,16 +1,11 @@
 var get = Ember.get, set = Ember.set, A = Ember.A;
 var blockAlert;
 
-var Bootstrap = window.Bootstrap;
-var destroyIfNecessary = window.destroyIfNecessary;
-var appendIntoDOM = window.appendIntoDOM;
-var isAppendedToDOM = window.isAppendedToDOM;
-
 module("Bootstrap.BlockAlertMessage", {
   setup: function() {},
   teardown: function() {
     Ember.run(function() {
-      destroyIfNecessary(blockAlert);
+      window.destroyIfNecessary(blockAlert);
     });
   }
 });

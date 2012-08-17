@@ -20,23 +20,23 @@ test("a pager can be created and appended to DOM", function() {
 test("a pager has restriction on the number of elements in the content", function() {
   pager = Bootstrap.Pager.create();
   appendIntoDOM(pager);
-  raises(function() {pager.set("content", A(["< previous", "next >", "third"]))}, "a pager not allows to have more than two elements");
+  raises(function() {pager.set("content", new A(["< previous", "next >", "third"])); }, "a pager not allows to have more than two elements");
 });
 
 test("a pager has defaults", function() {
   pager = Bootstrap.Pager.create();
   appendIntoDOM(pager);
   equal(pager.$("li").size(), 2, "a pager has 2 children");
-  
+
   ok(!pager.$().children(":first").hasClass("previous"), "the first pager child does not have previous class");
   ok(!pager.$().children(":last").hasClass("next"), "the last (second) pager child does not have next class");
-  
+
   equal(pager.$().children(":first").text(), "←", "the first pager child text should be '&larr;'");
   equal(pager.$().children(":last").text(), "→", "the last (second) pager child text should be '&arr;'");
 });
 
 test("a pager binds content to innerHTML anchor", function() {
-  pager = Bootstrap.Pager.create({ content: A([Ember.Object.create({title:"previous"}), Ember.Object.create({title:"next"})]) });
+  pager = Bootstrap.Pager.create({ content: new A([Ember.Object.create({title:"previous"}), Ember.Object.create({title:"next"})]) });
   appendIntoDOM(pager);
   equal(pager.$().children(":first").text(), "previous", "the first pager child text should be 'previous'");
   equal(pager.$().children(":last").text(), "next", "the last (second) pager child text should be 'next'");
@@ -47,7 +47,7 @@ test("a pager binds content to innerHTML anchor", function() {
   equal(pager.$().children(":first").text(), "previous", "the first pager child text should be 'previous'");
   equal(pager.$().children(":last").text(), "next", "the last (second) pager child text should be 'next'");
   Ember.run(function() {
-    pager.set("content", A([Ember.Object.create({title:"< previous"}), Ember.Object.create({title:"next >"})]) );
+    pager.set("content", new A([Ember.Object.create({title:"< previous"}), Ember.Object.create({title:"next >"})]) );
   });
   equal(pager.$().children(":first").text(), "< previous", "the first pager child text should be '< previous'");
   equal(pager.$().children(":last").text(), "next >", "the last (second) pager child text should be 'next >'");

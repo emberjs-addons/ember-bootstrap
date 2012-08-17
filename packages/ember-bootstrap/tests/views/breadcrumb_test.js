@@ -1,11 +1,6 @@
 var get = Ember.get, set = Ember.set, A = Ember.A, run = Ember.run;
 var breadcrumb, single, many;
 
-var destroyIfNecessary = window.destroyIfNecessary;
-var Bootstrap = window.Bootstrap;
-var appendIntoDOM = window.;appendIntoDOM
-var isAppendedToDOM = window.isAppendedToDOM;
-
 module("Bootstrap.Breadcrumb", {
   setup: function() {
     single = ['Home'];
