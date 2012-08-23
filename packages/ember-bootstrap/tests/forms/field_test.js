@@ -36,7 +36,7 @@ test("should set the label value", function() {
   equal(field.$().find('label').text(), 'Bar', "the label value should be bar");
 });
 
-test("should have the label for attribtue", function() {
+test("should have the label for attribute", function() {
   append();
 
   equal(field.$().find('label').attr('for'), field.$().find('div.ember-bootstrap-extend').attr('id'), "the label for attribute should be the id of the input field");

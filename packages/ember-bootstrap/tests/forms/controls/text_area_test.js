@@ -53,7 +53,7 @@ test("input cols and rows can be set", function() {
   equal(textArea.attr('rows'), "3", "sets rows attribute on textarea");
 });
 
-test("should have the label for attribtue", function() {
+test("should have the label for attribute", function() {
   append();
 
   var textArea = field.$().find('textarea');
