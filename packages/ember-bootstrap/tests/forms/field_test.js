@@ -26,6 +26,12 @@ test("should have the label", function() {
   equal(field.$().find('label.control-label').length, 1, "Every field needs to include a label");
 });
 
+test("should set the label's for attribute to the id of the input", function() {
+  append();
+  var inputId = field.$().find('div.ember-bootstrap-extend').attr('id');
+  equal(field.$().find('label.control-label').attr('for'), inputId, "The label's for value should be the input's ID");
+});
+
 test("should set the label value", function() {
   append();
 
