@@ -79,9 +79,12 @@ Bootstrap.ModalPane = Ember.View.extend({
   },
 
   _triggerCallbackAndDestroy: function(options, event) {
-    if (this.callback) this.callback(options, event);
-    this.destroy();
-  }
+    var destroy;
+    if (this.callback) {
+      destroy = this.callback(options, event);
+    }
+    if (destroy === undefined || destroy) this.destroy();
+  }  
 });
 
 Bootstrap.ModalPane.reopenClass({
