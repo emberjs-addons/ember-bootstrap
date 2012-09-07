@@ -4,7 +4,7 @@ var Bootstrap = window.Bootstrap;
 Bootstrap.ProgressBar = Ember.View.extend({
   classNames: ['progress'],
   classNameBindings: ['isStriped:progress-striped', 'isAnimated:active'],
-  template: Ember.Handlebars.compile('<div class="bar" {{bindAttr style="style"}}></div>'),
+  template: Ember.Handlebars.compile('<div class="bar" {{bindAttr style="view.style"}}></div>'),
   isAnimated: false,
   isStriped: false,
   progress: 0,
