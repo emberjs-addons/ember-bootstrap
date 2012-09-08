@@ -7,8 +7,7 @@ Bootstrap.ItemViewValueSupport = Ember.Mixin.create({
         content, valueKey;
     if (!parentView) return null;
     content = get(this, 'content');
-    valueKey = get(parentView, 'itemValueKey');
-    if (valueKey) return get(content, valueKey);
-    return content;
+    valueKey = get(parentView, 'itemValueKey') || 'value';
+    return get(content, valueKey) || content;
   }).property('content').cacheable()
 });

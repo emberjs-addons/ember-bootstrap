@@ -33,7 +33,6 @@ test("a navigation list binds titles from content array to DOM", function() {
 test("a navigation list binds titles from object to DOM", function() {
   var layer;
   navList = Bootstrap.NavList.create({
-    itemTitleKey: 'title',
     content: new A([
       { title: 'Hello' },
       { title: 'Ohai' }
@@ -65,9 +64,8 @@ test("a navigation list binds titles from custom property to DOM", function() {
 test("a navigation list binds links from object to DOM", function() {
   var layer;
   navList = Bootstrap.NavList.create({
-    itemHrefKey: 'href',
     content: new A([
-      { href: '/hello' },
+      { link: '/hello' },
       { }
     ])
   });
