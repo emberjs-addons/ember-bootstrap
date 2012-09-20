@@ -66,3 +66,10 @@ test("should have the prompt", function() {
   field.set('prompt', 'Select Me');
   equal(select.find('option:eq(0)').text(), "Select Me", "the select has a prompt");
 });
+
+test("should have the label for attribute", function() {
+  append();
+
+  var select = field.$().find('select');
+  equal(field.$().find('label').attr('for'), select.attr('id'), "the label for attribute should be the id of the select field");
+});
