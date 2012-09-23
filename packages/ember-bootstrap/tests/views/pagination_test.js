@@ -1,4 +1,4 @@
-var get = Ember.get, getPath = Ember.getPath, set = Ember.set, A = Ember.A;
+var get = Ember.get, set = Ember.set, A = Ember.A;
 var pagination;
 
 module("Bootstrap.Pagination", {
@@ -22,7 +22,7 @@ test("a pagination has content and defaults", function() {
   pagination = Bootstrap.Pagination.create({ content: new A([]) });
   appendIntoDOM(pagination);
 
-  equal(getPath(pagination, "content.length"), 0, "the pagination content is empty");
+  equal(get(pagination, "content.length"), 0, "the pagination content is empty");
   ok(pagination.$().hasClass("pagination"), "a pagination has 'pagination' as class name");
 });
 
@@ -31,7 +31,7 @@ test("a pagination has content and defaults", function() {
     content: new A(["1", "2", "3"])
   });
   appendIntoDOM(pagination);
-  equal(getPath(pagination, "content.length"), 3, "a pagination with content 1, 2, 3 should have a content length of three");
+  equal(get(pagination, "content.length"), 3, "a pagination with content 1, 2, 3 should have a content length of three");
   equal(pagination.$("li").size(), 3, "a pagination with content 1, 2, 3 should have three li");
   Ember.run(function() {
     pagination.set("selection",  "1");
@@ -55,7 +55,7 @@ test("a pagination has content and defaults", function() {
     content: new A([o1, o2, o3])
   });
   appendIntoDOM(pagination);
-  equal(getPath(pagination, "content.length"), 3, "a pagination with content 1, 2, 3 should have a content length of three");
+  equal(get(pagination, "content.length"), 3, "a pagination with content 1, 2, 3 should have a content length of three");
   equal(pagination.$("li").size(), 3, "a pagination with content 1, 2, 3 should have three li");
   Ember.run(function() {
     pagination.set("selection",  o1);
@@ -79,7 +79,7 @@ test("a pagination has content and defaults", function() {
     content: new A([o1, o2, o3])
   });
   appendIntoDOM(pagination);
-  equal(getPath(pagination, "content.length"), 3, "a pagination with content 1, 2, 3 should have a content length of three");
+  equal(get(pagination, "content.length"), 3, "a pagination with content 1, 2, 3 should have a content length of three");
   equal(pagination.$("li").size(), 3, "a pagination with content 1, 2, 3 should have three li");
   Ember.run(function() {
     pagination.set("selection",  o1);

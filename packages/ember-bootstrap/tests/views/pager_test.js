@@ -41,8 +41,8 @@ test("a pager binds content to innerHTML anchor", function() {
   equal(pager.$().children(":first").text(), "previous", "the first pager child text should be 'previous'");
   equal(pager.$().children(":last").text(), "next", "the last (second) pager child text should be 'next'");
   Ember.run(function() {
-    pager.setPath("content.firstObject.title", "previous");
-    pager.setPath("content.lastObject.title", "next");
+    pager.set("content.firstObject.title", "previous");
+    pager.set("content.lastObject.title", "next");
   });
   equal(pager.$().children(":first").text(), "previous", "the first pager child text should be 'previous'");
   equal(pager.$().children(":last").text(), "next", "the last (second) pager child text should be 'next'");
@@ -57,8 +57,8 @@ test("a pager binds previous/next attributes to classes", function() {
   pager = Bootstrap.Pager.create();
   appendIntoDOM(pager);
   Ember.run(function() {
-    pager.setPath("content.firstObject.previous", true);
-    pager.setPath("content.lastObject.next", true);
+    pager.set("content.firstObject.previous", true);
+    pager.set("content.lastObject.next", true);
   });  
   ok(pager.$().children(":first").hasClass("previous"), "the first pager child has a previous class");
   ok(pager.$().children(":last").hasClass("next"), "the last (second) pager child has a next class");
@@ -68,13 +68,13 @@ test("a pager binds disabled attributes to classes", function() {
   pager = Bootstrap.Pager.create();
   appendIntoDOM(pager);
   Ember.run(function() {
-    pager.setPath("content.firstObject.disabled", true);
+    pager.set("content.firstObject.disabled", true);
   });  
   ok(pager.$().children(":first").hasClass("disabled"), "the first pager child has a 'disabled' class");
   ok(!pager.$().children(":last").hasClass("disabled"), "the last (second) pager child does not have a 'disabled' class");
   Ember.run(function() {
-    pager.setPath("content.firstObject.disabled", false);
-    pager.setPath("content.lastObject.disabled", true);
+    pager.set("content.firstObject.disabled", false);
+    pager.set("content.lastObject.disabled", true);
   });  
   ok(!pager.$().children(":first").hasClass("disabled"), "the first pager child has a 'disabled' class");
   ok(pager.$().children(":last").hasClass("disabled"), "the last (second) pager child does not have a 'disabled' class");

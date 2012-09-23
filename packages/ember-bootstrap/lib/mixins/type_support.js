@@ -1,4 +1,4 @@
-var get = Ember.get, getPath = Ember.getPath, set = Ember.set;
+var get = Ember.get, set = Ember.set;
 var Bootstrap = window.Bootstrap;
 
 Bootstrap.TypeSupport = Ember.Mixin.create({
