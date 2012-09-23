@@ -149,7 +149,7 @@
         };
 
         window.isAppendedToDOM = function(view) {
-          return view.$().length > 0;
+          return view.$() && view.$().length > 0;
         };
 
         window.isDestroyed = function(object) {

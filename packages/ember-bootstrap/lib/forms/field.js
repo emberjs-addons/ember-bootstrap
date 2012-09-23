@@ -67,6 +67,6 @@ Bootstrap.Forms.Field = Ember.View.extend({
   }),
 
   didInsertElement: function() {
-    this.setPath('labelView.inputElementId', this.getPath('inputField.elementId'));
+    this.set('labelView.inputElementId', this.get('inputField.elementId'));
   }  
 });
