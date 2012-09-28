@@ -57,6 +57,9 @@ test("should use the valueBinding value as a default label", function() {
 
   Ember.run(function() { field.set('label', 'bar'); });
   equal(field.$().find('label').text(), 'Bar', "the label value should be bar");
+
+  Ember.run(function() { field.set('label', false); });
+  equal(field.$().find('label').text(), "", "the field should not have a label when label='false'");
 });
 
 test("should have the controls", function() {

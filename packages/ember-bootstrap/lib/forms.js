@@ -1,7 +1,7 @@
 window.Bootstrap.Forms = Ember.Namespace.create({
 
   human: function(value) {
-    if (value === undefined)
+    if (value === undefined || value === false)
       return;
 
     // Underscore string
