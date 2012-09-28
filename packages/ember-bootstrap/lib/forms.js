@@ -4,6 +4,8 @@ window.Bootstrap.Forms = Ember.Namespace.create({
     if (value === undefined)
       return;
 
+    // Underscore string
+    value = Ember.String.decamelize(value);
     // Replace all _ with spaces
     value = value.replace(/_/g, " ");
     // Capitalize the first letter of every word
