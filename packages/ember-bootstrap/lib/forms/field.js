@@ -9,6 +9,23 @@ Bootstrap.Forms.Field = Ember.View.extend({
     '  {{view view.errorsView}}',
     '</div>'].join("\n")),
 
+  label: Ember.computed(function(key, value) {
+    if(arguments.length === 1){
+      if(this.get('labelCache')){
+        return this.get('labelCache');
+      } else {
+        var path = this.get('valueBinding._from');
+        if (path) {
+          path = path.split(".");
+          return path[path.length - 1];
+        }
+      }
+    } else {
+      this.set('labelCache', value);
+      return value;
+    }
+  }).property('valueBinding'),
+
   labelView: Ember.View.extend({
     tagName: 'label',
     classNames: ['control-label'],
