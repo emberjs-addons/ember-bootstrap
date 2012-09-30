@@ -2,12 +2,30 @@ var Bootstrap = window.Bootstrap;
 Bootstrap.Forms.Field = Ember.View.extend({
   tagName: 'div',
   classNames: ['control-group'],
+  labelCache: undefined,
   template: Ember.Handlebars.compile([
     '{{view view.labelView viewName="labelView"}}',
     '<div class="controls">',
     '  {{view view.inputField viewName="inputField"}}',
     '  {{view view.errorsView}}',
     '</div>'].join("\n")),
+
+  label: Ember.computed(function(key, value) {
+    if(arguments.length === 1){
+      if(this.get('labelCache') === undefined){
+        var path = this.get('valueBinding._from');
+        if (path) {
+          path = path.split(".");
+          return path[path.length - 1];
+        }
+      } else {
+        return this.get('labelCache');
+      }
+    } else {
+      this.set('labelCache', value);
+      return value;
+    }
+  }).property('valueBinding'),
 
   labelView: Ember.View.extend({
     tagName: 'label',
@@ -68,5 +86,5 @@ Bootstrap.Forms.Field = Ember.View.extend({
 
   didInsertElement: function() {
     this.set('labelView.inputElementId', this.get('inputField.elementId'));
-  }  
+  }
 });

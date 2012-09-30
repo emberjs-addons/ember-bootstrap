@@ -42,6 +42,26 @@ test("should have the label for attribute", function() {
   equal(field.$().find('label').attr('for'), field.$().find('div.ember-bootstrap-extend').attr('id'), "the label for attribute should be the id of the input field");
 });
 
+test("should use the valueBinding value as a default label", function() {
+  field.destroy();
+  field = null;
+  object = Ember.Object.create({
+    foo: null
+  });
+  field = Bootstrap.Forms.Field.create({
+    bindingContext: object,
+    valueBinding: 'bindingContext.foo'
+  });
+  append();
+  equal(field.$().find('label').text(), 'Foo', "the label value should be Foo");
+
+  Ember.run(function() { field.set('label', 'bar'); });
+  equal(field.$().find('label').text(), 'Bar', "the label value should be bar");
+
+  Ember.run(function() { field.set('label', false); });
+  equal(field.$().find('label').text(), "", "the field should not have a label when label='false'");
+});
+
 test("should have the controls", function() {
   append();
   equal(field.$().find('div.controls').length, 1, "Every field needs to include the controls");
