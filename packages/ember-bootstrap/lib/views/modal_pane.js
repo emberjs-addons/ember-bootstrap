@@ -84,15 +84,17 @@ Bootstrap.ModalPane = Ember.View.extend({
       destroy = this.callback(options, event);
     }
     if (destroy === undefined || destroy) this.destroy();
-  }  
+  }
 });
 
 Bootstrap.ModalPane.reopenClass({
+  rootElement: ".ember-application",
   popup: function(options) {
-    var modalPane;
+    var modalPane, rootElement;
     if (!options) options = {};
     modalPane = this.create(options);
-    modalPane.append();
+    rootElement = get(this, 'rootElement');
+    modalPane.appendTo(rootElement);
     return modalPane;
   }
 });
