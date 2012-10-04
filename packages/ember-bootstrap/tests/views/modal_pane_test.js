@@ -20,6 +20,16 @@ test("a modal pane can be created and appended to DOM using popup() call", funct
   ok(isAppendedToDOM(modalPane), 'a modal pane has a layer in the DOM');
 });
 
+test("a modal pane is appended to the application using popup() call", function() {
+  application.destroy();
+  var rootElement = Ember.$('<div id="app" />').appendTo('#qunit-fixture');
+  application = Ember.Application.create({rootElement: "#app"});
+  Ember.run(function() {
+    modalPane = Bootstrap.ModalPane.popup();
+  });
+  ok((rootElement.find(modalPane.$()).length), 'a modal pane is appended to the application');
+});
+
 test("a modal pane can be created and appended to DOM", function() {
   modalPane = Bootstrap.ModalPane.create();
   appendIntoDOM(modalPane);
