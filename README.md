@@ -1,7 +1,10 @@
 # Ember Bootstrap [![Travis](https://secure.travis-ci.org/emberjs-addons/ember-bootstrap.png)](http://travis-ci.org/emberjs-addons/ember-bootstrap)
 
+Ember Bootstrap is set of UI elements styled using Twitter Bootstrap (currently version 2) toolkit to use with Ember.js.
+The ultimate goal is to provide all elements from the Bootstrap toolkit.
 
-Ember Bootstrap is set of UI elements styled using Twitter Bootstrap (currently version 2) toolkit to use with Ember.js. The ultimate goal is to provide all elements from the Bootstrap toolkit.
+Please respect the following convention : bug reports go in the [issue tracker](https://github.com/emberjs-addons/ember-bootstrap/issues?state=open).
+Feature and big refactoring discussions go in the [google group](https://groups.google.com/forum/#!forum/ember-bootstrap).
 
 ## What's implemented so far?
 
@@ -199,11 +202,11 @@ To run unit tests, run `bundle exec rackup` from the root directory and visit
 
 ### License
 
-MIT License. Copyright 2012 Jiri Zajpt, Damien Mathieu, Franck Verrot
+MIT License. Copyright 2012 Jiri Zajpt, Damien Mathieu
 
 
 ## Authors & contributors
 
 * Jiri Zajpt <jz@blueberry.cz>
 * Damien Mathieu <42@dmathieu.com>
-* Franck Verrot <franck@verrot.fr>
+* Bradley Priest <bradleypriest@gmail.com>
