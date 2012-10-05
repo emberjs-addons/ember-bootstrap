@@ -209,4 +209,4 @@ MIT License. Copyright 2012 Jiri Zajpt, Damien Mathieu
 
 * Jiri Zajpt <jz@blueberry.cz>
 * Damien Mathieu <42@dmathieu.com>
-* Bradley Priest <bradleypriest@gmail.com>
+* Bradley Priest <hello@bradleypriest.com>
