@@ -9,7 +9,6 @@ Feature and big refactoring discussions go in the [google group](https://groups.
 ## What's implemented so far?
 
 ### Views
-* Buttons - Bootstrap.Button
 * Modal panes - Bootstrap.ModalPane
 * Nav lists - Bootstrap.NavList
 * Pills - Bootstrap.Pills
@@ -31,19 +30,6 @@ Feature and big refactoring discussions go in the [google group](https://groups.
 
 
 ## Usage
-
-### Bootstrap.Button
-
-Button class automatically provides necessary classes (`.btn`) and binds type
-property to class (for example `.btn-info` for info type) and if button 
-is disabled `disabled` class.
-
-```html
-<script type="text/x-handlebars">
-  {{view Bootstrap.Button type=info disabled=true}}Hello{{/view}}
-</script>
-```
- 
 
 ### Bootstrap.ModalPane
 
