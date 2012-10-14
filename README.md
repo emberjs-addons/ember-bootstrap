@@ -180,6 +180,14 @@ Bootstrap.ModalPane.popup({
 </script>
 ```
 
+## Building Ember Bootstrap
+
+1. Run `rake` to build Ember Bootstrap. Three builds will be placed in the `dist/` directory.
+ *  `ember-bootstrap.js`, `ember-bootstrap.min.js` and `ember-bootstrap.prod.js` - unminified and minified builds as well as a production ready build with assertions, deprecations and warnings stripped.
+
+If you are building under Linux, you will need a JavaScript runtime for minification.
+You can either install nodejs or `gem install therubyracer`.
+
 ## Unit Tests
 
 To run unit tests, run `bundle exec rackup` from the root directory and visit
