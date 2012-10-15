@@ -31,7 +31,7 @@ test("should have the field", function() {
   equal(field.$().find('select').length, 1, "It needs to include the text area");
 });
 
-test("select value is updated when setting value property of view", function() {
+test("select value is updated when setting selection property of view", function() {
   Ember.run(function() {
     field.append();
   });
@@ -41,6 +41,21 @@ test("select value is updated when setting value property of view", function() {
   equal(select.find('option:selected').text(), "John", "renders select with label");
 
   Ember.run(function() { field.set('selection', content.objectAt(1)); });
+
+  equal(select.val(), "2", "updates select field after value changes");
+  equal(select.find('option:selected').text(), "Jane", "updates select field after label changes");
+});
+
+test("select value is updated when setting value property of view", function() {
+  Ember.run(function() {
+    field.append();
+  });
+  var select = field.$().find('select');
+
+  equal(select.val(), "1", "renders select with value");
+  equal(select.find('option:selected').text(), "John", "renders select with label");
+
+  Ember.run(function() { field.set('value', 2); });
 
   equal(select.val(), "2", "updates select field after value changes");
   equal(select.find('option:selected').text(), "Jane", "updates select field after label changes");

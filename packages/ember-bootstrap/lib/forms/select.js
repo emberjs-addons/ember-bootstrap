@@ -10,6 +10,7 @@ Bootstrap.Forms.Select = Bootstrap.Forms.Field.extend({
     optionLabelPathBinding: 'parentView.optionLabelPath',
     optionValuePathBinding: 'parentView.optionValuePath',
 
+    valueBinding:           'parentView.value',
     selectionBinding:       'parentView.selection',
     promptBinding:          'parentView.prompt',
     multipleBinding:        'parentView.multiple'  
