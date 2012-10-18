@@ -58,6 +58,7 @@ Bootstrap.ModalPane = Ember.View.extend({
     } else if (targetRel === 'secondary') {
       this._triggerCallbackAndDestroy({ secondary: true }, event);
     }
+    return false;
   },
 
   _appendBackdrop: function() {
