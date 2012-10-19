@@ -203,4 +203,5 @@ MIT License. Copyright 2012 Jiri Zajpt, Damien Mathieu
 
 * Jiri Zajpt <jz@blueberry.cz>
 * Damien Mathieu <42@dmathieu.com>
+* Franck Verrot <franck@verrot.fr>
 * Bradley Priest <hello@bradleypriest.com>
