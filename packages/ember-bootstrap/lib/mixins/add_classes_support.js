@@ -1,8 +1,8 @@
 var get, set;
 
-get = Em.get;
+get = Ember.get;
 
-set = Em.set;
+set = Ember.set;
 
 Bootstrap.AddClassesSupport = Ember.Mixin.create({
   init: function() {
@@ -11,7 +11,7 @@ Bootstrap.AddClassesSupport = Ember.Mixin.create({
     classNamesToAdd = get(this, "parentView.classNamesToAdd");
     if (classNamesToAdd) {
       classNames = get(this, "classNames");
-      classNames.addObjects(Em.makeArray(classNamesToAdd));
+      classNames.addObjects(Ember.makeArray(classNamesToAdd));
       return set(this, "classNames", classNames);
     }
   }

@@ -28,7 +28,7 @@ function append() {
 
 test("should have the field", function() {
   append();
-  equal(field.$().find('select').length, 1, "It needs to include the text area");
+  equal(field.$().find('select').length, 1, "It needs to include the select");
 });
 
 test("select value is updated when setting selection property of view", function() {
@@ -87,4 +87,16 @@ test("should have the label for attribute", function() {
 
   var select = field.$().find('select');
   equal(field.$().find('label').attr('for'), select.attr('id'), "the label for attribute should be the id of the select field");
+});
+
+test("can receive additional classes", function() {
+  field = Bootstrap.Forms.Select.create(Bootstrap.AddClassesSupport, {
+    content: content,
+    optionLabelPath: "content.firstName",
+    optionValuePath: "content.id",
+    classNamesToAdd: "span12"
+  });
+  append();
+  equal(field.$().find('label.span12').length, 1, "Given classes should be passed to label.");
+  equal(field.$().find('select.span12').length, 1, "Given classes should be passed to select.");
 });

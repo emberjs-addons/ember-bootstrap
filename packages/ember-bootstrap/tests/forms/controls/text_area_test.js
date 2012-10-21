@@ -59,3 +59,14 @@ test("should have the label for attribute", function() {
   var textArea = field.$().find('textarea');
   equal(field.$().find('label').attr('for'), textArea.attr('id'), "the label for attribute should be the id of the text area field");
 });
+
+test("can receive additional classes", function() {
+  field = Bootstrap.Forms.TextArea.create(Bootstrap.AddClassesSupport,{
+      bindingContext: object,
+      classNamesToAdd: "span12"
+    });
+  append();
+  equal(field.$().find('label.span12').length, 1, "Given classes should be passed to label.");
+  equal(field.$().find('textarea.span12').length, 1, "Given classes should be passed to textarea.");
+    equal(field.$().find('.errors.span12').length, 1, "Given classes should be passed to errors.");
+});
