@@ -29,7 +29,7 @@ Bootstrap.Forms.Field = Ember.View.extend({
 
   labelView: Ember.View.extend({
     tagName: 'label',
-    classNames: ['control-label'],
+    classNames: ['control-label','span12'],
     template: Ember.Handlebars.compile('{{view.value}}'),
 
     value: Ember.computed(function(key, value) {
@@ -50,14 +50,14 @@ Bootstrap.Forms.Field = Ember.View.extend({
   }),
 
   inputField: Ember.View.extend({
-    classNames: ['ember-bootstrap-extend'],
+    classNames: ['ember-bootstrap-extend','span12'],
     tagName: 'div',
     template: Ember.Handlebars.compile('This class is not meant to be used directly, but extended.')
   }),
 
   errorsView: Ember.View.extend({
     tagName: 'div',
-    classNames: ['errors', 'help-inline'],
+    classNames: ['errors', 'help-inline', 'span12'],
 
     _updateContent: Ember.observer(function() {
       var parent = this.get('parentView');
