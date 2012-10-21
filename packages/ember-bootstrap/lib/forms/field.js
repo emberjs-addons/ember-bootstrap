@@ -1,3 +1,5 @@
+require("ember-bootstrap/mixins/add_classes_support");
+
 var Bootstrap = window.Bootstrap;
 Bootstrap.Forms.Field = Ember.View.extend({
   tagName: 'div',
@@ -27,7 +29,7 @@ Bootstrap.Forms.Field = Ember.View.extend({
     }
   }).property('valueBinding'),
 
-  labelView: Ember.View.extend({
+  labelView: Ember.View.extend(Bootstrap.AddClassesSupport,{
     tagName: 'label',
     classNames: ['control-label'],
     template: Ember.Handlebars.compile('{{view.value}}'),
@@ -49,13 +51,13 @@ Bootstrap.Forms.Field = Ember.View.extend({
     attributeBindings: ['for']
   }),
 
-  inputField: Ember.View.extend({
+  inputField: Ember.View.extend(Bootstrap.AddClassesSupport,{
     classNames: ['ember-bootstrap-extend'],
     tagName: 'div',
     template: Ember.Handlebars.compile('This class is not meant to be used directly, but extended.')
   }),
 
-  errorsView: Ember.View.extend({
+  errorsView: Ember.View.extend(Bootstrap.AddClassesSupport,{
     tagName: 'div',
     classNames: ['errors', 'help-inline'],
 

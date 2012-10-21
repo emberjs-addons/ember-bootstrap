@@ -94,3 +94,14 @@ test("should have the label for attribtue", function() {
   var textField = field.$().find('input[type=text]');
   equal(field.$().find('label').attr('for'), textField.attr('id'), "the label for attribute should be the id of the input field");
 });
+
+test("can receive additional classes", function() {
+  field = Bootstrap.Forms.TextField.create(Bootstrap.AddClassesSupport,{
+      bindingContext: object,
+      classNamesToAdd: "span12"
+    });
+  append();
+  equal(field.$().find('label.span12').length, 1, "Given classes should be passed to label.");
+  equal(field.$().find('input.span12').length, 1, "Given classes should be passed to input.");
+    equal(field.$().find('.errors.span12').length, 1, "Given classes should be passed to errors.");
+});
