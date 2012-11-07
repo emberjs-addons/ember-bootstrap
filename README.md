@@ -176,7 +176,7 @@ Bootstrap.ModalPane.popup({
 ### Bootstrap.Forms.Select
 ```html
 <script type="text/x-handlebars">
-  {{view Bootstrap.Forms.Select contentBinding="content" selectionBinding="selected" label="content" optionLabelPath: 'content.name', optionValuePath: 'content.internalName'}}
+  {{view Bootstrap.Forms.Select contentBinding="content" selectionBinding="selected" label="content" optionLabelPath="content.name" optionValuePath="content.internalName"}}
 </script>
 ```
 
