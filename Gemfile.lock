@@ -43,6 +43,7 @@ GEM
       rest-client (~> 1.6)
     hashie (1.2.0)
     httpauth (0.1)
+    json (1.7.5)
     jwt (0.1.5)
       multi_json (>= 1.0)
     kicker (2.6.1)
@@ -84,6 +85,7 @@ DEPENDENCIES
   colored
   ember-docs!
   github_downloads
+  json
   kicker
   rack
   rake-pipeline!

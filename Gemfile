@@ -11,4 +11,5 @@ group :development do
   gem "github_downloads"
   gem "ember-docs", :git => "https://github.com/emberjs/docs-generator.git"
   gem "kicker"
+  gem "json"
 end
