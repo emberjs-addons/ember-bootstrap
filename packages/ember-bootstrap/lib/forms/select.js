@@ -13,6 +13,7 @@ Bootstrap.Forms.Select = Bootstrap.Forms.Field.extend({
     valueBinding:           'parentView.value',
     selectionBinding:       'parentView.selection',
     promptBinding:          'parentView.prompt',
-    multipleBinding:        'parentView.multiple'  
+    multipleBinding:        'parentView.multiple',
+    disabledBinding:        'parentView.disabled'
   })
 });

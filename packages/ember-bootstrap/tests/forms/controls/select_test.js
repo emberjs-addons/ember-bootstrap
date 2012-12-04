@@ -88,3 +88,14 @@ test("should have the label for attribute", function() {
   var select = field.$().find('select');
   equal(field.$().find('label').attr('for'), select.attr('id'), "the label for attribute should be the id of the select field");
 });
+
+test("should be disableable", function() {
+
+  Ember.run(function() {
+    field.append();
+  });
+  field.set("disabled", true);
+  var select = field.$().find('select');
+
+  equal(select.prop('disabled'), true, "the select should be disabled");
+});
