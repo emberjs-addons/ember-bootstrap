@@ -25,7 +25,7 @@ Bootstrap.Forms.Field = Ember.View.extend({
       this.set('labelCache', value);
       return value;
     }
-  }).property('valueBinding'),
+  }).property(),
 
   labelView: Ember.View.extend({
     tagName: 'label',
