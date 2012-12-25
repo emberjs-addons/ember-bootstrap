@@ -19,9 +19,6 @@ Feature and big refactoring discussions go in the [google group](https://groups.
 * Badges - Bootstrap.Badge
 * Labels - Bootstrap.Label
 * Wells - Bootstrap.Well
-* Badges - Bootstrap.Badge
-* Labels - Bootstrap.Label
-* Wells - Bootstrap.Well
 
 ### Forms
 * Text Field - Bootstrap.Forms.TextField
