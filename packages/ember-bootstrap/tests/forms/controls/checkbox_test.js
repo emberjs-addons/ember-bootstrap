@@ -6,7 +6,7 @@ module("Bootstrap.Forms.Checkbox", {
       name: null
     });
     field = Bootstrap.Forms.Checkbox.create({
-      bindingContext: object
+      context: object
     });
   },
 

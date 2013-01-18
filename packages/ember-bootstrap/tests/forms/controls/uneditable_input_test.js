@@ -6,7 +6,7 @@ module("Bootstrap.Forms.UneditableInput", {
       name: null
     });
     field = Bootstrap.Forms.UneditableInput.create({
-      bindingContext: object
+      context: object
     });
   },
 

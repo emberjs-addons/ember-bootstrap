@@ -63,7 +63,7 @@ Bootstrap.Forms.Field = Ember.View.extend({
       var parent = this.get('parentView');
 
       if (parent !== null) {
-        var context = parent.get('bindingContext');
+        var context = parent.get('context');
         var label = parent.get('label');
 
         if (context !== null && !context.get('isValid')) {
@@ -81,7 +81,7 @@ Bootstrap.Forms.Field = Ember.View.extend({
           this.$().html('');
         }
       }
-    }, 'parentView.bindingContext.isValid', 'parentView.label')
+    }, 'parentView.context.isValid', 'parentView.label')
   }),
 
   didInsertElement: function() {

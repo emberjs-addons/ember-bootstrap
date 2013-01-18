@@ -6,7 +6,7 @@ module("Bootstrap.Forms.TextField", {
       name: null
     });
     field = Bootstrap.Forms.TextField.create({
-      bindingContext: object
+      context: object
     });
   },
 

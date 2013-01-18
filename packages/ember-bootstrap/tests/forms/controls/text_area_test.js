@@ -6,7 +6,7 @@ module("Bootstrap.Forms.TextArea", {
       name: null
     });
     field = Bootstrap.Forms.TextArea.create({
-      bindingContext: object
+      context: object
     });
   },
 

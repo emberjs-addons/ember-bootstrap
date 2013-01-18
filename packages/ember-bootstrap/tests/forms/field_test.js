@@ -4,7 +4,7 @@ module("Bootstrap.Forms.Field", {
   setup: function() {
     object = Ember.Object.create();
     field = Bootstrap.Forms.Field.create({
-      bindingContext: object,
+      context: object,
       label: 'object'
     });
   },
@@ -49,8 +49,8 @@ test("should use the valueBinding value as a default label", function() {
     foo: null
   });
   field = Bootstrap.Forms.Field.create({
-    bindingContext: object,
-    valueBinding: 'bindingContext.foo'
+    context: object,
+    valueBinding: 'context.foo'
   });
   append();
   equal(field.$().find('label').text(), 'Foo', "the label value should be Foo");
