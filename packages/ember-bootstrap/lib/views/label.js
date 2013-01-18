@@ -5,5 +5,5 @@ Bootstrap.Label = Ember.View.extend(Bootstrap.TypeSupport, {
   tagName: "span",
   classNames: "label",
   baseClassName: "label",
-  template: Ember.Handlebars.compile("{{content}}")
+  template: Ember.Handlebars.compile("{{view.content}}")
 });
