@@ -4,7 +4,7 @@ var jQuery = window.jQuery;
 
 var modalPaneTemplate = [
 '<div class="modal-header">',
-'  <a href="#" class="close" rel="close">×</a>',
+'  <a href="#" class="close" rel="close">&times;</a>',
 '  {{view view.headerViewClass}}',
 '</div>',
 '<div class="modal-body">{{view view.bodyViewClass}}</div>',
