@@ -9,9 +9,11 @@ Bootstrap.Forms.Field = Ember.View.extend({
     '  {{view view.inputField viewName="inputField"}}',
     '  {{view view.errorsView}}',
     '</div>'].join("\n")),
+  _humanizeLabel: false,
 
   label: Ember.computed(function(key, value) {
     if(arguments.length === 1){
+      this.set('_humanizeLabel', true);
       if(this.get('labelCache') === undefined){
         var path = this.get('valueBinding._from');
         if (path) {
@@ -41,7 +43,7 @@ Bootstrap.Forms.Field = Ember.View.extend({
         value = parent.get('label');
       }
 
-      return Bootstrap.Forms.human(value);
+      return parent.get('_humanizeLabel') ? Bootstrap.Forms.human(value) : value;
     }).property('parentView.label'),
 
     inputElementId: 'for',
