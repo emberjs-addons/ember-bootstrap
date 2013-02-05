@@ -30,10 +30,10 @@ test("should set the label value", function() {
   append();
 
   Ember.run(function() { field.set('label', 'foo'); });
-  equal(field.$().find('label').text(), 'Foo', "the label value should be foo");
+  equal(field.$().find('label').text(), 'foo', "the label value should be foo");
 
   Ember.run(function() { field.set('label', 'bar'); });
-  equal(field.$().find('label').text(), 'Bar', "the label value should be bar");
+  equal(field.$().find('label').text(), 'bar', "the label value should be bar");
 });
 
 test("should have the label for attribute", function() {
@@ -53,10 +53,10 @@ test("should use the valueBinding value as a default label", function() {
     valueBinding: 'context.foo'
   });
   append();
-  equal(field.$().find('label').text(), 'Foo', "the label value should be Foo");
+  equal(field.$().find('label').text(), 'Foo', "the label value should be Foo (humanised)");
 
   Ember.run(function() { field.set('label', 'bar'); });
-  equal(field.$().find('label').text(), 'Bar', "the label value should be bar");
+  equal(field.$().find('label').text(), 'bar', "the label value should be bar (not humanised)");
 
   Ember.run(function() { field.set('label', false); });
   equal(field.$().find('label').text(), "", "the field should not have a label when label='false'");
