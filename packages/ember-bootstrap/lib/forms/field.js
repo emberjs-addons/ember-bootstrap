@@ -41,7 +41,12 @@ Bootstrap.Forms.Field = Ember.View.extend({
         value = parent.get('label');
       }
 
-      return Bootstrap.Forms.human(value);
+      // If the labelCache property is present on parent, then the 
+      // label was set manually, and there's no need to humanise it.
+      // Otherwise, it comes from the binding and needs to be 
+      // humanised.
+      return parent.get('labelCache') === undefined || parent.get('labelCache') === false ? 
+        Bootstrap.Forms.human(value) : value;
     }).property('parentView.label'),
 
     inputElementId: 'for',
