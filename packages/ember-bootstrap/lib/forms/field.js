@@ -3,11 +3,13 @@ Bootstrap.Forms.Field = Ember.View.extend({
   tagName: 'div',
   classNames: ['control-group'],
   labelCache: undefined,
+  help: undefined,
   template: Ember.Handlebars.compile([
     '{{view view.labelView viewName="labelView"}}',
     '<div class="controls">',
     '  {{view view.inputField viewName="inputField"}}',
     '  {{view view.errorsView}}',
+    '  {{view view.helpView}}',
     '</div>'].join("\n")),
 
   label: Ember.computed(function(key, value) {
@@ -87,6 +89,13 @@ Bootstrap.Forms.Field = Ember.View.extend({
         }
       }
     }, 'parentView.context.isValid', 'parentView.label')
+  }),
+
+  helpView: Ember.View.extend({
+    tagName: 'div',
+    classNames: ['help-block'],
+    template: Ember.Handlebars.compile('{{view.content}}'),
+    contentBinding: 'parentView.help'
   }),
 
   didInsertElement: function() {
