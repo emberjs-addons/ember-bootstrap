@@ -158,7 +158,7 @@ Bootstrap.ModalPane.popup({
 ### Bootstrap.Forms.TextField
 ```html
 <script type="text/x-handlebars">
-  {{view Bootstrap.Forms.TextField valueBinding="myObject.content" label="content" help="This is a mandatory help message"}}
+  {{view Bootstrap.Forms.TextField valueBinding="myObject.content" label="content" help="This is an optional help message"}}
 </script>
 ```
 
