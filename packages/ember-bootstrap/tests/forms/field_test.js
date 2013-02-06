@@ -91,3 +91,13 @@ test("should display the errors", function() {
   ok(!field.$().hasClass('error'), "the element should not have the error tag");
   equal(field.$().find('.errors').text(), "", "no error should be display anymore");
 });
+
+test("should display the help", function() {
+  append();
+
+  field.set('help', "Where in the world are you?");
+  equal(field.$().find('.help-block').text(), "Where in the world are you?", "the help message should be displayed");
+
+  field.set('help', null);
+  equal(field.$().find('.help-block').text(), "", "the help message should not be displayed");
+});
