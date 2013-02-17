@@ -26,6 +26,6 @@ Bootstrap.ItemSelectionSupport = Ember.Mixin.create(Bootstrap.ItemViewValueSuppo
       value = null;
     }
     set(parentView, 'selection', value);
-    return false;
+    return true;
   }
 });
