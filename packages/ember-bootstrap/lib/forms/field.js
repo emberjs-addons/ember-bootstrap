@@ -71,14 +71,21 @@ Bootstrap.Forms.Field = Ember.View.extend({
 
       if (parent !== null) {
         var context = parent.get('context');
-        var label = parent.get('label');
 
         if (context !== null && !context.get('isValid')) {
           var errors = context.get('errors');
+          var path = parent.get('valueBinding._from');
 
-          if (errors !== undefined && label in errors) {
+          if (path) {
+            path = path.split(".");
+            path = path[path.length - 1];
+          } else {
+            path = parent.get('label');
+          }
+
+          if (errors !== undefined && path in errors) {
             parent.$().addClass('error');
-            this.$().html(errors[label].join(', '));
+            this.$().html(errors[path].join(', '));
           } else {
             parent.$().removeClass('error');
             this.$().html('');
