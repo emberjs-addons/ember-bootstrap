@@ -78,10 +78,32 @@ test("should have the errors", function() {
   equal(field.$().find('div.errors').length, 1, "Every field needs to include the errors");
 });
 
-test("should display the errors", function() {
+test("should display the label errors", function() {
   append();
 
   object.set('errors', {object: ["can't be null"]});
+  object.set('isValid', false);
+  ok(field.$().hasClass('error'), "the element should have the error tag");
+  equal(field.$().find('.errors').text(), "can't be null", "the error should be displayed");
+
+  object.set('errors', null);
+  object.set('isValid', true);
+  ok(!field.$().hasClass('error'), "the element should not have the error tag");
+  equal(field.$().find('.errors').text(), "", "no error should be display anymore");
+});
+
+test("should display the field errors", function() {
+  field.destroy();
+  field = null;
+  object = Ember.Object.create({
+    foo: null
+  });
+  field = Bootstrap.Forms.Field.create({
+    context: object,
+    valueBinding: 'context.foo'
+  });
+  append();
+  object.set('errors', {foo: ["can't be null"]});
   object.set('isValid', false);
   ok(field.$().hasClass('error'), "the element should have the error tag");
   equal(field.$().find('.errors').text(), "can't be null", "the error should be displayed");
