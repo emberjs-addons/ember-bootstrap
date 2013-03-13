@@ -86,7 +86,7 @@ test("should display the label errors", function() {
   ok(field.$().hasClass('error'), "the element should have the error tag");
   equal(field.$().find('.errors').text(), "can't be null", "the error should be displayed");
 
-  object.set('errors', null);
+  object.set('errors', {object: null});
   object.set('isValid', true);
   ok(!field.$().hasClass('error'), "the element should not have the error tag");
   equal(field.$().find('.errors').text(), "", "no error should be display anymore");
@@ -108,11 +108,39 @@ test("should display the field errors", function() {
   ok(field.$().hasClass('error'), "the element should have the error tag");
   equal(field.$().find('.errors').text(), "can't be null", "the error should be displayed");
 
-  object.set('errors', null);
+  object.set('errors', {foo: null});
   object.set('isValid', true);
   ok(!field.$().hasClass('error'), "the element should not have the error tag");
   equal(field.$().find('.errors').text(), "", "no error should be display anymore");
 });
+
+test("should display the nested object's field errors", function() {
+  field.destroy();
+  field = null;
+  object = Ember.Object.create({
+    foo: null,
+    bar: Ember.Object.create({
+      buz: null
+    })
+  });
+  field = Bootstrap.Forms.Field.create({
+    context: object,
+    valueBinding: 'context.bar.buz'
+  });
+
+  append();
+  object.set('bar.errors', {buz: ["can't be null"]});
+  object.set('isValid', false);  // should listen on bar.isValid
+  ok(field.$().hasClass('error'), "the element should have the error tag");
+  equal(field.$().find('.errors').text(), "can't be null", "the error should be displayed");
+
+  object.set('bar.errors', {buz: null});
+  object.set('isValid', true);  // should listen on bar.isValid
+  ok(!field.$().hasClass('error'), "the element should not have the error tag");
+  equal(field.$().find('.errors').text(), "", "no error should be display anymore");
+});
+
+
 
 test("should display the help", function() {
   append();

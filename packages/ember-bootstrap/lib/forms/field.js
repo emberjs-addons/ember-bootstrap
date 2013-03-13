@@ -43,11 +43,11 @@ Bootstrap.Forms.Field = Ember.View.extend({
         value = parent.get('label');
       }
 
-      // If the labelCache property is present on parent, then the 
+      // If the labelCache property is present on parent, then the
       // label was set manually, and there's no need to humanise it.
-      // Otherwise, it comes from the binding and needs to be 
+      // Otherwise, it comes from the binding and needs to be
       // humanised.
-      return parent.get('labelCache') === undefined || parent.get('labelCache') === false ? 
+      return parent.get('labelCache') === undefined || parent.get('labelCache') === false ?
         Bootstrap.Forms.human(value) : value;
     }).property('parentView.label'),
 
@@ -70,22 +70,25 @@ Bootstrap.Forms.Field = Ember.View.extend({
       var parent = this.get('parentView');
 
       if (parent !== null) {
-        var context = parent.get('context');
+        var binding = parent.get('valueBinding._from');
+        var fieldName = null;
+        var object = null;
 
-        if (context !== null && !context.get('isValid')) {
-          var errors = context.get('errors');
-          var path = parent.get('valueBinding._from');
+        if (binding) {
+          binding = binding.replace("_parentView.", "").split(".");
+          fieldName = binding[binding.length - 1];
+          object = parent.get(binding.slice(0, binding.length-1).join('.'));
+        } else {
+          fieldName = parent.get('label');
+          object = parent.get('context');
+        }
 
-          if (path) {
-            path = path.split(".");
-            path = path[path.length - 1];
-          } else {
-            path = parent.get('label');
-          }
+        if (object && !object.get('isValid')) {
+          var errors = object.get('errors');
 
-          if (errors !== undefined && path in errors) {
+          if (errors && fieldName in errors && errors[fieldName]) {
             parent.$().addClass('error');
-            this.$().html(errors[path].join(', '));
+            this.$().html(errors[fieldName].join(', '));
           } else {
             parent.$().removeClass('error');
             this.$().html('');
