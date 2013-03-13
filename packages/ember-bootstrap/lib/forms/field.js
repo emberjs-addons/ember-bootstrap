@@ -86,7 +86,7 @@ Bootstrap.Forms.Field = Ember.View.extend({
         if (object && !object.get('isValid')) {
           var errors = object.get('errors');
 
-          if (errors && fieldName in errors && errors[fieldName]) {
+          if (errors && fieldName in errors && !Ember.isEmpty(errors[fieldName])) {
             parent.$().addClass('error');
             this.$().html(errors[fieldName].join(', '));
           } else {
