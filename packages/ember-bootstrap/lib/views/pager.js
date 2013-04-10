@@ -11,8 +11,8 @@ Bootstrap.Pager = Ember.CollectionView.extend({
     this._super();
     if (!this.get("content")) {
       this.set("content", Ember.A([
-                                  Ember.Object.create({ title: "&larr;" }), 
-                                  Ember.Object.create({ title: "&rarr;" })
+                                  Ember.Object.create({ title: "Previous" }), 
+                                  Ember.Object.create({ title: "Next" })
       ]));
     }
   },
