@@ -82,6 +82,28 @@ test("should have the prompt", function() {
   equal(select.find('option:eq(0)').text(), "Select Me", "the select has a prompt");
 });
 
+test("input name can be set from name or label", function() {
+  Ember.run(function() {
+    field.set('label', 'First Name');
+    field.append();
+  });
+  var select = field.$().find('select');
+  equal(select.attr('name'), "First Name", "sets name from label");
+
+  Ember.run(function() { field.set('label', 'first_name'); });
+
+  equal(select.attr('name'), "first_name", "sets name from parent if available");
+});
+
+test("inputClasses can be set from parent", function() {
+  Ember.run(function() {
+    field.set('inputClassNames', ['input-small']);
+    field.append();
+  });
+  var select = field.$().find('select');
+  equal(select.hasClass("input-small"), true, "sets classes on input");
+});
+
 test("should have the label for attribute", function() {
   append();
 
