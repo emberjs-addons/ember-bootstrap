@@ -76,7 +76,7 @@ test("a navigation list binds links from object to DOM", function() {
   equal(jQuery(layer.find('li a')[1]).attr('href'), '#', 'a nav list has a layer in the DOM');
 });
 
-test("a navigation list binds titles from custom property to DOM", function() {
+test("a navigation list binds links from custom property to DOM", function() {
   var layer;
   navList = Bootstrap.NavList.create({
     itemHrefKey: 'myLink',

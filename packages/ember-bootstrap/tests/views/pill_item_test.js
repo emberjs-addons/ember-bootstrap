@@ -1,5 +1,6 @@
 var get = Ember.get, set = Ember.set, A = Ember.A;
-var application, pillItem;
+var jQuery = window.jQuery;
+var application, pillItem, parentView;
 
 module("Bootstrap.PillItem", {
   setup: function() {
@@ -8,6 +9,7 @@ module("Bootstrap.PillItem", {
   teardown: function() {
     Ember.run(function() {
       destroyIfNecessary(pillItem);
+      destroyIfNecessary(parentView);
       application.destroy();
     });
   }
@@ -27,6 +29,72 @@ test("a pill item binds content property to DOM", function() {
     pillItem.append();
   });
   equal(pillItem.$().find('a').text(), content, 'pill item binds given content to DOM');
+});
+
+test("a pill item binds parentView titles from content array to DOM", function() {
+  var layer;
+  parentView = Ember.CollectionView.create({
+    tagName: 'ul',
+    itemViewClass: Bootstrap.PillItem,
+    content: new A(['Hello', 'Ohai'])
+  });
+  appendIntoDOM(parentView);
+  layer = parentView.$();
+  equal(layer.find('li a').length, 2, 'a nav list has a layer in the DOM');
+  equal(jQuery(layer.find('li a')[0]).text(), 'Hello', 'a pill item has proper title');
+  equal(jQuery(layer.find('li a')[1]).text(), 'Ohai', 'a pill item has proper title');
+});
+
+test("a pill item binds parentView titles from object to DOM", function() {
+  var layer;
+  parentView = Ember.CollectionView.create({
+    tagName: 'ul',
+    itemViewClass: Bootstrap.PillItem,
+    content: new A([
+      { title: 'Hello' },
+      { title: 'Ohai' }
+    ])
+  });
+  appendIntoDOM(parentView);
+  layer = parentView.$();
+  equal(layer.find('li a').length, 2, 'a parent has a layer in the DOM');
+  equal(jQuery(layer.find('li a')[0]).text(), 'Hello', 'a pill item has proper title');
+  equal(jQuery(layer.find('li a')[1]).text(), 'Ohai', 'a pill item has proper title');
+});
+
+test("a pill item binds parentView link from object to DOM", function() {
+  var layer;
+  parentView = Ember.CollectionView.create({
+    tagName: 'ul',
+    itemViewClass: Bootstrap.PillItem,
+    content: new A([
+      { link: '/hello' },
+      { }
+    ])
+  });
+  appendIntoDOM(parentView);
+  layer = parentView.$();
+  equal(layer.find('li a').length, 2, 'a parent view has a layer in the DOM');
+  equal(jQuery(layer.find('li a')[0]).attr('href'), '/hello', 'a pill item has proper link');
+  equal(jQuery(layer.find('li a')[1]).attr('href'), '#', 'a pill item has proper link');
+});
+
+test("a pill item binds parentView links from custom property to DOM", function() {
+  var layer;
+  parentView = Ember.CollectionView.create({
+    tagName: 'ul',
+    itemViewClass: Bootstrap.PillItem,
+    itemHrefKey: 'myLink',
+    content: new A([
+      { myLink: '/hello' },
+      { myLink: '/ohai' },
+    ])
+  });
+  appendIntoDOM(parentView);
+  layer = parentView.$();
+  equal(layer.find('li a').length, 2, 'a parent view has a layer in the DOM');
+  equal(jQuery(layer.find('li a')[0]).attr('href'), '/hello', 'a pill item has proper link');
+  equal(jQuery(layer.find('li a')[1]).attr('href'), '/ohai', 'a pill item has proper link');
 });
 
 test("a pill sets selection on parentView when clicked", function() {
@@ -60,4 +128,3 @@ test("a pill has active class when parent view has selection of item content", f
   ok(!parentView.$().find('li:first').hasClass('active'), "only selected item has active class");
   parentView.destroy();
 });
-
