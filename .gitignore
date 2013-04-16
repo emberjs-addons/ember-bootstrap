@@ -3,6 +3,7 @@ dist/
 tmp/
 tests/source/
 tests/ember-bootstrap-tests.js
+.DS_Store
 
 # .github-upload-token stores OAuth token, used by github_downloads gem
 .github-upload-token
