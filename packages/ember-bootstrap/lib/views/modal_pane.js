@@ -9,9 +9,13 @@ var modalPaneTemplate = [
 '</div>',
 '<div class="modal-body">{{view view.bodyViewClass}}</div>',
 '<div class="modal-footer">',
-'  {{#if view.secondary}}<a href="#" class="btn btn-secondary" rel="secondary">{{view.secondary}}</a>{{/if}}',
-'  {{#if view.primary}}<a href="#" class="btn btn-primary" rel="primary">{{view.primary}}</a>{{/if}}',
+'  {{view view.footerViewClass}}',
 '</div>'].join("\n");
+
+var footerTemplate = [
+'{{#if view.parentView.secondary}}<a href="#" class="btn btn-secondary" rel="secondary">{{view.parentView.secondary}}</a>{{/if}}',
+'{{#if view.parentView.primary}}<a href="#" class="btn btn-primary" rel="primary">{{view.parentView.primary}}</a>{{/if}}'].join("\n");
+
 var modalPaneBackdrop = '<div class="modal-backdrop"></div>';
 
 Bootstrap.ModalPane = Ember.View.extend({
@@ -29,6 +33,9 @@ Bootstrap.ModalPane = Ember.View.extend({
   bodyViewClass: Ember.View.extend({
     tagName: 'p',
     template: Ember.Handlebars.compile('{{{view.parentView.message}}}')
+  }),
+  footerViewClass: Ember.View.extend({
+    template: Ember.Handlebars.compile(footerTemplate)
   }),
 
   didInsertElement: function() {
