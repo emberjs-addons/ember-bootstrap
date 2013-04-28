@@ -8,7 +8,7 @@ Bootstrap.ItemViewHrefSupport = Ember.Mixin.create({
     content = get(this, 'content');
     if (parentView) {
       hrefKey = get(parentView, 'itemHrefKey') || 'link';
-      return get(content, hrefKey) || "#";
+      return get(content, hrefKey) || '#';
     }
     return content;
   }).property('content').cacheable()
