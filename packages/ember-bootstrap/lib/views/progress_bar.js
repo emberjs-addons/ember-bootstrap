@@ -1,4 +1,5 @@
 var get = Ember.get;
+var fmt = Ember.String.fmt;
 var Bootstrap = window.Bootstrap;
 
 Bootstrap.ProgressBar = Ember.View.extend({
@@ -11,6 +12,7 @@ Bootstrap.ProgressBar = Ember.View.extend({
 
   style: Ember.computed(function() {
     var progress = get(this, 'progress');
-    return "width:" + progress + "%;";
+    
+    return fmt('width:%@%;', [progress]);
   }).property('progress').cacheable()
 });
