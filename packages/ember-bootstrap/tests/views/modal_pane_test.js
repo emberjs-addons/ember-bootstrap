@@ -88,6 +88,17 @@ test("a modal pane defines secondary button first so it sits to the left of the 
   ok(modalPane.$().find('.modal-footer a.btn-secondary').next('a.btn-primary'), 'a modal pane defines secondary button first');
 });
 
+test("a modal pane footerViewClass may be extended", function() {
+  modalPane = Bootstrap.ModalPane.create({
+    footerViewClass: Ember.View.extend({
+      classNames: ['custom-footer'],
+      template: Ember.Handlebars.compile('custom footer')
+    })
+  });
+  appendIntoDOM(modalPane);
+  equal(modalPane.$().find('.modal-footer .custom-footer').text(), 'custom footer');
+});
+
 test("a modal pane does not get removed by clicking inside it", function() {
   modalPane = Bootstrap.ModalPane.create();
   appendIntoDOM(modalPane);
