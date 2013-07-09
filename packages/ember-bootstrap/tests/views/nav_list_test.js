@@ -6,9 +6,7 @@ module("Bootstrap.NavList", {
   setup: function() {
   },
   teardown: function() {
-    Ember.run(function() {
-      destroyIfNecessary(navList);
-    });
+    destroyIfNecessary(navList);
   }
 });
 

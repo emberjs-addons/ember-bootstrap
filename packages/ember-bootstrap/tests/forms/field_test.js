@@ -10,8 +10,7 @@ module("Bootstrap.Forms.Field", {
   },
 
   teardown: function() {
-    field.destroy();
-    field = null;
+    destroyIfNecessary(field);
   }
 });
 
@@ -43,7 +42,7 @@ test("should have the label for attribute", function() {
 });
 
 test("should use the valueBinding value as a default label", function() {
-  field.destroy();
+  destroyIfNecessary(field);
   field = null;
   object = Ember.Object.create({
     foo: null
@@ -93,7 +92,7 @@ test("should display the label errors", function() {
 });
 
 test("should display the field errors", function() {
-  field.destroy();
+  destroyIfNecessary(field);
   field = null;
   object = Ember.Object.create({
     foo: null
@@ -126,7 +125,7 @@ test("should display the field errors", function() {
 });
 
 test("should display the nested object's field errors", function() {
-  field.destroy();
+  destroyIfNecessary(field);
   field = null;
   object = Ember.Object.create({
     foo: null,

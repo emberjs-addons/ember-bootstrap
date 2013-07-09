@@ -5,9 +5,7 @@ module("Bootstrap.Pagination", {
   setup: function() {
   },
   teardown: function() {
-    Ember.run(function() {
-      destroyIfNecessary(pagination);
-    });
+    destroyIfNecessary(pagination);
   }
 });
 

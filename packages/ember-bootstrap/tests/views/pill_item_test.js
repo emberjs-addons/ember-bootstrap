@@ -7,11 +7,9 @@ module("Bootstrap.PillItem", {
     application = Ember.Application.create();
   },
   teardown: function() {
-    Ember.run(function() {
-      destroyIfNecessary(pillItem);
-      destroyIfNecessary(parentView);
-      application.destroy();
-    });
+    destroyIfNecessary(pillItem);
+    destroyIfNecessary(parentView);
+    destroyIfNecessary(application);
   }
 });
 
@@ -98,7 +96,7 @@ test("a pill item binds parentView links from custom property to DOM", function(
 });
 
 test("a pill sets selection on parentView when clicked", function() {
-  var parentView = Ember.CollectionView.create({
+  parentView = Ember.CollectionView.create({
     tagName: 'ul',
     itemViewClass: Bootstrap.PillItem,
     content: new A(['A', 'B', 'C']),
@@ -109,11 +107,10 @@ test("a pill sets selection on parentView when clicked", function() {
   equal(parentView.get('selection'), 'C', "pill item sets its content as a selection");
   parentView.$().find('li:first').click(); // select the first pill
   equal(parentView.get('selection'), 'A', "pill item sets its content as a selection");
-  parentView.destroy();
 });
 
 test("a pill has active class when parent view has selection of item content", function() {
-  var parentView = Ember.CollectionView.create({
+  parentView = Ember.CollectionView.create({
     tagName: 'ul',
     itemViewClass: Bootstrap.PillItem,
     content: new A(['A', 'B', 'C']),
@@ -126,5 +123,4 @@ test("a pill has active class when parent view has selection of item content", f
   });
   ok(parentView.$().find('li:last').hasClass('active'), "only selected item has active class");
   ok(!parentView.$().find('li:first').hasClass('active'), "only selected item has active class");
-  parentView.destroy();
 });

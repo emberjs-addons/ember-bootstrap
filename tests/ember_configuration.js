@@ -124,7 +124,9 @@
 
     window.destroyIfNecessary = function(object) {
       if (object && !object.get('isDestroyed')) {
-        object.destroy();
+        Ember.run(function() {
+          object.destroy();
+        });
       }
     };
 

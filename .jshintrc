@@ -4,6 +4,7 @@
     "requireModule",
     "Ember",
     "Handlebars",
+    "Bootstrap",
     "Metamorph",
     "ember_assert",
     "ember_warn",
@@ -26,7 +27,14 @@
     "async",
     "invokeAsync",
     "jQuery",
-    "expectAssertion"
+    "expectAssertion",
+
+    "clickRelLink",
+    "appendIntoDOM",
+    "isAppendedToDOM",
+    "isDestroyed",
+    "documentHasSelector",
+    "destroyIfNecessary"
   ],
   node: false,
   es5: true,

@@ -5,9 +5,7 @@ module("Bootstrap.Pager", {
   setup: function() {
   },
   teardown: function() {
-    Ember.run(function() {
-      destroyIfNecessary(pager);
-    });
+    destroyIfNecessary(pager);
   }
 });
 
@@ -15,12 +13,6 @@ test("a pager can be created and appended to DOM", function() {
   pager = Bootstrap.Pager.create();
   appendIntoDOM(pager);
   ok(isAppendedToDOM(pager), "a pager has a layer in the DOM");
-});
-
-test("a pager has restriction on the number of elements in the content", function() {
-  pager = Bootstrap.Pager.create();
-  appendIntoDOM(pager);
-  raises(function() {pager.set("content", new A(["< previous", "next >", "third"])); }, "a pager not allows to have more than two elements");
 });
 
 test("a pager has defaults", function() {

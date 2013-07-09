@@ -6,10 +6,8 @@ module("Bootstrap.ModalPane", {
     application = Ember.Application.create();
   },
   teardown: function() {
-    Ember.run(function() {
-      destroyIfNecessary(modalPane);
-      application.destroy();
-    });
+    destroyIfNecessary(modalPane);
+    destroyIfNecessary(application);
   }
 });
 
@@ -21,7 +19,7 @@ test("a modal pane can be created and appended to DOM using popup() call", funct
 });
 
 test("a modal pane is appended to the application using popup() call", function() {
-  application.destroy();
+  destroyIfNecessary(application);
   var rootElement = Ember.$('<div id="app" />').appendTo('#qunit-fixture');
   application = Ember.Application.create({rootElement: "#app"});
   Ember.run(function() {
@@ -211,7 +209,9 @@ test("a modal pane removes itself from the DOM when escape pressed", function() 
   });
   appendIntoDOM(modalPane);
   event = Ember.Object.create({ keyCode: 27 });
-  modalPane.keyPress(event);
+  Ember.run(function() {
+    modalPane.keyPress(event);
+  });
   ok(callbackWasCalled, "modal pane calls given callback when secondary button clicked");
   ok(!isAppendedToDOM(modalPane), "modal pane is not in the DOM");
   ok(isDestroyed(modalPane), "modal pane is destroyed");
@@ -222,7 +222,7 @@ test("a modal pane appends and removes backdrop to its parent", function() {
   ok(!documentHasSelector('body > .modal-backdrop'), "modal pane does not append backdrop before inserting into DOM");
   appendIntoDOM(modalPane);
   ok(documentHasSelector('body > .modal-backdrop'), "modal pane appends backdrop after inserting into DOM");
-  modalPane.destroy();
+  destroyIfNecessary(modalPane);
   ok(!documentHasSelector('body > .modal-backdrop'), "modal pane removes backdrop after destroying");
 });
 
