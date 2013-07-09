@@ -7,9 +7,7 @@ module('Bootstrap.Breadcrumb', {
     many = Ember.A(['Home', 'Library', 'Data']);
   },
   teardown: function() {
-    run(function() {
-      destroyIfNecessary(breadcrumb);
-    });
+    destroyIfNecessary(breadcrumb);
   }
 });
 

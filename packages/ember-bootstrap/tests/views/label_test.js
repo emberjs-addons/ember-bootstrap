@@ -5,9 +5,7 @@ module("Bootstrap.Label", {
   setup: function() {
   },
   teardown: function() {
-    Ember.run(function() {
-      destroyIfNecessary(label);
-    });
+    destroyIfNecessary(label);
   }
 });
 

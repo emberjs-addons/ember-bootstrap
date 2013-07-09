@@ -15,8 +15,7 @@ module("Bootstrap.Forms.Select", {
   },
 
   teardown: function() {
-    field.destroy();
-    field = null;
+    destroyIfNecessary(field);
   }
 });
 

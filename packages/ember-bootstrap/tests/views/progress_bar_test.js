@@ -5,9 +5,7 @@ module("Bootstrap.ProgressBar", {
   setup: function() {
   },
   teardown: function() {
-    Ember.run(function() {
-      destroyIfNecessary(progressBar);
-    });
+    destroyIfNecessary(progressBar);
   }
 });
 
