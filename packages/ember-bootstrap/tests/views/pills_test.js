@@ -7,10 +7,8 @@ module("Bootstrap.Pills", {
     application = Ember.Application.create();
   },
   teardown: function() {
-    Ember.run(function() {
-      destroyIfNecessary(pills);
-      application.destroy();
-    });
+    destroyIfNecessary(pills);
+    destroyIfNecessary(application);
   }
 });
 

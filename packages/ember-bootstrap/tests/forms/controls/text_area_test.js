@@ -11,8 +11,7 @@ module("Bootstrap.Forms.TextArea", {
   },
 
   teardown: function() {
-    field.destroy();
-    field = null;
+    destroyIfNecessary(field);
   }
 });
 

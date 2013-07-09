@@ -5,9 +5,7 @@ module("Bootstrap.Well", {
   setup: function() {
   },
   teardown: function() {
-    Ember.run(function() {
-      destroyIfNecessary(well);
-    });
+    destroyIfNecessary(well);
   }
 });
 

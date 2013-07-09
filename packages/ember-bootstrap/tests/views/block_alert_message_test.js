@@ -4,9 +4,7 @@ var blockAlert;
 module("Bootstrap.BlockAlertMessage", {
   setup: function() {},
   teardown: function() {
-    Ember.run(function() {
-      window.destroyIfNecessary(blockAlert);
-    });
+    destroyIfNecessary(blockAlert);
   }
 });
 

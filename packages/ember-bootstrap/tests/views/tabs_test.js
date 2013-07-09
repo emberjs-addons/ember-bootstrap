@@ -6,9 +6,7 @@ module("Bootstrap.Tabs", {
   setup: function() {
   },
   teardown: function() {
-    Ember.run(function() {
-      destroyIfNecessary(tabs);
-    });
+    destroyIfNecessary(tabs);
   }
 });
 

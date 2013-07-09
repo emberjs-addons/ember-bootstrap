@@ -7,8 +7,8 @@ module("Bootstrap.AlertMessage", {
   },
   teardown: function() {
     Ember.run(function() {
-      window.destroyIfNecessary(alert);
-      application.destroy();
+      destroyIfNecessary(alert);
+      destroyIfNecessary(application);
     });
   }
 });
