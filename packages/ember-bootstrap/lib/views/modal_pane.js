@@ -18,7 +18,7 @@ var footerTemplate = [
 
 var modalPaneBackdrop = '<div class="modal-backdrop"></div>';
 
-Bootstrap.ModalPane = Ember.View.extend({
+Bootstrap.ModalPane = Ember.View.extend(Ember.DeferredMixin, {
   classNames: 'modal',
   defaultTemplate: Ember.Handlebars.compile(modalPaneTemplate),
   heading: null,
@@ -85,12 +85,20 @@ Bootstrap.ModalPane = Ember.View.extend({
     jQuery(window.document).unbind('keyup', this._keyUpHandler);
   },
 
+  _resolveOrReject: function(options, event) {
+    if (options.primary) this.resolve(options, event);
+    else this.reject(options, event);
+  },
+
   _triggerCallbackAndDestroy: function(options, event) {
     var destroy;
     if (this.callback) {
       destroy = this.callback(options, event);
     }
-    if (destroy === undefined || destroy) this.destroy();
+    if (destroy === undefined || destroy) {
+      this._resolveOrReject(options, event);
+      this.destroy();
+    }
   }
 });
 
