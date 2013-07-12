@@ -58,16 +58,11 @@ Bootstrap.ModalPane = Ember.View.extend({
     var target = event.target,
         targetRel = target.getAttribute('rel');
 
-    if (targetRel === 'close') {
-      this._triggerCallbackAndDestroy({ close: true }, event);
-      return false;
+    if (targetRel) {
+      var options = {};
+      options[targetRel] = true;
 
-    } else if (targetRel === 'primary') {
-      this._triggerCallbackAndDestroy({ primary: true }, event);
-      return false;
-
-    } else if (targetRel === 'secondary') {
-      this._triggerCallbackAndDestroy({ secondary: true }, event);
+      this._triggerCallbackAndDestroy(options, event);
       return false;
     }
   },
