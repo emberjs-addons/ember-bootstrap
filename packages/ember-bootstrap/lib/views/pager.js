@@ -1,7 +1,6 @@
 require('ember-bootstrap/mixins/item_view_title_support');
 require('ember-bootstrap/mixins/item_view_href_support');
 
-var Bootstrap = window.Bootstrap;
 Bootstrap.Pager = Ember.CollectionView.extend({
   tagName: 'ul',
   classNames: ['pager'],

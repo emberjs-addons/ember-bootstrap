@@ -1,1 +1,1 @@
-var Bootstrap = window.Bootstrap = Ember.Namespace.create();
+window.Bootstrap = Ember.Namespace.create();

@@ -1,5 +1,4 @@
 var get = Ember.get;
-var Bootstrap = window.Bootstrap;
 
 Bootstrap.TextSupport = Ember.Mixin.create({
   valueBinding: 'parentView.value',

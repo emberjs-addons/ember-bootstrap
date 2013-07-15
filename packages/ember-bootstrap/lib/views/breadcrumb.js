@@ -2,7 +2,6 @@ require('ember-bootstrap/mixins/item_view_title_support');
 require('ember-bootstrap/mixins/first_last_view_support');
 
 var get = Ember.get;
-var Bootstrap = window.Bootstrap;
 
 Bootstrap.Breadcrumb = Ember.CollectionView.extend(Bootstrap.FirstLastViewSupport, {
   tagName: 'ul',
@@ -63,15 +62,3 @@ Bootstrap.Breadcrumb = Ember.CollectionView.extend(Bootstrap.FirstLastViewSuppor
     template: Ember.Handlebars.compile('{{view.title}}')
   })
 });
-
-// 1 2 3 
-// 1 2 3 4 5 6
-// [] 3 0 3
-
-// 1 2 3 
-// 1 2 3 4
-// [] 3 0 1
-
-
-
-

@@ -1,5 +1,4 @@
 var get = Ember.get;
-var Bootstrap = window.Bootstrap;
 
 Bootstrap.ItemViewHrefSupport = Ember.Mixin.create({
   href: Ember.computed(function() {

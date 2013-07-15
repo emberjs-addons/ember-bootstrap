@@ -1,5 +1,3 @@
-var Bootstrap = window.Bootstrap;
-
 Bootstrap.Forms.Select = Bootstrap.Forms.Field.extend({
   optionLabelPath: 'content',
   optionValuePath: 'content',

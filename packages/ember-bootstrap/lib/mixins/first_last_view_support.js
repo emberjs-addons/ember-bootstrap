@@ -1,5 +1,4 @@
 var get = Ember.get;
-var Bootstrap = window.Bootstrap;
 
 Bootstrap.FirstLastViewSupport = Ember.Mixin.create({
   createChildView: function(view, attrs) {

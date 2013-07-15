@@ -1,4 +1,4 @@
-window.Bootstrap.Forms = Ember.Namespace.create({
+Bootstrap.Forms = Ember.Namespace.create({
 
   human: function(value) {
     if (value === undefined || value === false)

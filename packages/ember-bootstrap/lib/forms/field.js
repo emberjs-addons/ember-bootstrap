@@ -1,4 +1,3 @@
-var Bootstrap = window.Bootstrap;
 Bootstrap.Forms.Field = Ember.View.extend({
   tagName: 'div',
   classNames: ['control-group'],

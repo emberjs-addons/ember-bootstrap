@@ -1,6 +1,4 @@
 var get = Ember.get;
-var Bootstrap = window.Bootstrap;
-var jQuery = window.jQuery;
 
 var modalPaneTemplate = [
 '<div class="modal-header">',

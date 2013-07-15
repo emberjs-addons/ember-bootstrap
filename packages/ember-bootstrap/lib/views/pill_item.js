@@ -1,7 +1,6 @@
 require('ember-bootstrap/mixins/item_selection_support');
 require('ember-bootstrap/mixins/item_view_href_support');
 
-var Bootstrap = window.Bootstrap;
 Bootstrap.PillItem = Ember.View.extend(Bootstrap.ItemSelectionSupport, Bootstrap.ItemViewHrefSupport, {
   template: Ember.Handlebars.compile('{{view view.item}}'),
 

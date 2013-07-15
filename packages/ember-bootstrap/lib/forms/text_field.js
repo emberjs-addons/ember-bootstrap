@@ -1,6 +1,5 @@
 require("ember-bootstrap/mixins/text_support");
 
-var Bootstrap = window.Bootstrap;
 Bootstrap.Forms.TextField = Bootstrap.Forms.Field.extend({
   type: 'text',
 

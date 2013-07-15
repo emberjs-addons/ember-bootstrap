@@ -1,5 +1,4 @@
-var get = Ember.get, 
-    Bootstrap = window.Bootstrap;
+var get = Ember.get;
 
 Bootstrap.ItemViewTitleSupport = Ember.Mixin.create({
   title: Ember.computed(function() {

@@ -26,7 +26,7 @@ GIT
 PATH
   remote: .
   specs:
-    ember-bootstrap-source (0.0.2)
+    ember-bootstrap-source (0.0.3)
       ember-source
 
 GEM

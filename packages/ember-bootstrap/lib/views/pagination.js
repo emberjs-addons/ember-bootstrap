@@ -1,8 +1,7 @@
 require('ember-bootstrap/mixins/item_selection_support');
 require('ember-bootstrap/mixins/item_view_href_support');
 
-var get = Ember.get, set = Ember.set, A = Ember.A;
-var Bootstrap = window.Bootstrap;
+var A = Ember.A;
 
 Bootstrap.Pagination = Ember.CollectionView.extend({
   tagName: 'ul',

@@ -1,4 +1,3 @@
-var Bootstrap = window.Bootstrap;
 Bootstrap.Forms.UneditableInput = Bootstrap.Forms.Field.extend({
 
   inputField: Ember.View.extend({

@@ -1,4 +1,3 @@
-var Bootstrap = window.Bootstrap;
 Bootstrap.Forms.Checkbox = Bootstrap.Forms.Field.extend({
 
   inputField: Ember.Checkbox.extend({

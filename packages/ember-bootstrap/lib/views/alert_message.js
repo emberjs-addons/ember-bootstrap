@@ -1,8 +1,6 @@
 require("ember-bootstrap/mixins/type_support");
 
 var get = Ember.get;
-var Bootstrap = window.Bootstrap;
-
 Bootstrap.AlertMessage = Ember.View.extend(Bootstrap.TypeSupport, {
   classNames: ['alert', 'alert-message'],
   baseClassName: 'alert',
