@@ -89,7 +89,7 @@ Bootstrap.ButtonDropdown = Ember.View.extend({
          * @return {String}
          */
         href: Ember.computed(function() {
-            return 'javascript:void(0);';
+            return '#';
         }),
 
         /**
