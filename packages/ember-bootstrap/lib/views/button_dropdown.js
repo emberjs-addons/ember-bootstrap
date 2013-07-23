@@ -72,7 +72,7 @@ Bootstrap.ButtonDropdown = Ember.View.extend({
         tagName: 'a',
 
         /**
-         * @attributeBindings
+         * @property attributeBindings
          * @type {Array}
          */
         attributeBindings: ['href'],
