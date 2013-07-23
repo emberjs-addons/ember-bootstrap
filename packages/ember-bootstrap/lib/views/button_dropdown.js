@@ -1,4 +1,28 @@
 /**
+ * @property buttonDropdownLayout
+ * @type {Array}
+ */
+var buttonDropdownLayout = [
+    '<a {{bindAttr class="view.typeClass :btn :dropdown-toggle" }} data-toggle="dropdown" href="javascript:void(0);">{{view.label}}',
+    '<span class="caret"></span></a>',
+    '<ul class="dropdown-menu">',
+        '{{yield}}',
+    '</ul>'
+];
+
+/**
+ * @property buttonDropdownTemplate
+ * @type {Array}
+ */
+var buttonDropdownTemplate = [
+    '{{#if view.items}}',
+    '   {{#each item in view.items}}',
+    '       <li {{bindAttr class="item.disabled:disabled"}}>{{view view.Item contextBinding="item"}}</li>',
+    '   {{/each}}',
+    '{{/if}}'
+];
+
+/**
  * @property Bootstrap.ButtonDropdown
  * @type {Ember.View}
  */
@@ -26,16 +50,13 @@ Bootstrap.ButtonDropdown = Ember.View.extend({
      * @property layout
      * @type {Function}
      */
-    layout: Ember.Handlebars.compile('<a {{bindAttr class="view.typeClass :btn :dropdown-toggle" }} data-toggle="dropdown" href="javascript:void(0);">{{view.label}}<span class="caret"></span></a>' +
-                                     '<ul class="dropdown-menu">{{yield}}</ul>'),
+    layout: Ember.Handlebars.compile(buttonDropdownLayout),
 
     /**
      * @property template
      * @type {Function}
      */
-    template: Ember.Handlebars.compile('{{#if view.items}} {{#each item in view.items}}' +
-                                       '<li {{bindAttr class="item.disabled:disabled"}}>{{view view.Item contextBinding="item"}}</li>' +
-                                       '{{/each}} {{/if}}'),
+    template: Ember.Handlebars.compile(buttoDropdownTemplate),
 
     /**
      * @method didInsertElement
