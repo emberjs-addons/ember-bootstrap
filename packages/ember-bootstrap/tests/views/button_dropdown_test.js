@@ -5,10 +5,10 @@ module("Bootstrap.ButtonDropdown", {
   setup: function() {
     application = Ember.Application.create();
     controller = Ember.ArrayController.create({
-        items: [
+        content: Ember.A([
             Ember.Object.create({ label: 'First Link', actionName: 'testAction' }),
             Ember.Object.create({ label: 'Second Link', actionName: 'anotherAction', disabled: true })
-        ]
+        ])
     });
     buttonDropdown = Bootstrap.ButtonDropdown.create({ controller: controller });
   },
@@ -26,11 +26,38 @@ test("a button dropdown can be created and appended to DOM", function() {
 });
 
 test("can accept a list of items to use for the dropdown", function() {
-    buttonDropdown.set('items', controller.get('items'));
-    equal(2, buttonDropdown.get('items.length'), 'is aware of the items from the controller');
+    buttonDropdown.set('items', controller.get('content'));
+    equal(buttonDropdown.get('items.length'), 2, 'is aware of the items from the controller');
 });
 
 test("can accept a label for the dropdown's title", function() {
     buttonDropdown.set('label', 'My Label');
-    equal('My Label', buttonDropdown.get('label'), 'is able to set a title for the dropdown');
+    equal(buttonDropdown.get('label'), 'My Label', 'is able to set a title for the dropdown');
+});
+
+test("can append an item to the dropdown", function() {
+    buttonDropdown.set('items', controller.get('content'));
+    appendIntoDOM(buttonDropdown);
+    var view = buttonDropdown.$();
+    equal(view.find('li').length, 2);
+
+    Ember.run(function() {
+        controller.get('content').pushObject(Ember.Object.create({ label: 'Third Link', actionName: 'noop' }));
+    });
+
+    equal(view.find('li').length, 3);
+});
+
+test("can remove an item from the dropdown", function() {
+    buttonDropdown.set('items', controller.get('content'));
+    appendIntoDOM(buttonDropdown);
+    var view = buttonDropdown.$();
+    equal(view.find('li').length, 2);
+
+    Ember.run(function() {
+        var secondObject = controller.get('content').findProperty('label', 'Second Link');
+        controller.get('content').removeObject(secondObject);
+    });
+
+    equal(view.find('li').length, 1);
 });
