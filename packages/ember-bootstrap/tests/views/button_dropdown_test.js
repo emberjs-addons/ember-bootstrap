@@ -52,12 +52,12 @@ test("can remove an item from the dropdown", function() {
     buttonDropdown.set('items', controller.get('content'));
     appendIntoDOM(buttonDropdown);
     var view = buttonDropdown.$();
-    equal(view.find('li').length, 2);
+    equal(view.find('li').length, 2, 'Can add an element from the dropdown list');
 
     Ember.run(function() {
         var secondObject = controller.get('content').findProperty('label', 'Second Link');
         controller.get('content').removeObject(secondObject);
     });
 
-    equal(view.find('li').length, 1);
+    equal(view.find('li').length, 1, 'Can remove an element from the dropdown list');
 });
