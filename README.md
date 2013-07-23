@@ -177,6 +177,24 @@ Bootstrap.ModalPane.popup({
 </script>
 ```
 
+### Bootstrap.ButtonDropdown
+```html
+<script type="text/x-handlebars">
+  {{view Bootstrap.ButtonDropdown itemsBinding="content" label="My Little Label"}}
+</script>
+```
+
+Where the `itemsBinding` array is similar to the following in its structure:
+
+```javascript
+content: [
+    Ember.Object.create({ label: 'First Link', actionName: 'testAction', disabled: false }),
+    Ember.Object.create({ label: 'Second Link', actionName: 'anotherAction', disabled: true })
+]
+```
+
+`actionName` specifies the action to invoke when the item is clicked on. Additionally, items can be enabled/disabled dynamically, and the list will update itself.
+
 ## Building Ember Bootstrap
 
 1. Run `rake` to build Ember Bootstrap. Three builds will be placed in the `dist/` directory.
