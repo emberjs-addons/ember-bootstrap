@@ -56,7 +56,7 @@ Bootstrap.ButtonDropdown = Ember.View.extend({
      * @property template
      * @type {Function}
      */
-    template: Ember.Handlebars.compile(buttoDropdownTemplate),
+    template: Ember.Handlebars.compile(buttonDropdownTemplate),
 
     /**
      * @method didInsertElement
