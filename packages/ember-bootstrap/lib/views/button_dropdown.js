@@ -97,9 +97,7 @@ Bootstrap.ButtonDropdown = Ember.View.extend({
          * @type {Object}
          * @return {String}
          */
-        href: Ember.computed(function() {
-            return '#';
-        }),
+        href: '#',
 
         /**
          * @method click
@@ -118,11 +116,10 @@ Bootstrap.ButtonDropdown = Ember.View.extend({
             }
 
             Ember.assert('View `Bootstrap.ButtonDropdown` does not have a controller attached.', !!Ember.get(this, 'controller'));
-            Ember.assert('Controller `%@` does not have an action `%@`!'.fmt(controller, actionName), !!Ember.canInvoke(controller, actionName));
+            Ember.assert(Ember.String.fmt('Controller `%@` does not have an action `%@`!', controller, actionName), !!Ember.canInvoke(controller, actionName));
 
             // Invoke the action on the controller, passing in the item as the first param.
-            Ember.tryInvoke(controller, actionName, item);
-
+            Ember.tryInvoke(controller, actionName, [item]);
         }
 
     })
