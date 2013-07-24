@@ -23,6 +23,15 @@ GIT
       rake (~> 10.0.0)
       thor
 
+GIT
+  remote: https://github.com/tchak/barber.git
+  revision: 6ebaeefaad44e16a1d6e47a8a126fe219f959457
+  specs:
+    barber (0.4.2)
+      ember-source
+      execjs
+      handlebars-source (>= 1.0.0.rc.4)
+
 PATH
   remote: .
   specs:
@@ -79,6 +88,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  barber!
   ember-bootstrap-source!
   ember-dev!
   ember-source (= 1.0.0.rc6.2)

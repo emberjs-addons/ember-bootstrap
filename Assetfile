@@ -5,13 +5,32 @@ distros = {
 #MEGAHAX
 ember_spade_postprocess = "filter EmberAddMicroLoader, :global => true"
 
+
 instance_eval File.read(::EmberDev.support_path.join('Assetfile'))
+
+require 'barber'
+require 'rake-pipeline-web-filters'
+
+# Helpers
+ember_handlebars_template_name = Proc.new do |input|
+  template_dirs = input.path.split("/")[1..-2]
+  template_file_name = File.basename(input.path, File.extname(input.path))
+  template_dirs.push(template_file_name).join("/")
+end
+
+input "packages/ember-bootstrap/lib/templates/" do
+  match "*.hbs" do
+    handlebars wrapper_proc: Barber::Ember::FilePrecompiler,
+      key_name_proc: ember_handlebars_template_name
+      concat "modules/templates.js"
+  end
+end
 
 distros.each do |name, modules|
   name = "ember-bootstrap"
 
   input "dist/modules" do
-    module_paths = modules.map{|m| "#{m}.js" }
+    module_paths = modules.map{|m| "#{m}.js" } << "templates.js"
     match "{#{module_paths.join(',')}}" do
       concat(module_paths){ ["#{name}.js", "#{name}.prod.js"] }
       filter EmberAddMicroLoader
