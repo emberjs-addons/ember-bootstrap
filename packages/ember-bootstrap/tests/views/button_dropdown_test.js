@@ -86,11 +86,12 @@ test("can change the action of an inserted item", function() {
   buttonDropdown.set('items', controller.get('content'));
   appendIntoDOM(buttonDropdown);
   var view = buttonDropdown.$(),
-  item = controller.get('content.firstObject');
+      item = controller.get('content.firstObject'),
+      link = view.find('li a').first();
 
   controller.set('currentItem', 'invalid item');
   item.set('actionName', 'removeItem');
-  view.find('li a').first().click();
+  link.click();
   equal(controller.get('currentItem'), null, 'the current item has been nullified');
 });
 
@@ -98,10 +99,13 @@ test("can click on an item", function() {
   buttonDropdown.set('items', controller.get('content'));
   appendIntoDOM(buttonDropdown);
   var view = buttonDropdown.$(),
-  item = controller.get('content.firstObject');
+      item = controller.get('content.firstObject'),
+      li   = view.find('li').first(),
+      link = li.find('a');
 
+  equal(li.attr('class'), '', 'the li does not have the disabled class');
   equal(controller.get('currentItem'), null, 'the current item is not yet defined');
-  view.find('li a').first().click();
+  link.click();
   equal(controller.get('currentItem'), item, 'the current item is defined');
 });
 
@@ -109,10 +113,12 @@ test("cannot click on a disabled item", function() {
   buttonDropdown.set('items', controller.get('content'));
   appendIntoDOM(buttonDropdown);
   var view = buttonDropdown.$(),
-  item = controller.get('content.firstObject');
+      item = controller.get('content.firstObject'),
+      li   = view.find('li').last(),
+      link = li.find('a');
 
-  item.set('disabled', true);
+  equal(li.attr('class'), 'disabled', 'the li has the disabled class');
   equal(controller.get('currentItem'), null, 'the current item is not yet defined');
-  view.find('li a').last().click();
+  link.click();
   equal(controller.get('currentItem'), null, 'the current item is not yet defined');
 });
