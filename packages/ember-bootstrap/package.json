@@ -4,7 +4,7 @@
   "description": "",
   "homepage": "https://github.com/emberjs-addons/ember-boostrap",
   "author": "Jiri Zajpt, Damien Mathieu and contributors",
-  "version": "0.0.1",
+  "version": "0.0.4",
 
   "directories": {
     "lib": "lib"
