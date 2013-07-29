@@ -9,21 +9,24 @@ Feature and big refactoring discussions go in the [google group](https://groups.
 ## What's implemented so far?
 
 ### Views
-* Modal panes - Bootstrap.ModalPane
-* Nav lists - Bootstrap.NavList
-* Pills - Bootstrap.Pills
-* Tabs (header) - Bootstrap.Tabs
-* Alert messages - Bootstrap.AlertMessage
+* Modal panes          - Bootstrap.ModalPane
+* Nav lists            - Bootstrap.NavList
+* Pills                - Bootstrap.Pills
+* Alert messages       - Bootstrap.AlertMessage
 * Block alert messages - Bootstrap.BlockAlertMessage
-* Progress bars - Bootstrap.ProgressBar
-* Badges - Bootstrap.Badge
-* Labels - Bootstrap.Label
-* Wells - Bootstrap.Well
+* Progress bars        - Bootstrap.ProgressBar
+* Labels               - Bootstrap.Label
+* Badges               - Bootstrap.Badge
+* Wells                - Bootstrap.Well
+* Breadcrumbs          - Bootstrap.Breadcrumbs
+* Pager                - Bootstrap.Pager
+* Dropdown             - Bootstrap.ButtonDropdown
 
 ### Forms
 * Text Field - Bootstrap.Forms.TextField
 * Text Area  - Bootstrap.Forms.TextArea
 * Select     - Bootstrap.Forms.Select
+* Uneditable - Bootstrap.UneditableInput
 
 
 ## Usage
@@ -155,6 +158,24 @@ Bootstrap.ModalPane.popup({
 </script>
 ```
 
+### Bootstrap.ButtonDropdown
+```html
+<script type="text/x-handlebars">
+  {{view Bootstrap.ButtonDropdown itemsBinding="content" label="My Little Label"}}
+</script>
+```
+
+Where the `itemsBinding` array is similar to the following in its structure:
+
+```javascript
+content: [
+    Ember.Object.create({ label: 'First Link', actionName: 'testAction', disabled: false }),
+    Ember.Object.create({ label: 'Second Link', actionName: 'anotherAction', disabled: true })
+]
+```
+
+`actionName` specifies the action to invoke when the item is clicked on. Additionally, items can be enabled/disabled dynamically, and the list will update itself.
+
 ### Bootstrap.Forms.TextField
 ```html
 <script type="text/x-handlebars">
@@ -177,23 +198,13 @@ Bootstrap.ModalPane.popup({
 </script>
 ```
 
-### Bootstrap.ButtonDropdown
+### Bootstrap.Forms.UneditableInput
+
 ```html
 <script type="text/x-handlebars">
-  {{view Bootstrap.ButtonDropdown itemsBinding="content" label="My Little Label"}}
+  {{view Bootstrap.Forms.UneditableInput valueBinding="myObject.content" label="content"}}
 </script>
 ```
-
-Where the `itemsBinding` array is similar to the following in its structure:
-
-```javascript
-content: [
-    Ember.Object.create({ label: 'First Link', actionName: 'testAction', disabled: false }),
-    Ember.Object.create({ label: 'Second Link', actionName: 'anotherAction', disabled: true })
-]
-```
-
-`actionName` specifies the action to invoke when the item is clicked on. Additionally, items can be enabled/disabled dynamically, and the list will update itself.
 
 ## Building Ember Bootstrap
 
