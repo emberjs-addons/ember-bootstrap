@@ -79,8 +79,8 @@ Bootstrap.ModalPane = Ember.View.extend(Ember.DeferredMixin, {
         _this = this;
 
     if (animateOut) {
-      animateOut.options = jQuery.extend({always: function(){ _this._backdrop.remove()}}, animateOut.options);
-      this._backdrop[animateOut.method](animateOut.options)
+      animateOut.options = jQuery.extend({always: function(){ _this._backdrop.remove();}}, animateOut.options);
+      this._backdrop[animateOut.method](animateOut.options);
     } else {
       this._backdrop.remove();
     }
