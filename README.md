@@ -216,9 +216,7 @@ You can either install nodejs or `gem install therubyracer`.
 
 ## Unit Tests
 
-To run unit tests, run `bundle exec rackup` from the root directory and visit
-`http://localhost:9292/tests/index.html?package=ember-bootstrap`.
-
+To run unit tests, run `bundle exec rackup` from the root directory and visit `http://localhost:9292/`
 
 ### License
 
