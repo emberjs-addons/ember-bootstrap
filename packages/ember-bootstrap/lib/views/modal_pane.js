@@ -23,6 +23,8 @@ Bootstrap.ModalPane = Ember.View.extend(Ember.DeferredMixin, {
   message: null,
   primary: null,
   secondary: null,
+  animateBackdropIn: null,
+  animateBackdropOut: null,
   showBackdrop: true,
   headerViewClass: Ember.View.extend({
     tagName: 'h3',
@@ -42,7 +44,7 @@ Bootstrap.ModalPane = Ember.View.extend(Ember.DeferredMixin, {
   },
 
   willDestroyElement: function() {
-    if (this._backdrop) this._backdrop.remove();
+    if (this._backdrop) this._removeBackdrop();
     this._removeDocumentKeyHandler();
   },
 
@@ -66,8 +68,22 @@ Bootstrap.ModalPane = Ember.View.extend(Ember.DeferredMixin, {
   },
 
   _appendBackdrop: function() {
-    var parentLayer = this.$().parent();
+    var parentLayer = this.$().parent(),
+        animateIn = this.get("animateBackdropIn");
     this._backdrop = jQuery(modalPaneBackdrop).appendTo(parentLayer);
+    if (animateIn) this._backdrop.addClass("hide")[animateIn.method](animateIn.options);
+  },
+
+  _removeBackdrop: function() {
+    var animateOut = this.get("animateBackdropOut"),
+        _this = this;
+
+    if (animateOut) {
+      animateOut.options = jQuery.extend({always: function(){ _this._backdrop.remove();}}, animateOut.options);
+      this._backdrop[animateOut.method](animateOut.options);
+    } else {
+      this._backdrop.remove();
+    }
   },
 
   _setupDocumentKeyHandler: function() {
