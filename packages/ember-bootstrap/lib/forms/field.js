@@ -1,15 +1,13 @@
 Bootstrap.Forms.Field = Ember.View.extend({
   tagName: 'div',
-  classNames: ['control-group'],
+  classNameBindings: ['form-group'],
   labelCache: undefined,
   help: undefined,
   template: Ember.Handlebars.compile([
     '{{view view.labelView viewName="labelView"}}',
-    '<div class="controls">',
-    '  {{view view.inputField viewName="inputField"}}',
-    '  {{view view.errorsView}}',
-    '  {{view view.helpView}}',
-    '</div>'].join("\n")),
+    '{{view view.inputField viewName="inputField"}}',
+    '{{view view.errorsView}}',
+    '{{view view.helpView}}'].join("\n")),
 
   label: Ember.computed(function(key, value) {
     if(arguments.length === 1){
@@ -56,7 +54,7 @@ Bootstrap.Forms.Field = Ember.View.extend({
   }),
 
   inputField: Ember.View.extend({
-    classNames: ['ember-bootstrap-extend'],
+    classNames: ['ember-bootstrap-extend', 'form-control'],
     tagName: 'div',
     template: Ember.Handlebars.compile('This class is not meant to be used directly, but extended.')
   }),
@@ -86,14 +84,14 @@ Bootstrap.Forms.Field = Ember.View.extend({
           var errors = object.get('errors');
 
           if (errors && fieldName in errors && !Ember.isEmpty(errors[fieldName])) {
-            parent.$().addClass('error');
+            parent.$().addClass('has-error');
             this.$().html(errors[fieldName].join(', '));
           } else {
-            parent.$().removeClass('error');
+            parent.$().removeClass('has-error');
             this.$().html('');
           }
         } else {
-          parent.$().removeClass('error');
+          parent.$().removeClass('has-error');
           this.$().html('');
         }
       }

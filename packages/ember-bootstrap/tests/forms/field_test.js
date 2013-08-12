@@ -63,7 +63,7 @@ test("should use the valueBinding value as a default label", function() {
 
 test("should have the controls", function() {
   append();
-  equal(field.$().find('div.controls').length, 1, "Every field needs to include the controls");
+  equal(field.$().find('div.form-control').length, 1, "Every field needs to include the controls");
 });
 
 
@@ -82,12 +82,12 @@ test("should display the label errors", function() {
 
   object.set('errors', {object: ["can't be null"]});
   object.set('isValid', false);
-  ok(field.$().hasClass('error'), "the element should have the error tag");
+  ok(field.$().hasClass('has-error'), "the element should have the error tag");
   equal(field.$().find('.errors').text(), "can't be null", "the error should be displayed");
 
   object.set('errors', null);
   object.set('isValid', true);
-  ok(!field.$().hasClass('error'), "the element should not have the error tag");
+  ok(!field.$().hasClass('has-error'), "the element should not have the error tag");
   equal(field.$().find('.errors').text(), "", "no error should be display anymore");
 });
 
@@ -104,23 +104,23 @@ test("should display the field errors", function() {
   append();
   object.set('errors', {foo: ["can't be null"]});
   object.set('isValid', false);
-  ok(field.$().hasClass('error'), "the element should have the error tag");
+  ok(field.$().hasClass('has-error'), "the element should have the error tag");
   equal(field.$().find('.errors').text(), "can't be null", "the error should be displayed");
 
   object.set('errors', {foo: null});
   object.set('isValid', true);
-  ok(!field.$().hasClass('error'), "the element should have the error tag");
+  ok(!field.$().hasClass('has-error'), "the element should have the error tag");
   equal(field.$().find('.errors').text(), "", "no error should be display anymore");
   object.set('isValid', false);
-  ok(!field.$().hasClass('error'), "the element should have the error tag");
+  ok(!field.$().hasClass('has-error'), "the element should have the error tag");
   equal(field.$().find('.errors').text(), "", "no error should be display anymore");
 
   object.set('errors', {foo: []});
   object.set('isValid', true);
-  ok(!field.$().hasClass('error'), "the element should not have the error tag");
+  ok(!field.$().hasClass('has-error'), "the element should not have the error tag");
   equal(field.$().find('.errors').text(), "", "no error should be display anymore");
   object.set('isValid', false);
-  ok(!field.$().hasClass('error'), "the element should not have the error tag");
+  ok(!field.$().hasClass('has-error'), "the element should not have the error tag");
   equal(field.$().find('.errors').text(), "", "no error should be display anymore");
 });
 
@@ -141,12 +141,12 @@ test("should display the nested object's field errors", function() {
   append();
   object.set('bar.errors', {buz: ["can't be null"]});
   object.set('isValid', false);  // should listen on bar.isValid
-  ok(field.$().hasClass('error'), "the element should have the error tag");
+  ok(field.$().hasClass('has-error'), "the element should have the error tag");
   equal(field.$().find('.errors').text(), "can't be null", "the error should be displayed");
 
   object.set('bar.errors', null);
   object.set('isValid', true);  // should listen on bar.isValid
-  ok(!field.$().hasClass('error'), "the element should not have the error tag");
+  ok(!field.$().hasClass('has-error'), "the element should not have the error tag");
   equal(field.$().find('.errors').text(), "", "no error should be display anymore");
 });
 
