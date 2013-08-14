@@ -11,6 +11,7 @@ Feature and big refactoring discussions go in the [google group](https://groups.
 ### Views
 * Modal panes          - Bootstrap.ModalPane
 * Nav lists            - Bootstrap.NavList
+* Nav bar              - Bootstrap.NavBar
 * Pills                - Bootstrap.Pills
 * Alert messages       - Bootstrap.AlertMessage
 * Block alert messages - Bootstrap.BlockAlertMessage
@@ -65,6 +66,16 @@ Bootstrap.ModalPane.popup({
 </script>
 ```
 
+### Bootstrap.NavBar
+
+```html
+<script type="text/x-handlebars">
+  {{view Bootstrap.NavBar
+      contentBinding="SampleApp.navController.content"
+      titleBinding="SampleApp.navController.title"
+      selectionBinding="SampleApp.navController.selection"}}
+</script>
+```
 
 ### Bootstrap.Tabs
 
