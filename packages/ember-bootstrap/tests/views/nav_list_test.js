@@ -89,3 +89,16 @@ test("a navigation list binds links from custom property to DOM", function() {
   equal(jQuery(layer.find('li a')[0]).attr('href'), '/hello', 'a nav list has a layer in the DOM');
   equal(jQuery(layer.find('li a')[1]).attr('href'), '/ohai', 'a nav list has a layer in the DOM');
 });
+
+test("a navigation list binds selection from the view", function() {
+  var layer;
+  var content = new A(['Hello', 'Ohai']);
+  navList = Bootstrap.NavList.create({
+    content: content,
+    selection: content[0]
+  });
+  appendIntoDOM(navList);
+  layer = navList.$();
+  equal(layer.find('li.active a').length, 1, 'a nav list has a layer in the DOM');
+  equal(jQuery(layer.find('li.active a')[0]).text(), 'Hello', 'a nav list has a layer in the DOM');
+});
