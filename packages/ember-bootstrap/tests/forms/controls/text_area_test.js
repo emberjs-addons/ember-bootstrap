@@ -27,6 +27,11 @@ test("should have the field", function() {
   equal(field.$().find('textarea').length, 1, "It needs to include the text area");
 });
 
+test("should have the class form-control", function() {
+  append();
+  equal(field.$().find('textarea.form-control').length, 1, "Textarea's need to have the class form-control");
+});
+
 test("input value is updated when setting value property of view", function() {
   Ember.run(function() {
     field.set('value', 'foo');
