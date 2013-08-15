@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ember Bootstrap - <%= @item[:title] %></title>
-    <link href="/css/bootstrap.css" rel="stylesheet">
-    <link href="/css/application.css" rel="stylesheet">
-    <script src="/js/jquery.js" type="text/javascript"></script>
-    <script src="/js/handlebars.js" type="text/javascript"></script>
-    <script src="/js/ember.js" type="text/javascript"></script>
-    <script src="/js/bootstrap.js" type="text/javascript"></script>
-    <script src="/js/application.js" type="text/javascript"></script>
+    <link href="<%= relative_path_to('/css/bootstrap.css') %>" rel="stylesheet">
+    <link href="<%= relative_path_to('/css/application.css') %>" rel="stylesheet">
+    <script src="<%= relative_path_to('/js/jquery.js') %>" type="text/javascript"></script>
+    <script src="<%= relative_path_to('/js/handlebars.js') %>" type="text/javascript"></script>
+    <script src="<%= relative_path_to('/js/ember.js') %>" type="text/javascript"></script>
+    <script src="<%= relative_path_to('/js/bootstrap.js') %>" type="text/javascript"></script>
+    <script src="<%= relative_path_to('/js/application.js') %>" type="text/javascript"></script>
   </head>
 
   <body>
@@ -19,7 +19,7 @@
     <div class="container-narrow">
       <div class="header">
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="/">Doc</a></li>
+          <li class="active"><a href="<%= relative_path_to('/') %>">Doc</a></li>
           <li><a href="https://github.com/emberjs-addons/ember-bootstrap">Source</a></li>
           <li><a href="https://groups.google.com/forum/#!forum/ember-bootstrap">Google Group</a></li>
         </ul>

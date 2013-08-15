@@ -1,5 +1,5 @@
 # Base params
-base_url: http://dmathieu.com
+base_url: http://emberjs-addons.github.io/ember-bootstrap/
 title: Ember Bootstrap
 
 # A list of file extensions that nanoc will consider to be textual rather than

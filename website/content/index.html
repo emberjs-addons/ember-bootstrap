@@ -22,7 +22,7 @@ title: Couple EmberJS with Bootstrap
 
   <% all_articles.each do |article| %>
     <div class="col-lg-6">
-      <h4><%= link_to article[:title], article %></a></h4>
+      <h4><a href="<%= relative_path_to(article) %>"><%= article[:title] %></a></h4>
       <p><%= article[:description] %></p>
     </div>
   <% end %>
