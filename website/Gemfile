@@ -1,0 +1,25 @@
+source "https://rubygems.org"
+
+# Root dependencies
+gem 'nanoc', '~> 3.5.0'
+gem 'rake', '~> 10.0.3'
+gem 'sass'
+
+# For the autocompiler
+gem 'mime-types'
+
+# Text formatting
+gem 'kramdown', '~> 0.14.2'
+gem 'coderay'
+
+# For the feed
+gem 'builder'
+
+group :development, :test do
+  gem 'adsf'
+  gem 'fssm'
+
+  # For nanoc check
+  gem 'nokogiri'
+  gem 'w3c_validators'
+end

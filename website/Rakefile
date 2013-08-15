@@ -1,0 +1,4 @@
+
+Dir['tasks/**/*.rb'].sort.each do |path|
+  load File.expand_path(path)
+end

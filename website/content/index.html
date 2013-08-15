@@ -1,0 +1,29 @@
+---
+title: Couple EmberJS with Bootstrap
+---
+
+
+<div class="alert">
+  <strong>Warning!</strong>
+  This documentation is very new and a work in progress. A lot of components are missing.
+  <br />
+  Feel free to fork the repository and submit a pull request if you want to propose a change.
+</div>
+
+<div class="jumbotron">
+  <h1>Ember Bootstrap</h1>
+  <p class="lead">
+    A set of UI elements styled using the Boostrap toolkit to use with Ember.js 
+  </p>
+  <p><a class="btn btn-large btn-success" href="https://github.com/emberjs-addons/ember-bootstrap/releases">Get the latest release</a></p>
+</div>
+
+<div class="row">
+
+  <% all_articles.each do |article| %>
+    <div class="col-lg-6">
+      <h4><%= link_to article[:title], article %></a></h4>
+      <p><%= article[:description] %></p>
+    </div>
+  <% end %>
+</div>
