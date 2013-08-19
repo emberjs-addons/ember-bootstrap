@@ -105,12 +105,21 @@ test("a modal pane does not get removed by clicking inside it", function() {
 });
 
 test("a modal pane has a close button that removes it from the DOM", function() {
-  var close;
   modalPane = Bootstrap.ModalPane.create();
   appendIntoDOM(modalPane);
   clickRelLink(modalPane, 'close');
   ok(!isAppendedToDOM(modalPane), "modal pane is not in the DOM");
   ok(isDestroyed(modalPane), "modal pane is destroyed");
+});
+
+test("the close button of a modal pane can be hidden by setting `showCloseButton` to false", function() {
+  modalPane = Bootstrap.ModalPane.create({
+    showCloseButton: false
+  });
+  appendIntoDOM(modalPane);
+  ok(modalPane.$().find("a.close").length === 0, "there is no close button");
+  modalPane.set("showCloseButton", true);
+  ok(modalPane.$().find("a.close").length === 1, "close button is shown after setting flag to false");
 });
 
 test("a modal pane calls callback when close button clicked", function() {

@@ -2,7 +2,7 @@ var get = Ember.get;
 
 var modalPaneTemplate = [
 '<div class="modal-header">',
-'  <a href="#" class="close" rel="close">&times;</a>',
+'  {{#if view.showCloseButton}}<a href="#" class="close" rel="close">&times;</a>{{/if}}',
 '  {{view view.headerViewClass}}',
 '</div>',
 '<div class="modal-body">{{view view.bodyViewClass}}</div>',
@@ -26,6 +26,7 @@ Bootstrap.ModalPane = Ember.View.extend(Ember.DeferredMixin, {
   animateBackdropIn: null,
   animateBackdropOut: null,
   showBackdrop: true,
+  showCloseButton: true,
   headerViewClass: Ember.View.extend({
     tagName: 'h3',
     template: Ember.Handlebars.compile('{{view.parentView.heading}}')
