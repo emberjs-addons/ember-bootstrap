@@ -21,11 +21,13 @@ var footerTemplate = [
 
 Bootstrap.ModalPane = Ember.View.extend(Ember.DeferredMixin, {
   classNames: 'modal',
+  classNameBindings : 'fade',
   defaultTemplate: Ember.Handlebars.compile(modalPaneTemplate),
   heading: null,
   message: null,
   primary: null,
   secondary: null,
+  fade: false,
   showBackdrop: true,
   showCloseButton: true,
   headerViewClass: Ember.View.extend({
@@ -50,6 +52,7 @@ Bootstrap.ModalPane = Ember.View.extend(Ember.DeferredMixin, {
   willDestroyElement: function() {
     this.$().modal('hide');
     this._removeDocumentKeyHandler();
+    this._removeBackdrop();
   },
 
   keyPress: function(event) {
@@ -70,6 +73,19 @@ Bootstrap.ModalPane = Ember.View.extend(Ember.DeferredMixin, {
 
       this._triggerCallbackAndDestroy(options, event);
       return false;
+    }
+  },
+
+  _removeBackdrop: function() {
+    var animateOut = this.get("fade"),
+        _this = this;
+
+    this._backdrop = this.$().parent().children('.modal-backdrop');
+    if (animateOut) {
+      animateOut.options = jQuery.extend({always: function(){ _this._backdrop.remove();}}, animateOut.options);
+      this._backdrop[animateOut.method](animateOut.options);
+    } else {
+      this._backdrop.remove();
     }
   },
 
