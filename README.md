@@ -40,6 +40,9 @@ Bootstrap.ModalPane.popup({
   primary: "OK",
   secondary: "Cancel",
   showBackdrop: true,
+  showCloseButton: true,
+  fade: false,
+  
   callback: function(opts, event) {
     if (opts.primary) {
      // primary button was pressed
