@@ -77,9 +77,11 @@ Bootstrap.ModalPane = Ember.View.extend(Ember.DeferredMixin, {
   },
 
   _removeBackdrop: function() {
-    var _backdrop = this.$().parent().children('.modal-backdrop');
-    if (this.get("fade")) {
-      _backdrop.fade({always: function(){ _backdrop.remove();}});
+    _backdrop = this.$().parent().children('.modal-backdrop');
+    if ($.support.transition && this.get("fade")) {
+      _backdrop.removeClass('in').one($.support.transition.end, function() {
+        _backdrop.remove();
+      });
     } else {
       _backdrop.remove();
     }
