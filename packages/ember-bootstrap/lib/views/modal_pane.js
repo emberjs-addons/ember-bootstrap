@@ -21,7 +21,7 @@ var footerTemplate = [
 
 Bootstrap.ModalPane = Ember.View.extend(Ember.DeferredMixin, {
   classNames: 'modal',
-  classNameBindings : 'fade',
+  classNameBindings: 'fade',
   defaultTemplate: Ember.Handlebars.compile(modalPaneTemplate),
   heading: null,
   message: null,
@@ -64,8 +64,7 @@ Bootstrap.ModalPane = Ember.View.extend(Ember.DeferredMixin, {
   },
 
   click: function(event) {
-        var target = event.target,
-        	targetRel = target.getAttribute('rel');
+    var target = event.target, targetRel = target.getAttribute('rel');
 
     if (targetRel) {
       var options = {};
@@ -77,7 +76,7 @@ Bootstrap.ModalPane = Ember.View.extend(Ember.DeferredMixin, {
   },
 
   _removeBackdrop: function() {
-    _backdrop = this.$().parent().children('.modal-backdrop');
+    var _backdrop = this.$().parent().children('.modal-backdrop');
     if ($.support.transition && this.get("fade")) {
       _backdrop.removeClass('in').one($.support.transition.end, function() {
         _backdrop.remove();
