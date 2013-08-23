@@ -4,7 +4,7 @@ var modalPaneTemplate = [
     '<div class="modal-dialog">',
     '  <div class="modal-content">',
     '    <div class="modal-header">',
-    '      {{#if view.showCloseButton}}<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>{{/if}}',
+    '      {{#if view.showCloseButton}}<button type="button" class="close" rel="close">&times;</button>{{/if}}',
     '      {{view view.headerViewClass}}',
     '    </div>',
     '    <div class="modal-body">{{view view.bodyViewClass}}</div>',
@@ -112,7 +112,7 @@ Bootstrap.ModalPane = Ember.View.extend(Ember.DeferredMixin, {
   },
 
   _resolveOrReject: function(options, event) {
-    if (options.primary || options.secondary)
+    if (options.primary)
       this.resolve(options, event);
     else
       this.reject(options, event);
