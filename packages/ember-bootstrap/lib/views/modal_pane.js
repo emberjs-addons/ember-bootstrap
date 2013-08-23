@@ -19,15 +19,17 @@ var footerTemplate = [
     '{{#if view.parentView.primary}}<button type="button" class="btn btn-primary" rel="primary">{{view.parentView.primary}}</button>{{/if}}' ]
     .join("\n");
 
+var modalPaneBackdrop = '<div class="modal-backdrop in"></div>';
+
 Bootstrap.ModalPane = Ember.View.extend(Ember.DeferredMixin, {
-  classNames: 'modal',
-  classNameBindings: 'fade',
+  classNames: [ 'modal', 'in' ],
   defaultTemplate: Ember.Handlebars.compile(modalPaneTemplate),
   heading: null,
   message: null,
   primary: null,
   secondary: null,
-  fade: false,
+  animateBackdropIn: null,
+  animateBackdropOut: null,
   showBackdrop: true,
   showCloseButton: true,
   headerViewClass: Ember.View.extend({
@@ -43,16 +45,16 @@ Bootstrap.ModalPane = Ember.View.extend(Ember.DeferredMixin, {
   }),
 
   didInsertElement: function() {
-    this.$().modal({
-      backdrop: get(this, 'showBackdrop')
-    });
+    if (get(this, 'showBackdrop'))
+      this._appendBackdrop();
+    this.$().show();
     this._setupDocumentKeyHandler();
   },
 
   willDestroyElement: function() {
-    this.$().modal('hide');
     this._removeDocumentKeyHandler();
-    this._removeBackdrop();
+    if (this._backdrop)
+      this._removeBackdrop();
   },
 
   keyPress: function(event) {
@@ -75,14 +77,25 @@ Bootstrap.ModalPane = Ember.View.extend(Ember.DeferredMixin, {
     }
   },
 
+  _appendBackdrop: function() {
+    var parentLayer = this.$().parent(), animateIn = this.get("animateBackdropIn");
+    this._backdrop = jQuery(modalPaneBackdrop).appendTo(parentLayer);
+    if (animateIn)
+      this._backdrop.hide()[animateIn.method](animateIn.options);
+  },
+
   _removeBackdrop: function() {
-    var _backdrop = this.$().parent().children('.modal-backdrop');
-    if ($.support.transition && this.get("fade")) {
-      _backdrop.removeClass('in').one($.support.transition.end, function() {
-        _backdrop.remove();
-      });
+    var animateOut = this.get("animateBackdropOut"), _this = this;
+
+    if (animateOut) {
+      animateOut.options = jQuery.extend({
+        always: function() {
+          _this._backdrop.remove();
+        }
+      }, animateOut.options);
+      this._backdrop[animateOut.method](animateOut.options);
     } else {
-      _backdrop.remove();
+      this._backdrop.remove();
     }
   },
 
