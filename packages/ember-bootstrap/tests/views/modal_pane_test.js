@@ -54,28 +54,28 @@ test("a modal pane shows primary button if primary property is present", functio
   var primaryText = 'Oh my primary';
   modalPane = Bootstrap.ModalPane.create({ primary: primaryText });
   appendIntoDOM(modalPane);
-  ok(modalPane.$().find('.modal-footer a.btn-primary').length, 'a modal pane displays primary button');
-  equal(modalPane.$().find('.modal-footer a.btn-primary').text(), primaryText,
+  ok(modalPane.$().find('.modal-footer button.btn-primary').length, 'a modal pane displays primary button');
+  equal(modalPane.$().find('.modal-footer button.btn-primary').text(), primaryText,
         'a modal pane binds primary property to primary button text');
 
   Ember.run(function() {
     modalPane.set('primary', null);
   });
-  ok(!modalPane.$().find('.modal-footer a.btn-primary').length, "a modal pane hides primary button");
+  ok(!modalPane.$().find('.modal-footer button.btn-primary').length, "a modal pane hides primary button");
 });
 
 test("a modal pane shows secondary button if secondary property is present", function() {
   var secondaryText = 'Oh my secondary';
   modalPane = Bootstrap.ModalPane.create({ secondary: secondaryText });
   appendIntoDOM(modalPane);
-  ok(modalPane.$().find('.modal-footer a.btn-secondary').length, 'a modal pane displays secondary button');
-  equal(modalPane.$().find('.modal-footer a.btn-secondary').text(), secondaryText,
+  ok(modalPane.$().find('.modal-footer button.btn-secondary').length, 'a modal pane displays secondary button');
+  equal(modalPane.$().find('.modal-footer button.btn-secondary').text(), secondaryText,
         'a modal pane binds secondary property to secondary button text');
 
   Ember.run(function() {
     modalPane.set('secondary', null);
   });
-  ok(!modalPane.$().find('.modal-footer a.btn-secondary').length, "a modal pane hides secondary button");
+  ok(!modalPane.$().find('.modal-footer button.btn-secondary').length, "a modal pane hides secondary button");
 });
 
 test("a modal pane defines secondary button first so it sits to the left of the primary button if both are present", function() {
@@ -83,7 +83,7 @@ test("a modal pane defines secondary button first so it sits to the left of the 
       secondaryText = 'Oh my secondary';
   modalPane = Bootstrap.ModalPane.create({ primary: primaryText, secondary: secondaryText  });
   appendIntoDOM(modalPane);
-  ok(modalPane.$().find('.modal-footer a.btn-secondary').next('a.btn-primary'), 'a modal pane defines secondary button first');
+  ok(modalPane.$().find('.modal-footer button.btn-secondary').next('button.btn-primary'), 'a modal pane defines secondary button first');
 });
 
 test("a modal pane footerViewClass may be extended", function() {
@@ -117,9 +117,9 @@ test("the close button of a modal pane can be hidden by setting `showCloseButton
     showCloseButton: false
   });
   appendIntoDOM(modalPane);
-  ok(modalPane.$().find("a.close").length === 0, "there is no close button");
+  ok(modalPane.$().find("button.close").length === 0, "there is no close button");
   modalPane.set("showCloseButton", true);
-  ok(modalPane.$().find("a.close").length === 1, "close button is shown after setting flag to false");
+  ok(modalPane.$().find("button.close").length === 1, "close button is shown after setting flag to false");
 });
 
 test("a modal pane calls callback when close button clicked", function() {
