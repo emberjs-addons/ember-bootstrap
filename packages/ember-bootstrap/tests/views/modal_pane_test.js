@@ -68,14 +68,14 @@ test("a modal pane shows secondary button if secondary property is present", fun
   var secondaryText = 'Oh my secondary';
   modalPane = Bootstrap.ModalPane.create({ secondary: secondaryText });
   appendIntoDOM(modalPane);
-  ok(modalPane.$().find('.modal-footer button.btn-secondary').length, 'a modal pane displays secondary button');
-  equal(modalPane.$().find('.modal-footer button.btn-secondary').text(), secondaryText,
+  ok(modalPane.$().find('.modal-footer button.btn-default').length, 'a modal pane displays secondary button');
+  equal(modalPane.$().find('.modal-footer button.btn-default').text(), secondaryText,
         'a modal pane binds secondary property to secondary button text');
 
   Ember.run(function() {
     modalPane.set('secondary', null);
   });
-  ok(!modalPane.$().find('.modal-footer button.btn-secondary').length, "a modal pane hides secondary button");
+  ok(!modalPane.$().find('.modal-footer button.btn-default').length, "a modal pane hides secondary button");
 });
 
 test("a modal pane defines secondary button first so it sits to the left of the primary button if both are present", function() {
@@ -83,7 +83,7 @@ test("a modal pane defines secondary button first so it sits to the left of the 
       secondaryText = 'Oh my secondary';
   modalPane = Bootstrap.ModalPane.create({ primary: primaryText, secondary: secondaryText  });
   appendIntoDOM(modalPane);
-  ok(modalPane.$().find('.modal-footer button.btn-secondary').next('button.btn-primary'), 'a modal pane defines secondary button first');
+  ok(modalPane.$().find('.modal-footer button.btn-default').next('button.btn-primary'), 'a modal pane defines secondary button first');
 });
 
 test("a modal pane footerViewClass may be extended", function() {
@@ -107,7 +107,7 @@ test("a modal pane does not get removed by clicking inside it", function() {
 test("a modal pane has a close button that removes it from the DOM", function() {
   modalPane = Bootstrap.ModalPane.create();
   appendIntoDOM(modalPane);
-  clickRelLink(modalPane, 'close');
+  clickRelButton(modalPane, 'close');
   ok(!isAppendedToDOM(modalPane), "modal pane is not in the DOM");
   ok(isDestroyed(modalPane), "modal pane is destroyed");
 });
@@ -129,7 +129,7 @@ test("a modal pane calls callback when close button clicked", function() {
     callback: callback
   });
   appendIntoDOM(modalPane);
-  clickRelLink(modalPane, 'close');
+  clickRelButton(modalPane, 'close');
   ok(callbackWasCalled, "modal pane calls given callback when close button clicked");
   ok(!isAppendedToDOM(modalPane), "modal pane is not in the DOM");
   ok(isDestroyed(modalPane), "modal pane is destroyed");
@@ -145,7 +145,7 @@ test("a modal pane resolves when primary button is clicked", function() {
   modalPane.then(function() {
     start();
   });
-  clickRelLink(modalPane, 'primary');
+  clickRelButton(modalPane, 'primary');
 });
 
 test("a modal pane rejects when close button is clicked", function() {
@@ -156,7 +156,7 @@ test("a modal pane rejects when close button is clicked", function() {
   modalPane.then(null, function() {
     start();
   });
-  clickRelLink(modalPane, 'close');
+  clickRelButton(modalPane, 'close');
 });
 
 test("a modal pane rejects when secondary button is clicked", function() {
@@ -169,7 +169,7 @@ test("a modal pane rejects when secondary button is clicked", function() {
   modalPane.then(null, function() {
     start();
   });
-  clickRelLink(modalPane, 'secondary');
+  clickRelButton(modalPane, 'secondary');
 });
 
 test("returning false from the callback does not resolve or reject the modal pane", function() {
@@ -180,7 +180,7 @@ test("returning false from the callback does not resolve or reject the modal pan
   appendIntoDOM(modalPane);
   modalPane.then(function() { ok(false, "should not resolve"); });
   modalPane.then(null, function() { ok(false, "should not reject"); });
-  clickRelLink(modalPane, 'primary');
+  clickRelButton(modalPane, 'primary');
   ok(isAppendedToDOM(modalPane), "modal pane is not in the DOM");
   ok(!isDestroyed(modalPane), "modal pane is destroyed");
 });
@@ -193,7 +193,7 @@ test("a modal pane calls callback when primary button clicked and removes pane f
     callback: callback
   });
   appendIntoDOM(modalPane);
-  clickRelLink(modalPane, 'primary');
+  clickRelButton(modalPane, 'primary');
   ok(callbackWasCalled, "modal pane calls given callback when primary button clicked");
   ok(!isAppendedToDOM(modalPane), "modal pane is not in the DOM");
   ok(isDestroyed(modalPane), "modal pane is destroyed");
@@ -207,7 +207,7 @@ test("a modal pane calls callback when primary button clicked which cancels remo
     callback: callback
   });
   appendIntoDOM(modalPane);
-  clickRelLink(modalPane, 'primary');
+  clickRelButton(modalPane, 'primary');
   ok(callbackWasCalled, "modal pane calls given callback when primary button clicked");
   ok(isAppendedToDOM(modalPane), "modal pane is in the DOM");
   ok(!isDestroyed(modalPane), "modal pane is not destroyed");
@@ -221,7 +221,7 @@ test("a modal pane calls callback when primary button clicked which explicitly r
     callback: callback
   });
   appendIntoDOM(modalPane);
-  clickRelLink(modalPane, 'primary');
+  clickRelButton(modalPane, 'primary');
   ok(callbackWasCalled, "modal pane calls given callback when primary button clicked");
   ok(!isAppendedToDOM(modalPane), "modal pane is not in the DOM");
   ok(isDestroyed(modalPane), "modal pane is destroyed");
@@ -235,10 +235,10 @@ test("a modal pane calls callback which explicitly removes pane after second cli
     callback: callback
   });
   appendIntoDOM(modalPane);
-  clickRelLink(modalPane, 'primary');
+  clickRelButton(modalPane, 'primary');
   ok(isAppendedToDOM(modalPane), "modal pane is in the DOM");
   ok(!isDestroyed(modalPane), "modal pane is not destroyed");
-  clickRelLink(modalPane, 'primary');
+  clickRelButton(modalPane, 'primary');
   ok(callbackWasCalledCount === 2, "modal pane calls given callback when primary button clicked");
   ok(!isAppendedToDOM(modalPane), "modal pane is not in the DOM");
   ok(isDestroyed(modalPane), "modal pane is destroyed");
@@ -252,7 +252,7 @@ test("a modal pane calls callback when secondary button clicked and removes pane
     callback: callback
   });
   appendIntoDOM(modalPane);
-  clickRelLink(modalPane, 'secondary');
+  clickRelButton(modalPane, 'secondary');
   ok(callbackWasCalled, "modal pane calls given callback when secondary button clicked");
   ok(!isAppendedToDOM(modalPane), "modal pane is not in the DOM");
   ok(isDestroyed(modalPane), "modal pane is destroyed");
