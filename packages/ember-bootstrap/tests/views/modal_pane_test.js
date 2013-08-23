@@ -287,7 +287,8 @@ test("a modal pane appends and removes backdrop to its parent", function() {
 
 test("a modal pane appends and removes backdrop to its parent when animation options are used", function() {
   modalPane = Bootstrap.ModalPane.create({
-    fade : true
+    animateBackdropIn:  {method: "fadeIn", options: {duration: 0}},
+    animateBackdropOut: {method: "fadeOut", options: {duration: 0}}
   });
   ok(!documentHasSelector('body > .modal-backdrop'), "modal pane does not append backdrop before inserting into DOM");
   appendIntoDOM(modalPane);
