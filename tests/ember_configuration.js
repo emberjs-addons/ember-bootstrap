@@ -98,12 +98,12 @@
 
     window.clickRelLink = function(view, relName) {
       var selector = 'a[rel=' + relName + ']';
-      retrun window.clickRel(view, selector)
+      return window.clickRel(view, selector);
     }
 
     window.clickRelButton = function(view, relName) {
       var selector = 'button[rel=' + relName + ']';
-      retrun window.clickRel(view, selector)
+      return window.clickRel(view, selector);
     }
     
     window.clickRel = function(view, selector) {
