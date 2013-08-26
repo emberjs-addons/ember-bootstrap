@@ -45,16 +45,18 @@ Bootstrap.ModalPane = Ember.View.extend(Ember.DeferredMixin, {
   }),
 
   didInsertElement: function() {
-    if (get(this, 'showBackdrop'))
+    if (get(this, 'showBackdrop')) {
       this._appendBackdrop();
+    }
     this.$().show();
     this._setupDocumentKeyHandler();
   },
 
   willDestroyElement: function() {
     this._removeDocumentKeyHandler();
-    if (this._backdrop)
+    if (this._backdrop) {
       this._removeBackdrop();
+    }
   },
 
   keyPress: function(event) {
@@ -80,8 +82,9 @@ Bootstrap.ModalPane = Ember.View.extend(Ember.DeferredMixin, {
   _appendBackdrop: function() {
     var parentLayer = this.$().parent(), animateIn = this.get("animateBackdropIn");
     this._backdrop = jQuery(modalPaneBackdrop).appendTo(parentLayer);
-    if (animateIn)
+    if (animateIn) {
       this._backdrop.hide()[animateIn.method](animateIn.options);
+    }
   },
 
   _removeBackdrop: function() {
@@ -112,10 +115,11 @@ Bootstrap.ModalPane = Ember.View.extend(Ember.DeferredMixin, {
   },
 
   _resolveOrReject: function(options, event) {
-    if (options.primary)
+    if (options.primary) {
       this.resolve(options, event);
-    else
+    } else {
       this.reject(options, event);
+    }
   },
 
   _triggerCallbackAndDestroy: function(options, event) {
@@ -134,8 +138,9 @@ Bootstrap.ModalPane.reopenClass({
   rootElement: ".ember-application",
   popup: function(options) {
     var modalPane, rootElement;
-    if (!options)
+    if (!options) {
       options = {};
+    }
     modalPane = this.create(options);
     rootElement = get(this, 'rootElement');
     modalPane.appendTo(rootElement);
