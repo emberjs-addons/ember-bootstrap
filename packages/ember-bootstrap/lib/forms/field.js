@@ -1,8 +1,9 @@
 Bootstrap.Forms.Field = Ember.View.extend({
   tagName: 'div',
-  classNameBindings: ['form-group'],
+  classNameBindings: [':form-group', 'isValid:has-no-error:has-error'],
   labelCache: undefined,
   help: undefined,
+  isValid: true,
   template: Ember.Handlebars.compile([
     '{{view view.labelView viewName="labelView"}}',
     '{{view view.inputField viewName="inputField"}}',
@@ -62,11 +63,12 @@ Bootstrap.Forms.Field = Ember.View.extend({
   errorsView: Ember.View.extend({
     tagName: 'div',
     classNames: ['errors', 'help-inline'],
+    template: Ember.Handlebars.compile('{{view.message}}'),
 
-    _updateContent: Ember.observer(function() {
+    message: Ember.computed(function(key, value) {
       var parent = this.get('parentView');
 
-      if (parent !== null) {
+      if (parent != null) {
         var binding = parent.get('valueBinding._from');
         var fieldName = null;
         var object = null;
@@ -84,18 +86,18 @@ Bootstrap.Forms.Field = Ember.View.extend({
           var errors = object.get('errors');
 
           if (errors && fieldName in errors && !Ember.isEmpty(errors[fieldName])) {
-            parent.$().addClass('has-error');
-            this.$().html(errors[fieldName].join(', '));
+            parent.set('isValid', false);
+            return errors[fieldName].join(', ');
           } else {
-            parent.$().removeClass('has-error');
-            this.$().html('');
+            parent.set('isValid', true);
+            return '';
           }
         } else {
-          parent.$().removeClass('has-error');
-          this.$().html('');
+          parent.set('isValid', true);
+          return '';
         }
       }
-    }, 'parentView.context.isValid', 'parentView.label')
+    }).property('parentView.context.isValid', 'parentView.label')
   }),
 
   helpView: Ember.View.extend({
