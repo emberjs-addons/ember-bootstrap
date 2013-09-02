@@ -63,6 +63,14 @@ Bootstrap.Forms.Field = Ember.View.extend({
     tagName: 'div',
     classNames: ['errors', 'help-inline'],
 
+    init: function() {
+      // Unconsumed computed properties do not trigger observers, so we
+      // need trigger a get within our init function to ensure that our
+      // validation messages appear
+      this.get('parentView.context.isValid');
+      this._super();
+    },
+
     _updateContent: Ember.observer(function() {
       var parent = this.get('parentView');
 

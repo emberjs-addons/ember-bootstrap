@@ -7,13 +7,13 @@ Bootstrap.Pager = Ember.CollectionView.extend({
   itemTitleKey: 'title',
   itemHrefKey: 'href',
   init: function() {
-    this._super();
     if (!this.get('content')) {
       this.set('content', Ember.A([
                                   Ember.Object.create({ title: '&larr;' }), 
                                   Ember.Object.create({ title: '&rarr;' })
       ]));
     }
+    this._super();
   },
   itemViewClass: Ember.View.extend(Bootstrap.ItemViewTitleSupport, Bootstrap.ItemViewHrefSupport, {
     classNameBindings: ['content.next', 'content.previous', 'content.disabled'],
