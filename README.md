@@ -40,6 +40,7 @@ Bootstrap.ModalPane.popup({
   primary: "OK",
   secondary: "Cancel",
   showBackdrop: true,
+  showCloseButton: true,
   animateBackdropIn: {method: "fadeIn", options: "slow"}, //options can also be an object -> {duration: 1000, done: function(){console.log("done")}
   animateBackdropOut: {method: "fadeOut"}, //also accepts options
   callback: function(opts, event) {
