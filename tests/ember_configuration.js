@@ -97,8 +97,17 @@
     });
 
     window.clickRelLink = function(view, relName) {
-      var selector = 'a[rel=' + relName + ']',
-      element = view.$().find(selector);
+      var selector = 'a[rel=' + relName + ']';
+      return window.clickRel(view, selector);
+    }
+
+    window.clickRelButton = function(view, relName) {
+      var selector = 'button[rel=' + relName + ']';
+      return window.clickRel(view, selector);
+    }
+    
+    window.clickRel = function(view, selector) {
+      var element = view.$().find(selector);
       ok(element);
       element.click();
       return element;
