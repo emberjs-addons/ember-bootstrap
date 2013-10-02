@@ -1,3 +1,8 @@
+# Maintenance
+
+This project is not really maintained. See [You should not use Ember Bootstrap](http://dmathieu.com/articles/general/you-should-not-use-ember-bootstrap/).
+If you want to take over, please let us know.
+
 # Ember Bootstrap [![Travis](https://secure.travis-ci.org/emberjs-addons/ember-bootstrap.png?branch=master)](http://travis-ci.org/emberjs-addons/ember-bootstrap)
 
 Ember Bootstrap is set of UI elements styled using Twitter Bootstrap (currently version 2) toolkit to use with Ember.js.
